@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Chapter 2</title>
+</head>
+<body>
+
+<h2 align="center">Chapter 2</h2>
+<hr width="160" />
+<h1 align="center">Creating and Viewing a Web Page</h1>
+<hr />
+<p>
+	<b><i>In This Chapter</i></b>
+	<ul>
+		<li>Planning your Web page</li>
+		<li>Writing some HTML</li>
+		<li>Saving your page</li>
+		<li>Viewing your page offline and online</li>
+	</ul>
+</p>
+<hr />
+
+<p>
+	Creating your very own Web page can seem a little daunting, but it's definitely fun, and our
+	experience tells us the best way to get started is to jump right in with both feet. You might
+	splash around a bit first, but you can keep your head above water without too much trashing.
+</p>
+<p>
+	This chapter walks you through four simple steps to creating a Web page. We don't stop and
+	explain every nuance of the markup you use -- we save that for other chapters. Instead, we
+	want to make you comfortable working with markup and content to create and view a Web page.
+</p>
+
+<h3>Before You Get Started</h3>
+<p>
+	Creating HTML documents differs from creating word-processor documents in an application
+	like Microsoft Word because you use two applications:
+	<ul>
+		<li>You create the Web pages in your text or HTML editor.</li>
+		<li>You view the results in your Web browser.</li>
+	</ul>
+	Even though many HTML editors, such as Dreamweaver and HTML-Kit, provide a browser preview,
+	it's still important to preview your Web pages inside actual Web browsers, such as Internet
+	Explorer and Firefox, so you can see them as your end users will. It's a bit unwieldy to
+	edit in one application and switch to another to look at your work, but you'll be 
+	switching like a pro from text editor to browser and back in (almost) no time.
+</p>
+<p>
+	To get started on your first Web page, you need two types of software:
+	<ul>
+		<li><b>A text editor such as Notepad, TextPad or SimpleText</b><br />
+			Notepad is the native text editor in Windows. TextPad is a shareware text editor 
+			available from <a href="https://www.textpad.com">www.textpad.com</a>. (TextPad
+			is used to create most of the figures in this chapter.) SimpleText is the native
+			text editor in the Macintosh operating system.
+		</li>
+		<li><b>A Web browser</b></li>
+	</ul>
+</p>
+<p>
+	We discuss these basic tools in more detail in Chapter 20. We recommend that you whip out
+	your good ol' text editor to make your first page. Here are a couple of reasons why:
+	<ul>
+		<li>An advanced HTML editor, such as FrontPage or Dreamweaver, often <i>hides</i>
+			your HTML from you. For your first page, you want to see your HTML in all of its
+			(limited) glory.<br />
+			You can make a smooth transition to a more advanced editor after you're a little
+			more familiar with HTML markup, syntax and document structure.
+		</li>
+		<li>
+			<i>Word processors</i> (such as Microsoft Word) usually store a lot of extra file
+			information behind the scenes (for example, formatting instructions to display or
+			print files). You can't see or change the extra information, but it interferes with
+			your HTML.
+		</li>
+	</ul>
+</p>
+
+<h3>Creating a Page from Scratch</h3>
+<p>
+	Using HTML to create a Web page from scratch involves four straightforward steps:
+	<ol><b>
+		<li>Plan your page design.</li>
+		<li>Combine HTML and text in a text editor to make that design a reality.</li>
+		<li>Save your page.</li>
+		<li>View your page in a Web browser.</li>
+	</b></ol>
+	So break out your text editor and Web browser and roll up your sleeves.
+</p>
+<h4>Step 1: Planning a simple design</h4>
+<p>
+	We've discovered that a few minutes spent planning your general approach to a page at the
+	outset of work makes the page-creation process much easier.
+</p>
+<p>
+	You don't have to create a complicated diagram or elaborate graphical display in this step.
+	Just jot down some ideas for <i>what you want on the page</i> and <i>how you want it
+	arranged.</i>
+</p>
+<p>
+	You don't even have to be at your desk to plan your simple design. Take a notepad and pencil
+	outside and design in the sun, or scribble on a napkin while you're having lunch. Remember,
+	this is supposed to be fun.
+</p>
+<p>
+	The example in this chapter is our take on the traditional "Hello World" exercise used just
+	about every existing programming language. That is, the first thing you learn when tackling
+	a new programming language is how to display the phrase <code>Hello World</code> on screen.
+	In our example, we create a short letter to the world instead, so the page is a bıt more 
+	substantial and gives you more text to work with.
+</p>
+<p>
+	The basic design for the page includes four basic components:
+	<ul>
+		<li>A serviceable title: "Hello World"</li>
+		<li>A few paragraphs explaining how the page's author plans to help the Earth meets its
+		yearly quota of Znufengerbs</li>
+		<li>A closing of "Sincerely"</li>
+		<li>A signature</li>
+	</ul>
+</p>
+<p>
+	Jot down some notes about the color scheme you want to use on the page. For effect, we 
+	decided that our example page should have a black background and white text, and the title
+	should be "Greetings From Your Future Znufengerb Minister."
+</p>
+<p>
+	When you know what kind of information you want on the page, you can move on to Step 2 --
+	writing the markup.
+</p>
+<h4>Step 2: Writing some HTML</h4>
+<p>
+	You have a couple of different options when you're ready to create your HTML. In the end,
+	you'll probably use some combination of these:
+	<ul>
+		<li>If you already have some text that you just want to describe with HTML, save that
+		text as a plain text file and add HTML markup around it.</li>
+		<li>Start creating markup and add the content as you go.</li>
+	</ul>
+</p>
+<p>
+	Our example in this chapter starts with some text in Word document format. We saved the 
+	content as a text file, opened the text file in our text editor, and added markup around
+	the text.
+</p>
+<p>
+	To save a Word file as a text document, choose File&rarr;Save As. In the dialog box that
+	appears, choose Text Only (*.txt) from Save As Type drop-down list.
+</p>
+<p>
+	<b>Listing 2-1:	The Complete HTML Page for the Zog Letter</b><br />
+	<hr />
+	<pre><code>
+    &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+			"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+    &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+
+      &lt;head&gt;
+        &lt;title&gt;Greetings From Your Future Znufengerb Minister&lt;/title&gt;
+      &lt;/head&gt;
+
+      &lt;body bgcolor="black" text="white"&gt;
+
+      &lt;h1&gt;Hello World&lt;/h1&gt;
+      &lt;p&gt;It has come to our attention that Earth has fallen well short of producing its yearly
+      quota of Znufengerbs. To help you improve your production and establish a plentiful 
+      Znufengerb colony, I, Zog, the Minister of Agriculture of Grustland, will be arriving on your
+      planet within the week along with my herd experts to take command of your Znufengerb
+      enterprise.
+      &lt;/p&gt;
+
+      &lt;p&gt;Do not fear. I have the highest expectations for a smooth transition from your current
+      production of the creatures you call cows to our beloved Znufengerbs. The future of the galaxy
+      hinges on Earth's ability to meet its Znufengerb quota and I will do all in my power to make
+      you the most productive source of Znufengerb in the universe.
+      &lt;/p&gt;
+
+      &lt;p&gt;I have studied your history extensively and feel that I am the best candidate for the
+      position of Znufengerb in every home to bring you joy.
+      &lt;/p&gt;
+
+      &lt;Sincerely,&lt;br /&gt;
+        Zog, Minister of Agriculture
+      &lt;/p&gt;
+
+      &lt;/body&gt;
+    &lt;/html&gt;
+	</code></pre>
+</p>
+<hr />
+<p>
+	The HTML markup includes a collection of markup elements and attributes that describe the letter's contents:
+	<ul>
+		<li>The <code>&lt;html&gt;</code> element defines the document as an HTML document.</li>
+		<li>The <code>&lt;head&gt;</code> element creates a header section for the document.</li>
+		<li>The <code>&lt;title&gt;</code> element defines a document title that is displayed in the
+			browser's title bar.<br />
+			The <code>&lt;title&gt;</code> element is <i>inside</i> the <code>&lt;head&gt;</code> element.</li>
+		<li>The <code>&lt;body&gt;</code> element holds the text that appears in the browser
+			window.<br />
+			The <code>bgcolor</code> and <code>text</code> attributes work with the 
+			<code>&lt;body&gt;</code> element. These attributes set the background color to black and
+			the text color to white. (These attributes are deprecated, but really easy to use.
+			Chapter 8 and 9 how to achieve the same effects by using CSS, which is the recommended
+			method.)
+		</li>
+		<li>The <code>&lt;h1&gt;</code> element marks the <code>Hello World</code> text as a
+		first-level heading.</li>
+		<li>The <code>&lt;p&gt;</code> elements identify each paragraph of the document.</li>
+		<li>The <code>&lt;br /&gt;</code> element adds a manual line break after <code>
+			Sincerely.
+		</code></li>
+	</ul>
+</p>
+<p>
+	Don't worry about the ins and outs of how all these elements work. They are covered in detail
+	in Chapters 4 and 5.
+</p>
+<p>
+	After you create a complete HTML page (or the first chunk of it that you want to review), you
+	must save it before you can see your work in a browser.
+</p>
+<h4>Step 3: Saving Your Page</h4>
+<p>
+  You use a text editor to create your HTML documents and a Web browser to view them, but before you
+  can let your browser loose on your HTML page, you have to save the page. When you're just building
+  a page, you should save a copy of it to your local hard drive and view it locally with your 
+  browser.
+</p>
+<p>
+<b><i>Choosing a location and name for your file</i></b><br />
+  When you save your file to your hard drive, keep the following in mind:
+  <ul>
+  	<li>You need to be able to find it again.<br />
+  		Create a folder on your hard drive especially for your Web pages.Call it 
+  		<code>Web Pages</code> or <code>HTML</code> (or any other name that makes
+  		sense to you), and be sure you put it somewhere easy to find.</li>
+  	<li>The name should make sense to you so you can identify file contents
+  		without actually opening the file.</li>
+  	<li>The name should work well in a Web browser.<br />
+  		Don't use spaces in the name. Some operating systems -- most notably Unix
+  		and Linux (the most popular Web-hosting operating systems around) -- don't
+  		tolerate spaces in filenames.</li>
+  </ul>
+</p>
+<p>
+	<b><i>.htm or .html</i></b><br />
+	You can actually choose from one of two suffixes for your pages: <code>.html</code>
+	or <code>.htm</code>. (Our example filename, <code>zog_letter.html</code>, uses
+	the <code>.html</code> suffix.)
+</p>
+<p>
+	The shorter <code>.htm</code> is a relic from the 8.3 DOS days when filenames
+	could only have eight characters followed by a three-character suffix that
+	described the file's type. Today, operating systems can support long filenames
+	and suffixes that are more than three letters long, so we suggest you stick 
+	with <code>.html</code>.
+</p>
+<p>
+	Web servers and Web browsers handle both <code>.htm</code> and <code>.html</code>
+	equally well.<br />
+	Stick with one filename option. <code>.html</code> and <code>.htm</code> files
+	are treated the same by browsers and servers, but they're different suffixes,
+	so they create different filenames. (The name <code>zog_letter.html</code> is
+	different from <code>zog_letter.htm</code>.) This matters when you create <i>
+	hyperlinks</i> (covered in Chapter 6).
+</p>
+<h4>Step 4: Viewing your page</h4>
+<p>
+	After you save a copy of your page, you're ready to view it in a Web browser.
+	Follow these steps to view your Web page in Internet Explorer. (Steps may be
+	different if you're using a different browser.)
+	<ol><b>
+		<li>If you haven't opened your browser, do that now.</li>
+		<li>Choose File&rarr;Open and click the Browse button.</li>
+		<li>Navigate your file system until you find your HTML file, and then select
+		it so it appears in the File name area.</li>
+		<li>Click the Open button, and click OK.</li>
+	</b></ol>
+</p>
+<p>
+	You aren't actually viewing this file on the Web yet; you're just viewing a 
+	<i>copy</i> of it saved on your local hard drive. You can't give anyone the
+	URL for this file yet, but you can edit and view the changes you make.
+</p>
+
+<h3>Editing an Existing Web Page</h3>
+<p>
+	Chances are you'll want to change one thing (at least) about your page after
+	you view it in a Web browser for the first time. After all, you can't really
+	see how the page is going to look when you're creating the markup, and you
+	might decide that a first-level heading is too big or that you really <i>want
+	</i> purple text on a green background.
+</p>
+<p>
+	To make chages to the Web page you've created in a text editor and are viewing
+	in a browser, repeat these steps until you're happy with the final appearance
+	of your page:
+	<ol><b>
+		<li>Leave the browser window with the HTML page display open and go back to 
+		the text editor.</li>
+		<li>If the HTML page isn't open in the text editor, open it.</li>
+		<li>Make your changes to the HTML and its content in the text editor.</li>
+		<li>Save the changes.</li>
+		<li>Move back to the Web browser and click the Refresh button.</li>
+	</b></ol>
+</p>
+<p>
+	If you keep the HTML file open in both the text editor and the browser while 
+	you work, checking changes is a breeze. You can quickly save a change in the
+	editor, flip to the browser and refresh, flip back to the editor to make more
+	changes, flip back to the browser and refresh, and so on.
+</p>
+<p>
+	In our example letter, we decided after our initial draft of the HTML page that
+	we should add a date to letter.
+</p>
+<p>
+	This approach to editing an HTML page applies only to pages saved <i>on your
+	local hard drive.</i> If you want to edit a page that you have already stored
+	on a Web server, you have to save a copy of the page to your hard drive, edit
+	it, verify your changes, and then upload the file again to the server, as 
+	discussed in the following section.
+</p>
+
+<h3>Posting Your Page Online</h3>
+<p>
+	After you're happy with your Web page, it's time to put it online. Chapter 3 
+	includes a detailed discussion of what you need to do to put your page online,
+	but to sum it up in a few quick steps:
+	<ol>
+		<b><li>Find a Web hosting provider to hold your Web pages.</li></b>
+		<p>Your Web host might be a company Web server or space that you pay an
+		Internet service provider (ISP) for. If you don't have a host yet, double
+		check with the ISP you use for Internet access -- find out whether you get 
+		some Web-server space along with your access. Regardless of where you find
+		space, get details from the provider on where to move your site's files and
+		what your URL will be.</p>
+		<b><li>Use an FTP client or a Web browser to make a connection to your Web 
+		server.</li></b>
+		<p>Use the username and password, as speicified in the information from your
+		hosting provider, to open an FTP session on the Web server.</p>
+		<b><li>Copy the HTML file from your hard drive to the Web server.</li></b>
+		<b><li>Use your Web browser to view the fle via the Internet.</li></b>
+	</ol>
+</p>
+<p>
+	For example, to host our letter online at <code>ftp.io.com/~natanya</code>, we
+	used Internet Explorer to access the site and provided the appropriate name 
+	and password, which you get from your ISP. A collection of folders and files
+	appeared.
+</p>
+<p>
+	We copied the file to the server with a simple drag-and-drop operation from 
+	Windows Explorer to Internet Explorer. The URL for this page is <code>
+	http://www.io.com/~natanya/zog_letter.html</code>, and the page is now served
+	from the Web browser instead of from a local file system.
+</p>
+
+</body>
+</html>

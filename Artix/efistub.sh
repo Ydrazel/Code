@@ -1,0 +1,1 @@
+efibootmgr --disk /dev/nvme0n1 --part 1 --create --label "Arch Linux" --loader /vmlinuz-linux-zen --unicode 'root=LABEL=arch resume=UUID=f6119669-f86a-430d-a89f-c674edca7b54 resume_offset=62633472 rw nmi_watchdog=0 pcie_aspm=force acpi_backlight=native initrd=\amd-ucode.img initrd=\initramfs-linux-zen.img' --verbose

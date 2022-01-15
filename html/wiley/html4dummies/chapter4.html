@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chapter 4</title>
+</head>
+
+<body>
+
+  <h2 align="center">Chapter 4</h2>
+  <hr width="160" />
+  <h1 align="center">Creating (X)HTML Document Structure</h1>
+
+  <hr />
+  <h4>In This Chapter</h4>
+  <ul>
+    <li>Creating a basic (X)HTML document structure</li>
+    <li>Defining the (X)HTML document header</li>
+    <li>Creating a full-bodied (X)HTML document</li>
+  </ul>
+  <hr />
+
+  <p>
+    The framework of a simple (X)HTML document consists of a head and body. The
+    <i>head</i>provides information to the browser about the document, and the 
+    <i>body</i> contains the information tht appears in the browser window. The
+    first step to creating an (X)HTML document is defining the framework for 
+    that document.
+  </p>
+  <p>
+    This chapter covers the major elements that you use to set up a basic (X)HTML
+    document structure -- including the head and body of the document. We also 
+    show you how to tell the browser which version of HTML or XHTML you're using.
+    Although the version information isn't necessary for users, browsers use it
+    to make sure that they correctly display document content for your users.
+  </p>
+
+  <h3>Establishing a Document Structure</h3>
+  <p>
+    Although no two (X)HTML pages are alike -- each employs a uniqiue combination
+    of content and elements to define the page -- every properly constructed
+    (X)HTML page needs the same basic document structure that includes
+    <ul>
+      <li>A statement that identifies the document as an (X)HTML document</li>
+      <li>A document header</li>
+      <li>A document body</li>
+    </ul>
+  </p>
+  <p>
+    Every time you create an (X)HTML document, start with these three elements;
+    you can then fill in the rest of your content and markup to create an individual
+    page.
+  </p>
+  <p>
+    Although a basic document structure is a reqirement for every (X)HTML document,
+    creating it over and over again can be a little monotonous. Most (X)HTML-
+    editing tools automatically set up the basic document structure for you when
+    you open a new document.
+  </p>
+
+  <h3>Labeling Your (X)HTML Document</h3>
+  <p>
+    At the top of your (X)HTML document should be the <i>Document Type Declaration</i>,
+    or <code><i>DOCTYPE</i></code> <i>declaration.</i> This line of code specifies
+    which version of HTML or XHTML you're using, which in turn lets the browsers
+    know how to interpret the document. We use the XHTML 1.0 specification in 
+    this chapter because it's the latest specifications and what most browsers 
+    and editing tools use.
+  </p>
+
+  <h4>Adding an HTML DOCTYPE declaration</h4>
+  <p>
+    If you choose to create and HTML 4.01 document instead of an XHTML document
+    , you can pick from three possible <code>DOCTYPE</code> declarations:
+    <ul>
+      <b><li>HTML 4.01 Transitional:</b> This is the most inclusive version of
+        HTML 4.01, and it incorporates all HTML structural elements as well as
+        all presentation elements.<br />
+        <code><pre>
+          &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                    "http://www.w3.org/TR/html4/loose.dtd"&gt;
+        </pre></code></li>
+      <b><li>HTML 4.01 Strict:</b> This streamlined version of HTML exludes all
+        presentation-related elements in favor of style sheets as a mechanism for
+        driving display.<br />
+        <code><pre>
+          &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+                    "http://www.w3.org/TR/html4/strict.dtd"&gt;
+        </pre></code></li>
+      <b><li>HTML 4.01 Frameset:</b> This version begins with HTML 4.01 Transitional
+        and includes all the elements that make frames possible.<br />
+        <code><pre>
+          &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+                    "http://www.w3.org/TR/html4/frameset.dtd"&gt;
+        </pre></code></li>
+    </ul>
+  </p>
+
+  <h4>Adding an XHTML DOCTYPE declaration</h4>
+  <p>
+    To create an XHTML document, use one of the following <code>DOCTYPE</code>
+    declarations:
+    <ul>
+      <b><li>XHTML 1.0 Transitional:</b><br />
+        <code><pre>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        </code></pre></li>
+      <b><li>XHTML 1.0 Strict:</b><br />
+        <code><pre>
+          &lt;!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+                    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt; 
+        </pre></code></li>
+      <b><li>XHTML 1.0 Frameset:</b><br />
+        <code><pre>
+          &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+                    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"&gt;
+        </pre></code>
+        </li>
+    </ul>
+    The XHTML DTD descriptions are similar to the HTML DTD descriptions and are
+    defined in Chapter 1.
+  </p>
+
+  <h4>The &lt;html&gt; element</h4>
+  <p>
+    After you specify which version of (X)HTML the document follows, add an
+    <code>&lt;html&gt;</code> element to hold all the other (X)HTML elements in
+    your page:
+    <code><pre>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+      <b>&lt;html&gt;</b>
+
+      <b>&lt;/html&gt;</b>
+    </pre></code>
+  </p>
+
+  <h4>Adding the XHTML namespace</h4>
+  <p>
+    A <i>namespace</i> is a collection of names used by the elements and attributes
+    of an XML document. XHTML uses the XHTML collection of names and therefore
+    needs a namespace, which looks like this:
+    <code><pre>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html <b>xmlns="http://www.w3.org/1999/xhtml"&gt;</b>
+
+      &lt;/html&gt;
+    </pre></code>
+    Don't get bogged down by the meaning of namespaces. If you work with other
+    XML vocabularies, you need to know about namespaces. For simple XHTML documents,
+    you just need to know to include the XHTML namespace. So, of course, that's
+    exactly what the preceding code snippet shows you how to do!
+  </p>
+
+  <h3>Adding a Document Header</h3>
+  <p>
+    The <i>head</i> of an (X)HTML document is one of the two main components of
+    a document. (The <i>body</i> of the document is the other main component.)
+    The head, or <i>header</i>, provides basic information <i>about</i> the document,
+    including its title and metadata (which is information about information),
+    such as keywords, author information, and a description. If you're going to
+    use a style sheet with your page, you include information about that style
+    sheet in the header.
+  </p>
+  <p>
+    Chapter 8 includes a complete overview of creating Cascading Style Sheets
+    (CSS) and shows you how to include them in your (X)HTML documents.
+  </p>
+  <p>
+    The &lt;head&gt; element, which defines the page header, immediately follows
+    the &lt;html&gt; opening tag:
+    <pre><code>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        <b>&lt;head&gt;</b>
+
+        <b>&lt;/head&gt;</b>
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+
+  <h4>Giving your page a title</h4>
+  <p>
+    Every (X)XHTML page needs a descriptive title that tells the visitor what
+    the page is all about. This title appears in the title bar at the very top
+    of the browser window, as shown in Figure 4-1. The page title should be 
+    concise yet informative. (For example, <i>My home page</i> isn't nearly as
+    informative as <i>Ed's IT Consulting Service.</i>)
+  </p>
+  <p>
+    You define the title for your page by using the <code>&lt;title&gt;</code>
+    element inside the <code>&lt;head&gt;</code> element:
+    <pre><code>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        &lt;head&gt;
+          <b>&lt;title&gt;Ed's IT Consulting Service&lt;/title&gt;</b>
+        &lt;/head&gt;
+
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+  <p>
+    Search engines use the contents of the <code>&lt;title&gt;</code> bar when 
+    they list Web pages in response to a query. Your page title may be the 
+    first thing that a Web surfer reads about your Web page, especially if she
+    finds it through a search engine. A search engine will most likely list your
+    page title with many others on a search results page, which means that you
+    have one chance to grab the Web surfer's attention and convince her to choose
+    your page. A well-crafted title can accomplish that.
+  </p>
+  <p>
+    The title is also used for Bookmarks and in browser's History; therefore,
+    keep your titles short and sweet.
+  </p>
+
+  <h4>Defining metadata</h4>
+  <p>
+    The term <i>metadata</i> refers to data about data; in the context of the
+    Web, it means data that describes the data on your Web page. Metadata for
+    your page may include
+    <ul>
+      <li>Keywords</li>
+      <li>A description of your page</li>
+      <li>Information about the page author</li>
+      <li>The software application you used to create the page</li>
+    </ul>
+  </p>
+
+  <p><b><i>Elements and attributes</i></b><br />
+    You define each piece of metadata for your (X)HTML page with
+    <ul>
+      <li>The <code>&lt;meta /&gt;</code> element</li>
+      <li>The <code>name</code> and <code>content</code> attributes</li>
+    </ul>
+    For example, the following elements create a list of keywords and a description
+    for a consulting-service page:
+    <pre><code>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        &lt;head&gt;
+        &lt;title&gt;Ed's IT Consulting Service&lt;/title&gt;
+        <b>&lt;meta name="keywords" content="IT consulting, MCSE, networking
+        guru" /&gt;</b>
+        <b>&lt;meta name="description" content="An overview of Ed's skills and
+        services" /&gt;</b>
+        &lt;/head&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+
+  <p><b><i>Custom names</i></b><br />
+    The (X)HTML specification doesn't
+    <ul>
+      <li>Predefine the kinds of metadata you can include in your page</li>
+      <li>Specify how to name different pieces of metadata, such as keywords and
+      descriptions</li>
+    </ul>
+  </p>
+  <p>
+    So, for example, instead of using <code>keywords</code> and <code>description</code>
+    as names for keyword and description metadata, you can just as easily use
+    <code>kwrd</code> and <code>desc</code>, like the following markup:
+    <pre><code>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        &lt;head&gt;
+          &lt;title&gt;Ed's IT Consulting Service&lt;/title&gt;
+          &lt;meta <b>name="kwrd"</b> content="IT consulting, MCSE, networking
+          guru" /&gt;
+          &lt;meta <b>name="desc"</b> content="An overview of Ed's skills and 
+          services" /&gt;
+        &lt;/head&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+  <p>
+    If you can use just any old values for the <code>&lt;meta&gt;</code> element's
+    <code>name</code> and <code>content</code> attributes, how do systems know
+    what to do with yout metadata? The answer is -- they don't. Each search engine
+    works differently. Although <i>keywords</i> and <i>description</i> are commonly
+    used metadata names, many search engines may not recognize or use other 
+    metadata elements that you include.
+  </p>
+  <p>
+    Many developers use metadata to either
+    <ul>
+      <li>Leave messages for others who may look at the source code of the page</li>
+      <li>Prepare for future browsers and search engines that use the metadata</li>
+    </ul>
+    Although keywords and page descriptions are optional, search engines commonly
+    use them to collect information about your Web site. Be sure to include 
+    detailed and concise information in your <code>&lt;meta /&gt;</code> tag if
+    you want your Web site discovered by search engine robots.
+  </p>
+
+</body>
+</html>

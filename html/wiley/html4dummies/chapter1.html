@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Part 1</title>
+</head>
+<body>
+  <h2>Part1</h2>
+  <h1>Getting to Know (X)HTML</h1>
+  <p>In this part of the book, we explore and explain basic HTML document
+    links and structures. We also explain the key role that Web browsers play
+    in delivering all this stuff to people's desktops. We even explain where
+    the (X) comes from - namely, a rewoking of the original description of
+    HTML markup using XML syntax to create XHTML - and go on to help you
+    understand what makes XHTML different (and possibly better, according to some)
+    than plain old HTML. We also take a look at Web page anatomy and look at
+    the various pieces and parts that make up a Web page.
+  </p>
+  <p>Next, we take you through the exercise of creating and viewing a simple
+    Web page so you can understand what's involved in doing this for yourself.
+    We also explain what's involved in making changes to an existing Web page
+    and how to post your changes (or a new page) online.
+  </p>
+  <p>This part concludes with a rousing exhortation to figure out what you're
+    doing before making too much markup happen. Just as a well-built house starts
+    with a set of blue-prints and architectural drawings, so sholid a Web page
+    (and site) start with a plan or a map, with some idea of where your pages
+    will reside in cyberspace and how hordes of users can find their way to them.
+  </p>
+  <h3 align="center">Chapter 1</h3>
+  <h1 align="center">The Least You Need to Know about HTML and the Web</h1>
+  <h4>In This Chapter</h4>
+  <ul>
+    <li>Creating HTML in text files</li>
+    <li>Serving and browsing Web pages</li>
+    <li>Understanding links and URLs</li>
+    <li>Understanding basic HTML syntax</li>
+  </ul>
+  <p>Welcome to the wonderful world of the Web and HTML. With just a little
+    bit of knowledge, some practice, and something to say, you can either
+    build your own little piece of cyberspace or expand on work you've already
+    done.
+  </p>
+  <p>This book is your down-and-dirty guide to putting together your first Web
+    page, sprucing up an existing Web page, or creating complex and exciting
+    pages that integrate intricate designs, multimedia, and scripting.
+  </p>
+  <p>The best way to start working with HTML is to jump right in, so that's
+    what this chapter does: It brings you up to speed on the basics of how
+    HTML works behind scenes of Web pages, introducing you to HTML's building
+    blocks. When you're done with this chapter, you'll know how HTML works so
+    you can start creating Web pages right away.
+  </p>
+  <h4>Web Pages in Their Natural Habitat</h4>
+  <p>Web pages can contain many kinds of content, such as text, graphics,
+    forms, audio and video files, and interactive games.
+  </p>
+  <p>Browse the Web for just a little while and you see a buffet of information
+    and content displayed in many ways. Every Web site is different, but most
+    have one thing in common: the Hypertext Markup Language (HTML).
+  </p>
+  <p>Whatever information a Web page contains, every Web page is created
+    in HTML (or some reasonable facsimile). HTML is the mortar that holds a Web
+    page together; the graphics, content, and other information are the bricks.
+  </p>
+  <p>HTML files that produce Web pages are just text documents. That's why
+    the Web works as well as it does. Text is the universal language of computers.
+    Any text file that you create on a Windows computer, including an HTML file,
+    works equally well on any other operating system.
+  </p>
+  <p>But Web pages aren't merely text documents. They're made with a special,
+    attention-deprived, sugar-loaded text called HTML. HTML is a collection of
+    instructions that you include along with pointers to your content in a text
+    file that specifies how your page should look and behave.
+  </p>
+  <p>Stick with us to discover all the details you need to know about HTML!
+  </p>
+  <h4>Hypertext</h4>
+  <p>Special instructions in HTML permit text to point (link) to something else.
+    Such pointers are called hyperlinks. Hyperlinks are the glue that holds the 
+    World Wide Web together. In your browser, hyperlinks usually appear in blue
+    and are underlined. When you click one, it takes you somewhere else.
+  </p>
+  <p>Hypertext or not, a Web page is a text file. You can create and edit a Web
+    page in any application that creates plain text (such as Notepad). When you're
+    getting started with HTML, a text editor is the best tool to use. Just break
+    out Notepad and you're ready to go. Some software tools have fancy options and
+    applications (covered in Chapter 20) to help you create Web pages, but they
+    generate the same text files that you create with plain-text editors.
+  </p>
+  <p>The World Wide Web comes by its name honestly. It's quite literally a web of
+    pages hosted on Web servers around the world, connected millions of ways.
+    Those connections are made by hyperlinks that connect one page to another.
+    Without such links, the Web is just a bunch of standalone pages.
+  </p>
+  <p>Much of the Web's value comes from its ability to link to pages and other
+    resources (such as images, downloadable files, and media presentations) on
+    either the same Web site or at another site. For example, FirstGov 
+    (www.firstgov.gov) is a gateway Web site - its sole function is to provide
+    access to other Web sites. If you aren't sure which government agency handles
+    first-time loans for homebuyers, or if want to know how to arrange a tour of
+    the Capitol, visit this site (shown in Figure 1-1) to find out.
+  </p>
+  <h4>Markup</h4>
+  <p>Web browsers were created specifically for the purpose of reading instructions
+    (known as markup) and displaying the resulting Web page.
+  </p>
+  <p>Markup lives in a text file (with your content) to give orders to a browser.
+  </p>
+  <p>For example, look at the page shown in Figure 1-2. You can see how the page
+    is made up and how it is formatted by examining its underlying HTML.
+  </p>
+  <p>This page includes an image, a heading that describes the page, a paragraph
+    of text about red wine, and a list of common grape varietals.
+  </p>
+  <p>However, different components of the page use different formatting:
+    <ul>
+      <li>The heading at the top of the page is larger than hte text in the 
+        paragraph.
+      </li>
+      <li>The items in the list have bullet points (big dots) before them.</li>
+    </ul>
+  </p>
+  <p>The browser knows to display these components of the page in specific ways
+  thanks to the HTML markup, shown in Listing 1-1.
+  </p>
+  <ul>
+    <li>
+      <p>Listing 1-1: Sample HTML Markup</p>
+      <p><pre><code>
+      &lt;!DOCTYPE html
+        PUBLIC '-//W3C//DTD XHTML 1.0 Transitional //EN' 'http://www.w3.org./TR/xhtml1/DTD/xhtml1-transitional.dtd'&gt;
+      &lt;html xmlns='http://www.w3.org/1999/xhtml'&gt;
+      
+      &lt;head&gt;
+        &lt;title&gt;Wine Varietals&lt;/title&gt;
+      &lt;/head&gt;
+      
+      &lt;body&gt;
+        &lt;h1&gt;&lt;img src='red_grapes.jpg' width="75" height="100" alt="Red Grapes" align="middle" hspace="5" /&gt;
+          Understanding Red Wine Varietals
+        &lt;/h1&gt;
+        &lt;p&gt;Altough wines tend to be generically categorized as
+          either "white" or "red," in reality, there is a
+          collection of wine varietals each with its own
+          distinguishing characteristics. The red category
+          includes a robust collection of over 20 varietals,
+          including:
+        &lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Barbera&lt;/li&gt;
+          &lt;li&gt;Brunello&lt;/li&gt;
+          &lt;li&gt;Cabernet Franc&lt;/li&gt;
+          &lt;li&gt;Cabernet Sauvignon&lt;/li&gt;
+          &lt;li&gt;Carignan&lt;/li&gt;
+          &lt;li&gt;Carmenere&lt;/li&gt;
+          &lt;li&gt;Charbono&lt;/li&gt;
+          &lt;li&gt;Dolcetto&lt;/li&gt;
+          &lt;li&gt;Gamay&lt;/li&gt;
+          &lt;li&gt;Grenache&lt;/li&gt;
+          &lt;li&gt;Malbrec&lt;/li&gt;
+          &lt;li&gt;Merlot&lt;/li&gt;
+          &lt;li&gt;Mourvedre&lt;/li&gt;
+          &lt;li&gt;Nebbiolo&lt;/li&gt;
+          &lt;li&gt;Petite Sirah&lt;/li&gt;
+          &lt;li&gt;Pinot Noir&lt;/li&gt;
+          &lt;li&gt;Sangiovese&lt;/li&gt;
+          &lt;li&gt;Syrah&lt;/li&gt;
+          &lt;li&gt;Tempranillo&lt;/li&gt;
+          &lt;li&gt;Zinfandel&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/body&gt;
+      
+      &lt;/html&gt;
+      </code></pre></p>
+    </li>
+  </ul>
+  <p>Any text enclosed between less-than and greater-than signs (< >) is an HTML tag (often called the <i>markup</i>).
+  For example, a <code>p</code> within brackets (&lt;p&gt;...&lt;/p&gt; tags) identifies the text about red varietals as
+  a paragraph; the <code>li</code> (&lt;li&gt;...&lt;/li&gt; tags) markup identifies each item in a list of varietals.
+  That's really all there is to it. You embed the markup in a text file, along with text for readers to view, to let the
+  browser know how to display your Web page.</p>
+  <p>Tags and content between and within the tags are collectively called <i>elements</i>.</p>
+  <h4>Browsers</h4>
+  <p>The user's piece in the Web puzzle is a Web browser. Web browsers read instructions written in HTML and use those
+    instructions to display a Web page's content on your screen.
+  </p>
+  <p>You should always write your HTML with the idea that people will view the content using a Web browser. Just remember
+    that there's more than one kind of browser out there, and each one comes in several versions.
+  </p>
+  <p>Usually, Web browsers request and display Web pages available via the Internet from a Web server. You can also display
+    HTML pages you've saved on your own computer before making them available on a Web server on the Internet. When
+    you're developing your own HTML pages, you view these pages (called <i>local</i> pages) in your browser. You can use
+    local pages to get a good idea of what people see after the page goes live on the Internet.
+  </p>
+  <p><i>Each Web browser interprets HTML in its own way.</i> The same HTML doesn't look exactly the same from one browser
+    to the next. When you work with basic HTML, variances aren't significant, but as you integrate other elements
+    (such as scripting and multimedia), rendering the markup can get hairy.
+  </p>
+  <p>Chapter 2 shows how to use a Web browser to view a local copy of your first Web page.</p>
+  <p>Some people use text-only Web browsers, such as Lynx, because either</p>
+  <ul>
+    <li>They're visually impaired and can't use a graphical display.</li>
+    <li>They like a lean, fast Web browser tht displays only text.</li>
+  </ul>
+  <h4>Web Servers</h4>
+  <p>
+    Your HTML pages aren't much good if you can't share them with the world. Web servers make that possible. A <i>Web server</i>
+    is a computer that
+  </p>
+  <ul>
+    <li>Connects to the Internet</li>
+    <li>Runs Web server software</li>
+    <li>Responds to requests from Web browsers for Web pages</li>
+  </ul>
+  <p>
+    Almost any computer can be a Web server, including your home computer. But Web servers generally are computers
+    dedicated to the task. You don't need to be an Internet or computer guru to publish your Web pages, but you must find
+    a Web server to serve your pages:
+  </p>
+  <ul>
+    <li>If you're bulding pages for a company Web site, your IT department may have a Web server. (Ask your IT guru for
+      information.)
+    </li>
+    <li><p>If you're starting a new site, you need a host for your pages</p>
+        <p>Finding an inexpensive host is easy. Chapter 3 shows how to determine your hosting needs and find the perfect
+          provider.
+        </p>
+    </li>
+  </ul>
+  <h4>Anatomy of a URL</h4>
+  <p>
+    The Web is made up of millions of resources, each of them linkable. A resource's exact location is the key
+    to linking to it. Without an exact adress (a <i>Uniform Resource Locator,</i> or <i>URL</i>), you can't see
+    the Adress bar in a Web browser to visit a Web page directly.
+  </p>
+  <p>
+    URLs are the standard adressing system for resources on the Web. Each resource (Web page, site, or individual file)
+    has a unique URL. URLs work a lot like your postal adress.
+  </p>
+  <p>
+    Each URL component helps define the location of a Web page or resource:
+  </p>
+  <ul>
+    <li><p><b>Protocol:</b> Specifies the protocol the browser follows to request the file</p>
+      <p>The Web page protocol is <code>http://</code> (the usual start to most URLs).</p></li>
+    <li><p><b>Domain:</b> Points to the general Web site (such as <code>www.sun.com</code>) where the file resides.
+     A domain may host a few files (like a personal Web site) or millions of files (like a corporate site,
+    such as <code>www.sun.com</code>).</p></li>
+    <li><p><b>Path:</b> Names the sequence of folders through which you must navigate to get to a specific file.</p>
+      <p>For example, to get to a file in the <code>evangcentral</code> folder that resides in the <code>
+        developers</code> folder, you use the <code>/developers/evangcentral/</code> path.</p></li>
+    <li><p><b>Filename:</b> Specifies which file in the directory path the browser accesses.</p></li>
+  </ul>
+  <h4>(X)HTML's Components Parts</h4>
+  <p>
+     The following section removes the mystery from the <i>X.</i> This section shows
+     <ul>
+       <li>The differences between HTML and XHTML</li>
+       <li>How HTML is written (its <i>syntax)</i></li>
+       <li>Rules that govern its use</li>
+       <li>Names for important pieces and parts of HTML (and XHTML) markup</li>
+       <li>How to make the best, most correct use of its capabilities</li>
+     </ul>
+     <p>
+       <h4>HTML and XHTML: What's the difference?</h4>
+       <p>
+         HTML is <i>Hypertext Markup Language,</i> a notation developed in the late
+         1980s and early 1990s for describing Web pages. HTML is now enshrined in
+         numerous standart descriptions (<i>specifications</i>) from the World Wide Web
+         Consortium (W3C). The last HTML specification was finalized in 1999.
+        </p>
+      </p>
+  </p>
+  <h4 align=center>HTML and XHTML specifications</h4>
+  <p>
+    The formal documents to describe HTML and XHTML are on the W3C's Web site at
+    <code>www.w3.org</code>.
+  </p>
+  <p>
+    Markup languages usually include version numbers to identify them. The current 
+    version of HTML is 4.01. It dates back to December 1997; you can find the
+    document at <code>www.w3.org/TR/html4</code>.
+  </p>
+  <p>
+    XHTML has gone through two major drafts, 1.0 and 1.1. The 1.1 version is more 
+    advanced than 1.0, but most Web content developers and software tools follow the 1.0
+    specification. An XHTML 2.0 specification is in "Working Draft" status (its authors haven't
+    finalized its content and structure). When a W3C specification is finished,
+    it's known as a <i>W3C Recommendation.</i>
+  </p>
+  <p>
+    You can find specifications for all three versions of XHTML:
+    <dl>
+      <dt>XHTML 2.0 Working Draft (7/4/2004)</dt>
+      <dd><code>www.w3.org/TR/2004/WD-xhtml2-20040722/</code></dd>
+      <dt>XHTML 1.1 Module-based XHTML Recommendation (5/31/2001)</dt>
+      <dd><code>www.w3.org/TR/xhtml11/</code></dd>
+      <dt>XHTML 1.0 Recommendation (1/26/2000)</dt>
+      <dd><code>www.w3.org/TR/xhtml1/</code></dd>
+    </dl>
+  </p>
+  <p>
+    Reading W3C specifications takes some learning and improves with repeated
+    exposure. Don't let the formal language and notation of these documents put
+    you off: After you understand what's up, you appreciate the precision and
+    detail! But you may decide never even to look at one of these specifications
+    -- it's entirely up to you!
+  </p>
+  <p>
+    The HTML 4.01 specification is the rulebook of HTML, as the XHTML 1.0 specification
+    is for XHTML -- each one tells you exactly which elements you can use, which
+    attributes go with those elements, and how you use elements in combinations to
+    create such page structures as lists, forms, tables and frames. This book
+    uses the XHTML 1.0 specification as its basis.
+  </p>
+  <p>
+    When you put an X in front of HTML to get <i>XHTML,</i> you get a new, improved version
+    of HTML based on the <i>eXtensible Markup Language (XML).</i> XML ls designed to work and
+    behave well with computers, software and the internet.
+  </p>
+  <p>
+    The original formulation of HTML has some irregularities that can cause heartburn for
+    software that reads HTML documents. XHTML, on the other hand, uses an extremely regular
+    and predictable syntax that's easier for software to handle. XHTML will replace HTML
+    someday, but HTML keeps on ticking. This book covers both varieties and shows you the
+    steps to put the X in front of your own HTML documents and turn them into XHTML.
+  </p>
+  <p>
+    <ul>
+      <li>Most HTML and XHTML markup is identical.</li>
+      <li>In a few cases, HTML and XHTML markup looks a little different.</li>
+      <li>In a few cases, HTML and XHTML markup must be used differently.</li>
+    </ul>
+  </p>
+  <p>This book shows how to create code that works in both HTML and XHTML.</p>
+  <h4>Syntax and rules</h4>
+  <p>
+    HTML is a straightforward language for describing Web page contents. XHTML is even less
+    demanding. Their components are easy to use -- when you know how to use a little bit of
+    (X)HTML. Both HTML and XHTML markup have three types of components:
+    <ul>
+      <li><b>Elements:</b> Identifiy different parts of an HTML page by using tags</li>
+      <li><b>Attributes:</b> Information about an instance of an element</li>
+      <li><b>Entities:</b> Non-ASCII text characters, such as copyright symbols and accented
+      letters</li>
+    </ul>
+    Every bit of HTML and /or XHTML markup that describes a Web page's content includes some
+    combination of elements, attributes and entities.
+  </p>
+  <p>
+    This chapter covers the basic form and syntax for elements, attributes and entities. Parts
+    II and III of the book detail how elements and attributes
+    <ul>
+      <li>Describe kinds of text (such as paragraphs or tables)</li>
+      <li>Create an effect on the page (such as changing font style)</li>
+      <li>Add images and links to a page</li>
+    </ul>
+  </p>
+  <h4>Elements</h4>
+  <p>
+    Elements are the building blocks of (X)HTML. You use them to describe every piece of text
+    on your page. Elements are made up pf tags and the content within those tags. There are two
+    main types of elements:
+    <ul>
+      <li>Elements with content made up of a tag pair and whatever content sits between the opening
+        and closing tag in the pair
+      </li>
+      <li>Elements that insert something into the page using a single tag</li>
+    </ul>
+  </p>
+  <p>
+    <b><i>Tag Pairs</i></b>
+  </p>
+  <p>
+    Elements that describe content use a <i>tag pair</i> to mark the beginning and the end of the
+    element. Start and end tag pairs look like this:
+    &lt;tag&gt;...&lt;/tag&gt;
+  </p>
+  <p>Content -- such as <i>paragraphs, headings, tables,</i> and <i>lists</i> -- always uses
+  a tag pair:
+    <ul>
+      <li>The start tag (&lt;tag&gt;) tells the browser. "The element begins here."</li>
+      <li>The end tag (&lt;/tag&gt;) tells the browser. "The element ends here."</li>
+    </ul></p>
+  <p>
+    The actual content is what occurs between the start tag and end tag. For example, the Red
+    Wine Varietals page in Listing 1-1 uses the paragraph element (&lt;p&gt;) to surround the
+    text of a paragraph.
+  </p>
+  <p><i><b>Single Tags</b></i></p>
+  <p>Elements that insert something into the page are called
+  <i>empty elements</i> (because they enclose no content) and use just a single tag, like this:
+  &lt;tag /&gt;</p>
+  <p>
+    Images and line breakes insert something into the HTML file, so they use one tag.
+  </p>
+  <p>
+    One key difference between XHTML and HTML is that, in XHTML, all empty elements must end
+    with slash before the closing greater-than symbol. This is because XHTML is based on XML,
+    and the XML rule is that you close empty elements with a slash, like this: &lt;tag/&gt;
+  </p>
+  <p>
+    However, to make this kind of markup readable inside older browsers, you must insert a space
+    before the closing slash. This space allows older browsers ignore the closing slash (since
+    they don't know about XHTML). Newer browsers that understand XHTML ignore the space and
+    interpret the tag exactly as intended, which is &lt;tag/&gt; (as per the XML rules).
+  </p>
+  <p>
+    HTML doesn't require a slash with empty elements, but this markup is deprecated. An HTML
+    empty element looks like this: &lt;tag&gt;
+  </p>
+  <p>
+    Listing 1-1 uses the image element (&lt;img /&gt;) to include an image on the page:
+  </p>
+  <p><code>
+    &lt;img src="red_grapes.jpg" width="75" height="100" alt="Red Grapes" align="middle"
+    hspaceI="5" /&gt;
+  </code></p>
+  <p>
+    The &lt;img /&gt; element references an image. When the browser displays the page, it
+    replaces the &lt;img /&gt; element with the file that it points to (it uses an attribute
+    to do the pointing, which is shown in the next section). Following the XHTML rule introduced
+    earlier, what appears in HTML as &lt;img&gt; appears in XHTML as &lt;img /&gt; (and this
+    applies to all single tag elements).
+  </p>
+  <p>
+    You can't make up HTML or XHTML elements. Elements that are legal in (X)HTML are a very
+    specific set -- if you use elements that aren't part of the (XHTML) set, every browser ignores
+    them. The elements you <i>can</i> use are defined in the HTML 4.01 or XHTML 1.0 specifications.
+  </p>
+  <b><i>Nesting</i></b>
+  <p>Many page structures combine nested elements. Think of your nested elements as <i>suitcases</i>
+    that fit neatly inside one another.
+  </p>
+  <p>
+    For example, a bulleted list uses two kinds of elements:
+    <ul>
+      <li>The &lt;ul&gt; element specifies that the list is unordered (bulleted).</li>
+      <li>The &lt;li&gt; elements mark each item in the list.</li>
+    </ul>
+  </p>
+  <P>
+    When you combine elements by using this method, be sure you close the inside element completely
+    before you close the outside element:
+    <p>
+      <pre><code>
+        &lt;ul&gt;
+          &lt;li&gt;Barbera&lt;/li&gt;
+          &lt;li&gt;Brunello&lt;/li&gt;
+        &lt;/ul&gt;
+      </code></pre>
+    </p>
+  </P>
+  <h4>Attributes</h4>
+  <p>
+    Attributes allow variety in how an element describes content or works. Attributes let you use
+    elements differently depending on the circumstances. For example, the &lt;img /&gt; element uses
+    the <code>src</code> attribute to specify the location of the image you want to include at a specific spot on your page:
+  </p>
+  <p><pre><code>
+    &lt;img <b>src="red_grapes.jpg"</b> width="75" height="100" alt="Red Grapes"
+      align="middle" hspace="5" /&gt;
+  </code></pre></p>
+  <p>
+    In this bit of HTML, the &lt;img /&gt; element itself is a general flag to the browser
+    that you want to include an image; the <code>src</code> attribute provides the specifics
+    on the image you want to include -- <code>red_grapes.jpg</code> in this instance. Other
+    attributes (such as <code>width, height, align,</code> and <code>hspace</code>) provide
+    information about how to display the image, and the <code>alt</code> attribute provides
+    a text alternative to the image that a text-only browser can display.
+  </p>
+  <p>
+    Chapter 7 describes the &lt;img /&gt; element and its attributes in detail.
+  </p>
+  <p>
+    You include attributes within the start tag of the you want them with -- after the
+    element name but before the ending sign, like this:
+    <p>
+      <pre><code>&lt;tag <b>attribute="value" attribute="value"</b>&gt;</code></pre>
+    </p>
+  </p>
+  <p>
+    XML syntax rules decree that attribute values must always appear in quotation marks,
+    but you can include the attributes and their values in any order within the start tag
+    or within a single tag.
+  </p>
+  <p>
+    Every (X)HTML element has a collection of attributes that can be used with it, and you
+    can't mix and match attibutes and elements. Some attributes can take any text as a value
+    because the value could be anything, like the location of a image or a page you want to 
+    link to. Others have a specific list of values the attribute can take, such as your options
+    for aligning text in table cell.
+  </p>
+  <p>
+    The HTML 4.01 and XHTML 1.0 specifications define exactly which attributes you can use with
+    any given element and which values (if explicitly defined) each attribute can take.
+  </p>
+  <p>
+    Each chapter in Parts II and III covers which attributes you can use with each (X)HTML
+    element. Also, see Appendix A for complete lists of deprecated (X)HTML tags and attributes.
+  </p>
+  <h4>Entities</h4>
+  <p>
+    Text makes the Web possible, but it has limitations. <i>Entities</i> are special characters that can display on your Web page.
+  </p>
+  <p><b><i>Non-ASCII characters</i></b></p>
+  <p>
+    Basic American Standard Code for Information Interchange (ASCII) text defines a fairly small
+    number of characters. It doesn't include some special characters, such as <i>trademark
+    symbols, fractions,</i> and <i>accented characters.</i>
+  </p>
+  <p>
+    For example, the list of white wine varietals in Figure 1-4 include two accented <i>e</i>
+     characters and two <i>u</i> characters with umlauts.
+  </p>
+  <p>
+    ASCII text doesn't include either the accented e or the umlauted u, so HTML uses <i>entities</i>
+    to represent them instead. The browser replaces the entity with the character it references. Each
+    entity begins with an ampersand (&) and ends with a semicolon (;). The following markup shows the
+    entities in bold:
+  </p>
+  <p>
+    <pre><code>
+      &lt;html&gt;
+      &lt;head&gt;
+      &lt;title&gt;Wine Varietals&lt;/title&gt;
+      &lt;/head&gt;
+
+      &lt;body bgcolor="#FFFFFF"&gt;
+	&lt;h2&gt;White Varietals&lt;/h2&gt;
+	&lt;ul&gt;
+	  &lt;li&gt;Chardonnay&lt;/li&gt;
+	  &lt;li&gt;Chenin Blanc&lt;/li&gt;
+	  &lt;li&gt;Fum<b>&eacute;</b> Blanc&lt;/li&gt;
+	  &lt;li&gt;Gew<b>&uuml;</b>rztraminer&lt;/li&gt;
+	  &lt;li&gt;Gr<b>&uuml;</b>ner Veltliner&lt;/li&gt;
+	  &lt;li&gt;Marsanne&lt;/li&gt;
+	  &lt;li&gt;Muscat&lt;/li&gt;
+	  &lt;li&gt;Pinot Blanc&lt;/li&gt;
+	  &lt;li&gt;Pinot Gris&lt;/li&gt;
+	  &lt;li&gt;Reisling&lt;/li&gt;
+	  &lt;li&gt;Sauvignon Blanc&lt;/li&gt;
+	  &lt;li&gt;S<b>&eacute;</b>millon&lt;/li&gt;
+	  &lt;li&gt;Trebbiano&lt;/li&gt;
+	  &lt;li&gt;Viognie&lt;/li&gt;
+	&lt;/ul&gt;
+      &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+  <p>
+    The entity that represents the &eacute; with the acute accent is <code><b>&amp;eacute;</b></code>, and the entity
+    that represents the ummlauted &uuml; is <code><b>&amp;uuml;</b></code>.
+  </p>
+  <p><b><i>(X)HTML Character Codes</i></b></p>
+  <p>
+    The encodings for the ISO-Latin-1 character set are supplied by default, and related entities
+    (a pointer to a complete table appears in Table 1-1) can be invoked and used without special
+    contortions. But using the other encodings mentioned in Table 1-1 requires inclusion of special
+    markup to tell the browser it must be ready to interpret Unicode character codes. (Unicode is
+    an international standard -- ISO standard 10646, in fact -- that embraces enough character
+    codes to handle most unique alphabets, plus plenty of other symbols and nonalphabetic
+    characters as well.) This special markup takes the form <code>&lt;meta http-equiv="Content-Type"
+	    content="text/html"; charset="UTF 8"&gt;</code>; when the value for <code>charset</code>
+    is changed to <code>UTF-8</code>, you can reference the common Unicode code charts shown in
+    Table 1-1.
+  </p>
+  <table>
+    <tr>
+      <th>Table 1-1</th>
+      <th>Online Pointers to (X)HTML Character Codes</th>
+    </tr>
+    <tr>
+      <td><b><i>Name</i></b></td>
+      <td><b><i>URL</i></b></td>
+    </tr>
+    <tr>
+      <td>Unicode Code Charts</td>
+      <td><code><a href="https://www.unicode.org/charts">www.unicode.org/charts/</a></code></td>
+    </tr>
+    <tr>
+      <td>ISO-Latin-1 Character Set</td>
+      <td><code><a href="https://www.htmlhelp.com/reference/charset/">www.htmlhelp.com/reference/charset/</a></code></td>
+    </tr>
+    <tr>
+      <td>Greek Characters</td>
+      <td><code><a href="https://www.unicode.org/charts/PDF/U0370.pdf">www.unicode.org/charts/PDF/U0370.pdf</a></code></td>
+    </tr>
+    <tr>
+      <td>Currency Symbols</td>
+      <td><code><a href="https://www.unicode.org/charts/PDF/U20A0.pdf">www.unicode.org/charts/PDF/U20A0.pdf</a></code></td>
+    </tr>
+    <tr>
+      <td>Miscellaneous Symbols</td>
+      <td><code><a href="https://www.unicode.org/charts/PDF/U2600.pdf">www.unicode.org/charts/PDF/U2600.pdf</a></code></td>
+    </tr>
+    <tr>
+      <td>Arrow Characters</td>
+      <td><code><a href="https://www.unicode.org/charts/PDF/U27F0.pdf">www.unicode.org/charts/PDF/U27F0.pdf</a></code></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><code><a href="https://www.unicode.org/charts/PDF/U2900.pdf">www.unicode.org/charts/PDF/U2900.pdf</a></code></td>
+    </tr>
+    <tr>
+      <td>Mathematical Characters</td>
+      <td>Search <b>math</b> at <code><a href="https://www.unicode.org/charts/">www.unicode.org/charts/</a></code></td>
+    </tr>
+    <tr>
+      <td>General Punctuation</td>
+      <td><code><a href="https://www.unicode.org/charts/PDF/U2000.pdf">www.unicode.org/charts/PDF/U2000.pdf</a></code></td>
+    </tr>
+  </table>
+  <p><b><i>Tag Characters</i></b></p>
+  <p>
+    HTML-savvy software assumes that some HTML characters, such as the greater-than and less-than
+    signs, are meant to be hidden and not displayed on your finished Web page. The following entities
+    display characters that normally are part of the hidden HTML markup:
+    <ul>
+      <li><b>less-than sign (&lt;):</b> &amp;lt;</li>
+      <li><b>greater-than sign (&gt;):</b> &amp;gt;</li>
+      <li><b>ampersand (&amp;):</b> &amp;amp;</li>
+    </ul>
+  </p>
+  <p>
+    The &lt; and &gt; signs are used in markup, but these symbols are <i>instructions</i> to
+    <i>the browser</i> and won't show up on the page. If you need these symbols on the Web page,
+    include the entities for them in your markup, like this:
+    <p>
+      <code><pre>
+      &lt;p&gt;The paragraph element identifies some text as a paragraph:&lt;/p&gt;
+      &lt;p&gt;<b>&amp;lt;</b>p<b>&amp;gt;</b>This is a paragraph.<b>&amp;lt;</b>/p<b>&amp;gt;</b>&lt;/p&gt;
+    </pre></code>
+    </p>
+  </p>
+  <p>
+    In the preceding markup, the first line uses <i>tags</i> to describe a paragraph, and the
+    second line shows how <i>entities</i> describe the &lt; and &gt; symbols.
+  </p>
+  <h4>Parts Is Parts: What Web Pages Are Made Of</h4>
+  <p>
+    <i>Comments</i> include text in (X)HTML files that isn't displayed in the final page. Each
+    comment is identified with two special sequences of markup characters:
+    <ul>
+      <li>Begin each comment with the string &lt;!--</li>
+      <li>End each comment with the string --&gt;</li>
+    </ul>
+  </p>
+  <p>
+    In the following code, comments explain how each markup element functions and where it fits
+    into the HTML markup hierarchy.
+  </p>
+  <p>
+    Elements are organized into structure:
+    <ul>
+      <li>Some elements can occur only inside other elements.</li>
+      <li>Some elements are required for a well-structured (X)HTML document.</li>
+    </ul>
+  </p>
+  <p>
+    <pre><code>
+      &lt;html&gt; &lt;!-- This tag should always occur at or near the beginning of any 
+                           well-formed HTML document --&gt;
+      &lt;head&gt; &lt;!-- The <i>head</i> element supplies information to label the whole HTML
+                           document --&gt;
+      &lt;title&gt;Wine Varietals&lt;/title&gt; &lt;!-- The text in the <i>title</i> element
+                           in the title bar of the browser window when the page is viewed --&gt;
+      &lt;/head&gt; &lt;!-- Closes the <i>head</i> element --&gt;
+
+      &lt;body bgcolor="#FFFFFF"&gt; &lt;!-- The content that appears on any Web page appears or
+                           is invoked from inside the <i>body</i> element --&gt;
+        &lt;h2&gt;White Varietals&lt;/h2&gt; &lt;!-- Heading elements start with the letter
+                           <i>h</i> followed by aa number from <i>1</i> to <i>6</i> to indicate
+                           hierarchy. This is a level 2 heading, <i>h2</i>. --&gt;
+        &lt;ul&gt; &lt;!-- This is an unordered list element, <i>ul</i>, which produces a
+                           bulleted list of list items, <i>li</i>. --&gt;
+          &lt;li&gt;Chardonnay&lt;/li&gt; &lt;!-- A whole bunch of individual list items --&gt;
+          &lt;li&gt;Chenin Blanc&lt;/li&gt;
+          &lt;li&gt;Fum&eacute; Blanc&lt;/li&gt;
+          &lt;li&gt;Gew&uuml;rztraminer&lt;/li&gt;
+          &lt;li&gt;Gr&uuml;ner Veltriner&lt;/li&gt;
+        &lt;/ul&gt; &lt;!-- End of the unordered / bulleted list --&gt;
+      &lt;/body&gt; &lt;!-- End of the body section --&gt;
+      &lt;/html&gt; &lt;!-- End of the HTML document --&gt;
+    </code></pre>
+  </p>
+  <p>
+    The precending document is broken into a <code>head</code> and a <code>body</code>. Within each
+    section, certain kinds of elements appear. Many combinations are possible, and that's what you
+    see throughout this book!
+  </p>
+  <h4>Organizing HTML Text</h4>
+  <p>
+    Beyond the division into head and body sections, text can be organized in plenty of ways
+    in HTML documents.
+  </p>
+  <p><b><i>Document Heads</i></b></p>
+  <p>
+    Inside the <code>head</code> section, you can define all kinds of labels and information
+    besides a title, primarily to describe the document that follows, such as the character
+    sets used, scripts to be invoked, and the style information. The body section is where
+    real content lives and most (X)HTML elements appear.
+  </p>
+  <p><b><i>Document Headings</i></b></p>
+  <p>
+    <i>Headings</i> (denoted using elements <code>h1</code> through <code>h6</code>) are
+    different from the HTML document head. Individual headings structure the text that follows
+    them, whereas the <code>head</code> identifies or describes the whole document.
+  </p>
+  <p>
+    In the Wine Varietals example, the <code>h2</code> element titles a list of grape varieties.
+  </p>
+  <p><b><i>Paragraphs and More</i></b></p>
+  <p>
+    When you want running text on a Web page, the paragraph element, <code>p</code> (which
+    includes the &lt;p&gt; and &lt;/p&gt; tags), breaks text into paragraphs. You can also;
+    <ul>
+      <li>Force line breaks by using the break element &lt;br /&gt;.</li>
+      <li>Create horizontal rules (lines) by using the &lt;hr /&gt; element.</li>
+    </ul>
+  </p>
+  <p>
+    HTML also includes all kinds of ways to emphasize or identify text inside paragraphs;
+    Parts II and III of this book show them.
+  </p>
+  <p><b><i>Lists</i></b></p>
+  <p>
+  HTML permits easy definition of unordered or bulleted lists. Various mechanisms to create
+  other kinds of lists, including numbered lists, are also available. Lists can be nested
+  within lists to create as many levels of hierarchy as your list might need (perhaps when 
+  outlining a complex subject or modeling a table of contents with several heading levels 
+  you want to represent). Chapter 5 covers creating lists in more detail.
+  </p>
+  <p><b><i>Tables</i></b></p>
+  <p>
+    HTML includes markup for defining tables. Chapter 11 covers tables. Structure is part of
+    how markup works, so whitin the definition of a table, you can
+    <ul>
+      <li>Distinguish between column heads and table data</li>
+      <li>Manage how rows and columns are laid out</li>
+    </ul>
+  </p>
+  <h4>Images in HTML Documents</h4>
+  <p>
+    Adding an image to any HTML document is easy. Careful and well-planned use of images adds
+    a lot to Web pages. Chapter 7 shows how to grab images from files. Chapter 9 shows how to
+    use complex markup to position and flow text around graphics. You also discover how to 
+    select and use interesting and compelling images to add interest and information to your 
+    Web pages.
+  </p>
+  <h4>Links and Navigation Tools</h4>
+  <p>
+    A Web page's structure should help visitors find their way around collections of Web pages,
+    look for (and hopefully, find) items of interest, and get where they most want to go quickly
+    and easily. Links provide the mechanism to bring people into your Web pages, so Chapter 6
+    shows how to
+    <ul>
+      <li>Reference external items or resources</li>
+      <li>Jump from one page to the next</li>
+      <li>Jump around inside a page</li>
+      <li>
+	Add structure and organization to your pages<br />
+        The importance of structure and organization goes up as the amount of information
+        that you want to represent to your visitors goes up.
+      </li>
+    </ul>
+  </p>
+  <p>
+    <i>Navigation tools,</i> (which establish standard mechanisms and tools for moving around
+    inside a Web site) provide ways to create and present your Web page (and site) structure to
+    visitors and mechanisms for users to grab and use organized menus of choices.
+  </p>
+  <p>
+    When you add everything up, your result should be a well-organized set of information and
+    images that's easy to understand, use, and navigate.
+  </p>
+</body>
+</html>
