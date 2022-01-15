@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+"<!DOCTYPE html>
 <html>
 <head>
   <title>Chapter 4</title>
@@ -304,5 +304,81 @@
     you want your Web site discovered by search engine robots.
   </p>
 
+  <p><b><i>Automatically redirecting users to another page</i></b><br />
+    You can use metadata in your header to send messages to Web browsers about
+    how they should display or otherwise handle your Web page. Web builders
+    commonly use the &lt;meta /&gt; element this way to automatically redirect
+    page visitors from one page to another. For example, if you're ever come
+    across a page that says <code>This page has moved. Please wait 10 seconds
+    to be automatically sent to the new location.</code> (or something similar)
+    , you've seen this  trick at work.
+  </p>
+  <p>
+    To use the &lt;meta /&gt; element to send messages to the browser, here are
+    the general steps you need to follow:
+    <ol>
+      <b><li>Use the <code>http-equiv</code> attribute in place of the
+      <code>name</code> attribute</li></b>
+      <b><li>Choose from a predefined list of values that represents instructions
+      for the browser.</b><br />
+        These values are based on instructions that you can also send to a 
+        browser in the HTTP header, but changing an HTTP header for a document
+        is harder than embedding the instructions into the Web page itself.
+      </li>
+    </ol>
+  </p>
+  <p>
+    To instruct a browser to redirect users from one page to another, here's what
+    you need to do in particular:
+    <ol>
+      <b><li>Use the <code>&lt;meta /&gt;</code> element with <code>
+      http-equiv="refresh".</code></li></b>
+      <b><li>Adjust the value of <code>content</code> to specify how many seconds
+      before the refresh happens and what URL you want to jump to.</li></b>
+    </ol>
+  </p>
+  <p>
+    For example, the line shown in bold in the following markup creates a refresh
+    that jumps to <www class="w3 org">www.w3.org</www> after 15 seconds:
+    <pre><code>
+      &lt;!DOCTYPE html PUBLIC "-//W3//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        &lt;head&gt;
+          &lt;title&gt;All About Markup&lt;/title&gt;
+          <b>&lt;meta http-equiv="refresh" content="15; url= http://www.w3.org/" /&gt;</b>
+        &lt;/head&gt;
+
+        &lt;body&gt;
+          &lt;p&gt;This page is still in development. Until we are done, Please
+          visit the &lt;a href="http://www.w3.org/"&gt;W3C Website&lt;/a&gt; for
+          the definitive collection of markup-related resources.
+          &lt;/p&gt;
+
+          &lt;p&gt;Please wait 10 seconds to be automatically redirected to the
+          W3C.&lt;/p&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+  <p>
+    Older Web browsers may not know what to do with <code>&lt;meta /&gt;</code>
+    elements that use the <code>http-equiv</code> element to create a redirector
+    page. Be sure to include some text and a link on your page to enable a visitor
+    to link manually to your redirector page if your <code>&lt;meta /&gt;</code>
+    element fails to do the job.
+  </p>
+  <p>
+    You can use the <code>http-equiv</code> attribute with the <code>&lt;meta /
+    &gt;</code> element for a variety of other purposes, such as setting an 
+    expiration date for a page and specifying the charracter set (the language)
+    the page uses. To find out what your <code>http-equiv</code> options are 
+    (and how to use them), check out the Dictionary of HTML META tags at the 
+    following URL:<br />
+    <a href="http://vancouver-webpages.com/META/metatags.detail.html">
+      http://vancouver-webpages.com/META/metatags.detail.html
+    </a>
+  </p>
 </body>
 </html>
