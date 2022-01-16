@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.O Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Chapter 5</title>
+  </head>
+
+  <body>
+    <h2 align="center">Chapter 5</h2>
+    <hr width="160" />
+    <h1 align="center">Text and Lists</h1>
+
+    <hr />
+    <p>
+      <b><i>In This Chapter</i></b><br />
+      <ul>
+        <li>Working with basic blocks of text</li>
+        <li>Manipulating text blocks</li>
+        <li>Creating bulleted, numbered, and definition lists</li>
+      </ul>
+    </p>
+    <hr />
+
+    <p>
+      HTML documents consist of text, images, multimedia files, links, and other
+      pieces of content that you bring together into one page by using markup 
+      elements and attributes. You use blocks of text to create such document 
+      elements as headings, paragraphs, and lists. The first step in creating a
+      solid HTML document is laying a firm foundation that establishes the 
+      document's structure.
+    </p>
+
+    <h3>Formatting Text</h3>
+    <p>
+      Here's a super-ultra-technical definition of a <code>block of text:</code>
+      some chunk of content that wraps from one line to another inside an HTML
+      element.
+      <p>
+        Your HTML page is a giant collection of blocks of text:
+        <ul>
+          <li>Every bit of content on your Web page must be part of some block element.</li>
+          <li>Every block element sits within the <code>&lt;body&gt;</code> element
+          on your page.</li>
+        </ul>
+        HTML recognizes several kinds of text blocks that you can use in your
+        document, including (but not limited to)
+        <ul>
+          <li>Paragraphs</li>
+          <li>Headings</li>
+          <li>Block quotes</li>
+          <li>Lists</li>
+          <li>Tables</li>
+          <li>Forms</li>
+        </ul>
+      </p>
+    </p>
+
+    <hr />
+    <h4>Inline elements versus text blocks</h4>
+    <p>
+      The difference between inline elements and a block of text is important.
+      HTML elements in this chapter describe blocks of text. An <i>inline 
+      element</i> is a word or string of words <i>inside</i> a bock element (for
+      example, text emphasis elements such as <code>&lt;em&gt;</code> or <code>
+      &lt;strong&gt;</code>). Inline elements must be nested within a block 
+      element; otherwise, your HTML document isn't syntactically correct.<br />
+      Inline elements, such as linking and formatting elements, are designed to
+      link from or change the appearance of a few words or lines of content found
+      inside those blocks.
+    </p>
+
+    <h3><i>Paragraphs</i></h3>
+    <p>
+      Paragraphs are used more often in Web pages than any other kind of text 
+      block.<br />
+      HTML browsers don't recognize the hard returns that you enter when you 
+      create your page inside an editor. You must use a <code>&lt;p&gt;</code>
+      element to tell the browser to seperate the contained block of text as 
+      a paragraph.
+    </p>
+    <p>
+      <b><i>Formatting</i></b><br />
+      To create a paragraph, follow these steps:
+      <ol><b>
+        <li>Add <code>&lt;p&gt;</code> in the body of the document.</li>
+        <li>Type the content of the paragraph.</li>
+        <li>Add <code>&lt;/p&gt;</code> to close that paragraph.</li>
+      </b></ol>
+      Here's what it looks like:<br />
+      <code><pre>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;All About Blocks&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            <b>&lt;p&gt;This is a paragraph. It's a very simple structure that
+                you will use time and again in your Web pages.&lt;/p&gt;</b>
+            <b>&lt;p&gt;This is another paragraph. What could be simpler to 
+                create?&lt;/p&gt;</b>
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </pre></code><br />
+      This HTML page includes two paragraphs, each marked with a seperate <code>
+      &lt;p&gt;</code> element. Most Web browsers add a line break and full line
+      of white space after every paragraphs on your page.
+    </p>
+    <p>
+      Some people don't use the closing <code>&lt;/p&gt;</code> tag when they 
+      create paragraphs. Although some browsers let you get away with this,
+      leaving out the closing tag
+      <ul>
+        <li>Doesn't follow correct syntax</li>
+        <li>Causes problems with style sheets</li>
+        <li>Can cause a page to appear inconsistently from browser to browser</li>
+      </ul>
+      You can control the formatting (color, style, size, and alignment) of your
+      paragraph by using Cascading Style Sheets (CSS), which we cover in Chapters
+      8 and 9.
+    </p>
+    <p>
+      <b><i>Alignment</i></b><br />
+      By default, the paragraph aligns to the left. You can use the <code>align</code>
+      attribute with a value of <code>center, right,</code> or <code>justify</code>
+      to override that default and control the alignment for any paragraph.
+      <code><pre>
+        &lt;p align="center"&gt;This paragraph is centered.&lt;/p&gt;
+        &lt;p align="right"&gt;This paragraph is right-justified.&lt;/p&gt;
+        &lt;p align="justify"&gt;This paragraph is double-justified.&lt;/p&gt;
+      </pre></code>
+      The <code>align</code> attribute has been deprecated (rendered obsolete)
+      in favor of using CSS (see Chapter 8).
+    </p>
+    
+
+  </body>
+</html>
