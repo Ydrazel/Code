@@ -1,4 +1,4 @@
-"<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Chapter 4</title>
@@ -379,6 +379,72 @@
     <a href="http://vancouver-webpages.com/META/metatags.detail.html">
       http://vancouver-webpages.com/META/metatags.detail.html
     </a>
+  </p>
+
+  <h3>Creating the (X)HTML Document Body</h3>
+  <p>
+    After you set up your page header, create a title, and define some metadata
+    , you're ready to create the (X)HTML markup and content that will show up 
+    in a browser window. The <code>&lt;body&gt;</code> element holds the content
+    of your document.
+  </p>
+  <p>
+    If you want to see something in your browser window, put it in the <code>&lt;
+    body&gt;</code> element, like this:
+    <pre><code>
+      &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+
+      &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        &lt;head&gt;
+          &lt;title&gt;Ed's IT Consulting Service&lt;/title&gt;
+          &lt;meta name="kwrd" content="IT consulting, MCSE, networking guru" /&gt;
+          &lt;meta name="desc" content="An overview of Ed's skills and services" /&gt;
+        &lt;/head&gt;
+
+        <b>&lt;body&gt;
+          &lt;P&gt;Ed's IT Consulting Service Homepage&lt;/p&gt;
+          &lt;p&gt;Ed has over 20 years of IT consulting experience and is available
+             to help you with any IT need you might have. From network design
+             and configuration to technical documentation and training, you 
+             can count on Ed to help you create and manage your IT infrastructure.&lt;/p&gt;
+
+          &lt;p&gt;For more information please contact Ed by e-mail at ed@itguru.com or
+             by phone at 555.555.5555.&lt;/p&gt;
+
+        &lt;/body&gt;</b>
+      &lt;/html&gt;
+    </code></pre>
+  </p>
+
+  <h3>Marvelous Miscellany</h3>
+  <p>
+    Table 4-1 lists other (X)HTML attributes for document structure markup that
+    you might find in HTML files.
+    <table>
+      <tr>
+        <th><b><h4>Table 4-1</h4></b></th>
+        <th><b><h4>Addintional (X)HTML Document Structure Attributes</h4></b></th>
+      </tr>
+      <tr>
+        <td><b><i>Name</i></b></td>
+        <td><b><i>Function/Value Equals</i></b></td>
+        <td><b><i>Value Type(s)</i></b></td>
+        <td><b><i>Related Element(s)</i></b></td>
+      </tr>
+      <tr>
+        <td><code>profile</code></td>
+        <td>Links to property definitions</td>
+        <td>URI</td>
+        <td><code>&lt;head&gt;</code></td>
+      </tr>
+      <tr>
+        <td><code>scheme</code></td>
+        <td>Describes how to decode data</td>
+        <td>CDATA</td>
+        <td><code>&lt;meta /&gt;</code></td>
+      </tr
+    </table>
   </p>
 </body>
 </html>
