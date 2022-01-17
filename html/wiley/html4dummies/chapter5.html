@@ -68,6 +68,7 @@
       link from or change the appearance of a few words or lines of content found
       inside those blocks.
     </p>
+    <hr />
 
     <h3><i>Paragraphs</i></h3>
     <p>
@@ -134,6 +135,114 @@
       The <code>align</code> attribute has been deprecated (rendered obsolete)
       in favor of using CSS (see Chapter 8).
     </p>
+    
+    <h3><i>Headings</i></h3>
+    <p>
+      Headings break a document into sections. This book uses headings and
+      sub-headings to divide every chapter into secitons, and you can do the 
+      same with your Web page. Headings can
+      <ul>
+        <li>Create an organizational structure</li>
+        <li>Break up the visual appearance of the page</li>
+        <li>Give visual clues about how the pieces of content are grouped</li>
+      </ul>
+      HTML includes six elements to help you define six different heading 
+      levels in your documents:
+      <ul>
+        <li>&lt;h1&gt; is the most prominent heading (Heading 1)</li>
+        <li>&lt;h6&gt; is the least prominent heading (Heading 6)</li>
+      </ul>
+      Follow heading order from highest to lowest as you see HTML heading 
+      levels. That is, don't use a second-level heading until you've used a 
+      first-level heading, don't use a third-level heading until you've used a 
+      second, and so on. If you want to change how headings appear in a browser,
+      Chapter 8 and Chapter 9 show you how to use style sheets.
+    </p>
+    <p>
+      <b><i>Formatting</i></b><br />
+      To create a heading, follow these steps:
+      <ol><b>
+        <li>Add &lt;h<i>n</i>&gt; in the body of your document.</li>
+        <li>Type the content for the heading.</li>
+        <li>Add &lt;/h<i>n</i>&gt;.</li>
+      </b></ol>
+    </p>
+    <p>
+      <b><i>Browser displays</i></b><br />
+      Every browser has a different way of displaying heading levels, and we 
+      cover that in the following two sections.
+    </p>
+    <p>
+      <b><i><u>Graphical browsers</u></i></b><br />
+      Most graphical browsers use a distinctive size and typeface for headings:
+      <ul>
+        <li>First-level headings (&lt;h1&gt;) are the largest (usually two or 
+          three font sizes larger than the default text size for paragraphs).
+        </li>
+        <li>Sixth-level headings (&lt;h6&gt;) are the smallest and may be two 
+          or three font sizes <i>smaller</i> than the default paragraph text.
+        </li>
+      </ul>
+    </p>
+    <p>
+      The following excerpt pf HTML markup shows all six headings at work:
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=
+            ISO-8859-1" /&gt;
+            &lt;title&gt;All About Blocks&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            &lt;h1&gt;First-level heading&lt;/h1&gt;
+            &lt;h2&gt;Second-level heading&lt;/h2&gt;
+            &lt;h3&gt;Third-level heading&lt;/h3&gt;
+            &lt;h4&gt;Fourth-level heading&lt;/h4&gt;
+            &lt;h5&gt;Fifth-level heading&lt;/h5&gt;
+            &lt;h6&gt;Sixth-level heading&lt;/h6&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+    </p>
+    <p>
+      Figure 5-3 shows this HTML page as rendered in a browser.
+    </p>
+    <p>
+      You can use CSS to format such heading aspects as color, size, line 
+      height, and alignment.
+    </p>
+    <p>
+      By default, most browsers use Times New Roman fonts for all headings.
+      The font size decreases as heading level increases. (Default sizes for 
+      first-through sixth-level headings are, respectively, 24, 18, 14, 12, 10,
+      and 8). You can override any of this formatting by using CSS.
+    </p>
+    <p>
+      <b>Figure 5-3:</b><hr />
+      <h1>First-level heading</h1>
+      <h2>Second-level heading</h2>
+      <h3>Third-level heading</h3>
+      <h4>Fourth-level heading</h4>
+      <h5>Fifth-level heading</h5>
+      <h6>Sixth-level heading</h6>
+      <hr />
+    </p>
+    <p>
+      <b><i><u>Text browsers</u></i></b><br />
+      Text-only browsers use different heading conventions than graphical 
+      browsers because text-only browsers display all content using a single
+      size and font.
+    </p>
+
+    <h2>Controlling Text Blocks</h2>
+    <p>
+      Blocks of text are the foundation for your page. You can break those 
+      blocks to better guide readers through your content.
+    </p>
+
     
 
   </body>
