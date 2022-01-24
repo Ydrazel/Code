@@ -243,7 +243,157 @@
       blocks to better guide readers through your content.
     </p>
 
+    <h3><i>Block quotes</i></h3>
+    <p>
+      A <i>block quote</i> is a long quotation or excerpt from a printed source
+      that you set apart on your page. You use the <code>&lt;blockquote&gt;</code>
+      element to identify block quotes:
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Traansitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;Famous Quotations&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            &lt;h1&gt;An Inspiring Quote&lt;/h1&gt;
+            &lt;p&gt;When I need a little inspiration to remind me of why I spend
+              my days in the classroom. I just remember what Lee Iococca said:&lt;/p&gt;
+            <b>&lt;blockquote&gt;
+                In a completely rational society, the best of us would be teachers
+                and the rest of us would have to settle for something else.
+            &lt;/blockquote&gt;</b>
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+      Most Web browsers display block-quote content with a slight left indent,
+      as shown in Figure 5-4.
+    </p>
+
+    <h3><i>Preformatted text</i></h3>
+    <p>
+      Ordinarily, HTML ignores white space inside documents. A browser won't 
+      display a block element's
+      <ul>
+        <li>Hard returns</li>
+        <li>Line breaks</li>
+        <li>Large white spaces</li>
+      </ul>
+    </p>
+    <p>
+      The following markup includes several hard returns, line breaks, and a lot
+      of space characters. Figure 5-5 shows that the Web browser ignores all of 
+      this.
+      <pre><code>
+        &lt;p&gt;This is a paragraph
+
+                    with a lot of white space
+
+                          thrown in for fun (and as a test of course).&lt;/p&gt;
+      </code></pre>
+    </p>
+    <p>
+      The preformatted text element (<code>&lt;pre&gt;</code>) instructions browsers
+      to keep all white space intact as it displays your content (like the following
+      sample). Use the <code>&lt;pre&gt;</code> element in place of the &lt;p&gt;
+      element to make the browser apply all your white space, as shown in Figure 5-6.
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;White space&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            <b>&lt;pre&gt;This is a paragraphs
+              
+                with a lot of white space
+
+                thrown in for fun (and as a test of course).
+            &lt;/pre&gt;</b>
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+      You may want the browser to display white spaces in an HTML page where
+      proper spacing is important, such as
+      <ul>
+        <li>Code samples</li>
+        <li>Text tables</li>
+      </ul>
+      You can nest <code>&lt;pre&gt;</code> elements inside <code>&lt;blockquote</code>
+      elements to carefully control how the lines of quoted text appear on the 
+      page.
+    </p>
+
+    <h3><i>Line breaks</i></h3>
+    <p>
+      By default, browsers usually <i>wrap</i> text that appears in block elements,
+      such as paragraphs, headings, and block quotes. If a text line reaches the
+      end of a browser window, the next word automatically starts a new line. 
+      You can manually control the end of a text line with a <i>line break</i>
+      (denoted by the <code>&lt;br /&gt;</code> element).
+    </p>
+
+    <b><i>Figure 5-4:</i></b>
+    <hr />
+    <h1>An Inspiring Quote</h1>
+    <p>When I need a little inspiration to remind me of why I spend my days in 
+      the classroom, I just remember what Lee Iococca said:
+    </p>
+    <blockquote>
+      In a completely rational society, the best of us would be teachers and the
+      rest of us would have to settle for something else.
+    </blockquote>
+    <hr />
     
+    <b><i>Figure 5-5:</i></b>
+    <hr />
+    <p>This is a paragraph with a lot of 
+
+                white space thrown in
+
+                          for fun (and as a test of course).
+    </p>
+    <hr />
+
+    <b><i>Figure 5-6:</i></b>
+    <hr />
+    <pre>This is a paragraph
+
+              with a lot of white space
+
+                    thrown in for fun (and as a test of course).
+    </pre>
+    <hr />
+
+    <b><i>Function</i></b>
+    <p>
+      The <code>&lt;br /&gt;</code> element is the HTML equivalent of the manual
+      line break that you use in paragraphs and other blocks of text when you're
+      working in a word-processing program. When a browser sees a <code>&lt;br /
+      &gt;</code>, it ends the line there and starts the next line.
+    </p>
+    <p>
+      The difference between a line break and a pragraph is that a line break
+      doesn't use any special formatting that you can apply at the end or 
+      beginning of a paragraph, such as
+      <ul>
+        <li>Extra vertical space</li>
+        <li>Fist-line indenting</li>
+      </ul>
+    </p>
+
+    <b><i>Formatting</i></b>
+    <p>
+      The following markup formats the lines of text in a poem with line breaks.
+      The entire poem is described <i>as a single paragraph,</i> and the <code>
+      &lt;br /&gt;</code> element marks the end of each line:
+    </p>
+
 
   </body>
 </html>
