@@ -4,8 +4,9 @@
   <title>Chapter 5 Style</title>
 </head>
 <style>
-.browser {
-  border: 2px outset;
+div {
+  class: browser
+  border: 2px outset black;
   background-color: grey;
 }
 </style>
