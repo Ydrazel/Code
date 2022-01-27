@@ -1,6 +1,10 @@
 body {
   background-color: #fafcf9;
 }
+.code_example {
+  background-color: #f2f2f2;
+  margin: auto;
+}
 .chapter_header {
   background-color:  	#d2e7d6;
   margin: auto;
