@@ -1,0 +1,11 @@
+<!DOCTYPE css>
+<head>
+  <meta content="text/css; charset=UTF-8" />
+  <title>Chapter 5 Style</title>
+</head>
+<style>
+.browser {
+  border: 2px outset;
+  background-color: grey;
+}
+</style>

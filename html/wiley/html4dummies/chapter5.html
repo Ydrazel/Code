@@ -392,7 +392,62 @@
       The following markup formats the lines of text in a poem with line breaks.
       The entire poem is described <i>as a single paragraph,</i> and the <code>
       &lt;br /&gt;</code> element marks the end of each line:
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt; xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;Shakespeare in HTML&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+          &lt;h1&gt;Shakespeare's Sonnets XVIII: Shall I compare thee to a summer's day? &lt;/h1&gt;
+            &lt;p&gt;
+              Shall I compare thee to a summer's day? &lt;br /&gt;
+              Thou art more lovely and more temperate. &lt;br /&gt;
+              Rough winds do shake the darling buds of May. &lt;br /&gt;
+              And summer's lease hath all too short a date. &lt;br /&gt;
+              Sometime too hot the eye of heaven shines. &lt;br /&gt;
+              And often is his gold complexion dimm'd; &lt;br /&gt;
+              And every fair from fair sometime declines. &lt;br /&gt;
+              By chance or nature's changing course untrimm'd; &lt;br /&gt;
+              But thy eternal summer shall not fade &lt;br /&gt;
+              Nor lose possession of that fair thou ow'st; &lt;br /&gt;
+              When in eternal lines to time thou grow'st: &lt;br /&gt;
+              So long as men can breathe or eyes can see. &lt;br /&gt;
+              So long lives this, and this gives life to thee. &lt;br /&gt;
+            &lt;/p&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
     </p>
+    <p>
+      Figure 5-7 shows how a browser handles each line break. In this example,
+      the poem isn't left-intended because the <code>&lt;p&gt;</code> element
+      replaces the <code>&lt;blockquote&gt;</code> element.
+    </p>
+    <div class="browser">
+      <b>Figure 5-7</b><br />
+      <hr />
+      <h1>Shakespeare's Sonnets XVIII: Shall I compare thee to a summer's day?</h1>
+        <p>
+          Shall I compare thee to a summer's day? <br />
+          Thou art more lovely and more temperate. <br />
+          Rough winds do shake the darling buds of May. <br />
+          And summer's lease hath all too short a date. <br />
+          Sometime too hot th eye of heaven shines. <br />
+          And often is his gold complexion dimm'd; <br />
+          And every fair from fair sometime declines. <br />
+          By chance or nature's changing course untrimm'd; <br />
+          But thy eternal summer shall not fade <br />
+          Nor lose possession of that fair thou ow'st; <br />
+          When in eternal lines to time thou grow'st: <br />
+          So long as men can breathe or eyes can see. <br />
+          So long lives this, and this gives life to thee. <br />
+        </p>
+    </div>
+    
 
 
   </body>
