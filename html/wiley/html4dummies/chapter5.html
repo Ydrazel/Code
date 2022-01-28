@@ -405,6 +405,7 @@
       The following markup formats the lines of text in a poem with line breaks.
       The entire poem is described <i>as a single paragraph,</i> and the <code>
       &lt;br /&gt;</code> element marks the end of each line:
+      <div class="code_example">
       <pre><code>
         &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
                   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
@@ -434,6 +435,7 @@
           &lt;/body&gt;
         &lt;/html&gt;
       </code></pre>
+      </div>
     </p>
     <p>
       Figure 5-7 shows how a browser handles each line break. In this example,
@@ -505,6 +507,202 @@
       block element) and expect the rule to just appear in the middle of the block.
     </p>
     
+    <b><i>Attributes</i></b>
+    <p>
+      Four different attributes control the appearance of each horizontal rule:
+      <ul>
+        <li><code>with:</code> Specifies line width either in <i>pixels</i> or 
+        by <i>percentage of display area width</i> (which we call "the page" in
+        discussion that follows).<br />
+        For example, a rule can be 50 pixels wide or take 75 percent of the page.
+        </li>
+        <li>
+          <code>size:</code> Specifies the height of the line in pixels. The 
+          default is 1 pixel.
+        </li>
+        <li>
+          <code>align:</code> Specifies the horizontal alignment of the rule as
+          either <code>left</code> (the default),<code>center</code>, or <code>
+          right</code>. <br />
+          If you don't define a width for your rule, it takes the entire width
+          of the page. The alignment won't make any difference.
+        </li>
+        <li>
+          <code>noshade:</code> Specifies a solid line with no shading. <br />
+          By default, most browsers display hard rules with a shade.
+        </li>
+      </ul>
+      These formatting attributes are deprecated in favor of using CSS.
+    </p>
+    <p>
+      This bit of HTML creates a horizontal rule that takes up 45 percent of the
+      page, is 4 pixels high, aligned to the center, and has shading turned off:
+      <div class="code_example">
+        <pre><code>
+          &lt;p&gt;This is a paragraph followed by a horizontal rule.&lt;/p&gt;
+          <b>&lt;hr width="45%" size="4" align="center" noshade="noshade" /&gt;</b>
+          &lt;p&gt;This is a paragraph preceded by a horizontal rule.&lt;/p&gt;
+        </code></pre>
+      </div>
+      Figure 5-9 shows how the addition of these attributes can alter how a browser
+      displays the rule. <br />
+      The site: <a href="http://www.lanw.com/">www.lanw.com</a> shows how you can 
+      use horizontal rules in the real world to
+      highlight important content. The LANWrights, Inc., Web site uses colored
+      hard rules to frame a key statement on the site's homepage. The rules make
+      the statement stand out from the rest of the page.
+    </p>
+    <div class="browser">
+      <b>Figure 5-8:</b><br />
+      <hr />
+      <p>This is a paragraph followed by a horizontal rule.</p>
+      <hr />
+      <p>This is a paragraph preceded by a horizontal rule.</p>
+    </div>
+    <div class="browser">
+      <b>Figure 5-9:</b><br />
+      <hr />
+      <p>This is a pragraph followed by a horizontal rule.</p>
+      <hr width="45%" size="4" align="center" noshade="noshade" />
+      <p>This is a pragraph preceded by a horizontal rule.</p>
+    </div>
+
+    <h3><i>Organizing Information</i></h3>
+    <p>Lists are powerful tools for arranging similar elements together, and 
+      they give visitors to your site an esy way to hone in on groups of Information.
+      You can put just about anything in a list, from a set of instructions to a
+      collection of navigational hyperlinks.
+    </p>
+    <p>
+      Lists use a combination of elements -- at least two components:
+      <ul>
+        <li>A markup element that says "Hey browser! The following items are a
+          list."
+        </li>
+        <li>Markup elements that say "Hey browser! This is an item in the list."</li>
+      </ul>
+      HTML provides for three different kinds of lists:
+      <ul>
+        <li>Numbered lists</li>
+        <li>Bulleted lists</li>
+        <li>Definition lists</li>
+      </ul>
+    </p>
+
+    <h4><i>Numbered lists</i></h4>
+    <p>
+      A <i>numbered list</i> consists of at least two items, each prefaced by a
+      number. Usually, a person numbers a list when the order of the items is
+      important.<br />
+      You use two kinds of elements for a numbered list:
+      <ul>
+        <li>The ordered list element (<code>&lt;ol&gt;</code>) specifies that this
+        is a numbered list.</li>
+        <li>List item elements (<code>&lt;li&gt;</code>) mark each item in the list.</li>
+      </ul>
+    </p>
+
+    <b><i>Formatting</i></b><br />
+    <p>
+      A numbered list with three items requires elements and content in the following
+      order:
+      <ol>
+        <li><code>&lt;ol&gt;</code></li>
+        <li><code>&lt;li&gt;</code></li>
+        <li>Content for the first list item</li>
+        <li><code>&lt;/li&gt;</code></li>
+        <li><code>&lt;li&gt;</code></li>
+        <li>Content for the second list item</li>
+        <li><code>&lt;/li&gt;</code></li>
+        <li><code>&lt;li&gt;</code></li>
+        <li>Content for the third item</li>
+        <li><code>&lt;/li&gt;</code></li>
+        <li><code>&lt;/ol&gt;</code></li>
+      </ol>
+    </p>
+    <p>The following markup defines a three-item numbered list:</p>
+    <div class="code_example">
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" conten="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;Numbered Lists&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            &lt;h1&gt;Things to do today&lt;/h1&gt;
+            <b>
+              &lt;ol&gt;
+                &lt;li&gt;Feed cat&lt;/li&gt;
+                &lt;li&gt;Wash car&lt;/lt&gt;
+                &lt;li&gt;Grocery shopping&lt;/li&gt;
+              &lt;/ol&gt;
+            </b>
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+    </div>
+    
+    <b><i>Numbering</i></b><br />
+    <p>
+      Two different <code>&lt;ol&gt;</code> element attributes control the appearance
+      of a numbered list:
+      <ul>
+        <li><code>start:</code> Specifies the first number in the list.</li>
+        <ul>
+          <li>The default starting number is 1.</li>
+          <li>You can specify any number as the start number for the new list.<br />
+              Specify a start number when you resume a list after an unnumbered
+              paragraph or other block element.
+          </li>
+        </ul>
+        <li><code>type:</code> Specifies the numbering style from the list. You
+            can choose from five predefined numbering styles:
+            <ul>
+              <li><code>1:</code> Decimal numbers.</li>
+              <li><code>a:</code> Lowercase letters.</li>
+              <li><code>A:</code> Uppercase letters.</li>
+              <li><code>i:</code> Lowercase Roman numerals.</li>
+              <li><code>I:</code> Uppercase Roman numerals.</li>
+            </ul>
+        </li>
+      </ul>
+    </p>
+    <p>
+      The following markup uses ordered list elements and attributes to create
+      a list that uses uppercase Roman numerals and begins numbering at 5 (V in
+      Roman numerals):
+    </p>
+    <div class="code_example">
+      <pre><code>
+        &lt;ol <b>start="5" type="I"</b>&gt;
+          &lt;li&gt;Wash car&lt;/li&gt;
+          &lt;li&gt;Feed cat&lt;/li&gt;
+          &lt;li&gt;Grocery shopping&lt;/li&gt;
+        &lt;/ol&gt;
+      </code></pre>
+    </div>
+    <p>
+      Figure 5-10 shows how the attributes affect the list's appearance in a 
+      browser.
+    </p>
+    <div class="browser">
+      <b>Figure 5-10</b><br />
+      <hr />
+      <ol start="5" type="I">
+        <li>Wash car</li>
+        <li>Feed the cat</li>
+        <li>Grocery shopping</li>
+      </ol>
+    </div>
+    <p>
+      You have more control over your lists if you use CSS to define formatting.
+      That's why the <code>start</code> and <code>type</code> attributes for list
+      markup are deprecated; see Appendix A for information about deprecated 
+      attributes.
+    </p>
 
 
   </body>
