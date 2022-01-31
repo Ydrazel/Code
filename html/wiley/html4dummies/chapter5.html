@@ -704,6 +704,441 @@
       attributes.
     </p>
 
+    <h4><i>Bulleted Lists</i></h4>
+    <p>
+      A <i>bulleted list</i> consists of one or more items each prefaced by a 
+      <i>bullet</i> (often a big dot; book uses <i>check marks</i> as bullets).
+    </p>
+    <p>
+      You use this type of list if the order of the presentation of the items 
+      isn't necessary for understanding the information presented.
+    </p>
+    <b><i>Formatting</i></b><br />
+    <p>
+      A bulleted list requires the following:
+      <ul>
+        <li>The unordered list element (<code>&lt;ul&gt;</code>) specifies that
+        you're creating a bulleted list.</li>
+        <li>A list item element (<code>&lt;li&gt;</code>) marks each item in 
+        the list.</li>
+        <li>The closing tag for the unordered list element (<code>&lt;/ul&gt;
+        </code>) indicates that the list has come to its end.</li>
+      </ul>
+    </p>
+    <p>
+      An unordered list with three items requires elements and content in the
+      following order:
+      <ol>
+        <li><code>&lt;ul&gt;</code></li>
+        <li><code>&lt;li&gt;</code></li>
+        <li>Content for the first list item</li>
+        <li><code>&lt;/li&gt;</code></li>
+        <li><code>&lt;li&gt;</code></li>
+        <li>Content for the second list item</li>
+        <li><code>&lt;/li&gt;</code></li>
+        <li><code>&lt;li&gt;</code></li>
+        <li>Content for the third list item</li>
+        <li><code>&lt;/li&gt;</code></li>
+        <li><code>&lt;/ul&gt;</code></li>
+      </ol>
+    </p>
+    <p>
+      The following markup formats a three-item list as a bulleted list:
+    </p>
+    <div class="code_example">
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;Bulleted Lists&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            &lt;h1&gt;Things to do today&lt;/h1&gt;
+            <b>&lt;ul&gt;
+                &lt;li&gt;Feed cat&lt;/li&gt;
+                &lt;li&gt;Wash car&lt;/li&gt;
+                &lt;li&gt;Grocery shopping&lt;/li&gt;
+            &lt;/ul&gt;</b>
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+    </div>
+    <p>
+      Figure 5-11 shows how a browser renders this with bullets.
+    </p>
+
+    <b><i>Styles</i></b><br />
+    <p>
+      You can use the <code>type</code> attrbiute (deprecated) with the <code>
+      &lt;ul&gt;</code> element to specify what kind of bullet you want the list
+      to use.
+      <ul>
+        <li><code>disc:</code> Solid circle bullets (the default)</li>
+        <li><code>square:</code> Solid square bullets</li>
+        <li><code>circle:</code> Hollow circle bullets</li>
+      </ul>
+    </p>
+    <div class="browser">
+      <b>Figure 5-11</b><br />
+      <hr />
+      <h1>Things to do today</h1>
+      <ul>
+        <li>Feed cat</li>
+        <li>Wash car</li>
+        <li>Grocery shopping</li>
+      </ul>
+    </div>
+    <p>
+      The addition of the <code>type</code> attribute to the bulleted-list markup
+      just given changes the bullets from discs to squares, as shown in Figure 
+      5-12. Here's what the relevant markup looks like:
+      <div class="code_example">
+        <pre><code>
+        &lt;ul <b>type="square"</b>&gt;
+          &lt;li&gt;Feed cat&lt;/li&gt;
+          &lt;li&gt;Wash car&lt;/li&gt;
+          &lt;li&gt;Grocery shopping&lt;/li&gt;
+        &lt;/ul&gt;
+      </code></pre>
+      </div>
+    </p>
+    <div class="browser">
+      <b>Figure 5-12</b><br />
+      <hr />
+      <h1>Things to do today</h1>
+      <ul type="square">
+        <li>Feed cat</li>
+        <li>Wash car</li>
+        <li>Grocery shopping</li>
+      </ul>
+    </div>
+    <p>Use CSS if you want more control over the fromatting of your lists.</p>
+
+    <h4><i>Definition Lists</i></h4>
+    <p>Definition lists group terms and definitions into a single list and 
+      require three different elements to compare the list:
+      <ul>
+        <li><code>&lt;dl&gt;</code>: Holds the list definitions.</li>
+        <li><code>&lt;dt&gt;</code>: Defines a term in the list.</li>
+        <li><code>&lt;dd&gt;</code>: Defines a definition for a term.</li>
+      </ul>
+    </p>
+    <p>
+      You can have as many terms (defined by <code>&lt;dt&gt;</code>) in a list
+      as you need. Each term can have one or more definitions (defined by <code>
+      &lt;dd&gt;</code>).
+    </p>
+    <p>
+      To create a definition list with two items requires elements and content
+      in the following order:
+      <ol>
+        <li><code>&lt;dl&gt;</code></li>
+        <li><code>&lt;dt&gt;</code></li>
+        <li>First term name</li>
+        <li><code>&lt;/dt&gt;</code></li>
+        <li><code>&lt;dd&gt;</code></li>
+        <li>Content for the definition of the first item</li>
+        <li><code>&lt;/dd&gt;</code></li>
+        <li><code>&lt;dt&gt;</code></li>
+        <li>Second term name</li>
+        <li><code>&lt;/dt&gt;</code></li>
+        <li><code>&lt;dd&gt;</code></li>
+        <li>Content for the definition of the second item</li>
+        <li><code>&lt;/dd&gt;</code></li>
+        <li><code>&lt;/dl&gt;</code></li>
+      </ol>
+    </p>
+    <p>
+      The following definition list includes three terms, one of which has two
+      definitions:
+    </p>
+    <div class="code_example">
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;Definition Lists&lt;/title&gt;
+          &lt;/head&gt;
+
+          &lt;body&gt;
+            &lt;h1&gt;Markup Language Definitions&lt;/h1&gt;
+            <b>&lt;dl&gt;
+                &lt;dt&gt;SGML&lt;/dt&gt;
+                  &lt;dd&gt;The Standard Generalized Markup Language&lt;/dd&gt;
+                &lt;dt&gt;HTML&lt;/dt&gt;
+                  &lt;dd&gt;The Hypertext Markup Language&lt;/dd&gt;
+                  &lt;dd&gt;The markup language you use to create Web pages.&lt;/dd&gt;
+                &lt;dt&gt;XML&lt;/dt&gt;
+                  &lt;dd&gt;The Extensible Markup Language&lt;/dd&gt;
+            &lt;/dl&gt;</b>
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+    </div>
+    <p>
+      If you think the items in a list are spaced too closely together, you can
+      either
+      <ul>
+        <li>Put two <code>&lt;br /&gt;</code> elements before each <code>
+        &lt;/li&gt;</code> or <code>&lt;/dd&gt;</code> element to add more white
+        space.</li>
+        <li>Use CSS styles to carefully control all aspects of your list appearance,
+        as shown in Chapter 8.</li>
+      </ul>
+    </p>
+
+    <h4><i>Nesting Lists</i></h4>
+    <p>
+      You can create subcategories by <i>nesting</i> lists within other lists.
+      Some common uses for nested lists include
+      <ul>
+        <li>Site maps and other navigation tools</li>
+        <li>Table of contents for online books and papers</li>
+        <li>Outlines</li>
+      </ul>
+    </p>
+    <p>
+      You can combine any of the three kinds of lists to create <i>nested</i> 
+      lists, such as a multilevel table of contents or an outline that mixes
+      numbered headings with bulleted list items as the lowest outline level.
+    </p>
+    <p>
+      The following example starts with a numbered list that defines a list of 
+      thigs to do for the day, and uses three bulleted lists to further break 
+      down those items into specific tasks:
+    </p>
+    <div class="code_example">
+      <pre><code>
+        &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+          &lt;head&gt;
+            &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+            &lt;title&gt;Nested Lists&lt;/title&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            &lt;h1&gt;Things to do today&lt;/h1&gt;
+            &lt;ol&gt;
+              &lt;li&gt;Feed cat&lt;/li&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;Rinse bowl&lt;/li&gt;
+                  &lt;li&gt;Open cat food&lt;/li&gt;
+                  &lt;li&gt;Mix dry and wet food in bowl&lt;/li&gt;
+                  &lt;li&gt;Deliver on a silver platter to fluffy&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;li&gt;Wash car&lt;/li&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;Vacuum interior&lt;/li&gt;
+                  &lt;li&gt;Wash exterior&lt;/li&gt;
+                  &lt;li&gt;Wax exterior&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;li&gt;Grocery shopping&lt;/li&gt;
+                &lt;ul&gt;
+                  &lt;li&gt;Plan meals&lt;/li&gt;
+                  &lt;li&gt;Clean out fridge&lt;/li&gt;
+                  &lt;li&gt;Make list&lt;/li&gt;
+                  &lt;li&gt;Go to store&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/ol&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </code></pre>
+    </div>
+    <p>
+      All nested lists follows the same markup pattern:
+      <ul>
+        <li>Each list item in the top-level ordered list is followed by a complete
+        second-level list.</li>
+        <li>The second-level lists sit inside the top-level list, not in the List
+        items.</li>
+      </ul>
+      Figure 5-13 shows how a browser reflects this nesting in its display.
+    </p>
+    <p>
+      As you build nested lists, watch your opening and closing tags carefully.
+      <i>Close first what you opened last</i> is an especially important axiom
+      here. If you don't open and close your tags properly, lists might not show
+      consistent indents or numbering, or text might be indented incorrectly
+      because a list somewhere was never properly closed.
+    </p>
+    <div class="browser">
+      <b>Figure 5-13</b><br />
+      <hr />
+      <h1>Things to do today</h1>
+      <ol>
+        <li>Feed cat</li>
+          <ul>
+            <li>Rinse bowl</li>
+            <li>Open cat food</li>
+            <li>Mix dry and wet food in bowl</li>
+            <li>Deliver on a silver platter to fluffy</li>
+          </ul>
+        <li>Wash car</li>
+          <ul>
+            <li>Vacuum interior</li>
+            <li>Wash exterior</li>
+            <li>Wax exterior</li>
+          </ul>
+        <li>Grocery shopping</li>
+          <ul>
+            <li>Plan meals</li>
+            <li>Clean out fridge</li>
+            <li>Make list</li>
+            <li>Go to store</li>
+          </ul>
+      </ol>
+    </div>
+
+    <h3><i>Text Controls and Annotation</i></h3>
+    <p>
+      Some general (X)HTML elements define general text controls or allow you to
+      annotate documents. These are covered in Table 5-1.
+    </p>
+    <div class="table">
+    <table style="width: 100%;">
+      <caption><b>
+        <div class="table_caption" style="clear: both">
+          <h4 style="float: left;"><i>Table 5-1</i></h4>
+          <h4 style="float: center;">(X)HTML Text Controls and Annotation</h4>
+        </div>
+      </b></caption>
+      <tr>
+        <th>Element</th>
+        <th>Common Name</th>
+        <th>Empty?</th>
+        <th>Category</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><code>bdo</code></td>
+        <td>Bidirectional algorithm</td>
+        <td>No</td>
+        <td>Language definition</td>
+        <td>Controls direction of text display {<code>ltr | rtl</code>}
+        (left-to-right, right-to-left)</td>
+      </tr>
+      <tr>
+        <td><code>del</code></td>
+        <td>Deleted text</td>
+        <td>No</td>
+        <td>Text control</td>
+        <td>Marks deleted text in current draft</td>
+      </tr>
+      <tr>
+        <td><code>ins</code></td>
+        <td>Inserted text</td>
+        <td>No</td>
+        <td>Text control</td>
+        <td>Marks inserted text in current draft</td>
+      </tr>
+      <tr>
+        <td><code>kbd</code></td>
+        <td>Keyboard text</td>
+        <td>No</td>
+        <td>Text control</td>
+        <td>Text to type at a keyboard</td>
+      </tr>
+      <tr>
+        <td><code>samp</code></td>
+        <td>Sample text</td>
+        <td>No</td>
+        <td>Text control</td>
+        <td>Sample program output</td>
+      </tr>
+      <tr>
+        <td><code>tt</code></td>
+        <td>Teletype text</td>
+        <td>No</td>
+        <td>Text control</td>
+        <td>Typewriter or tele-type output</td>
+      </tr>
+      <tr>
+        <td><code>var</code></td>
+        <td>Variable text</td>
+        <td>No</td>
+        <td>Text control</td>
+        <td>Highlights input or output variables</td>
+      </tr>
+    </table>
+    </div>
+
+    <h3><i>Marvelous Miscellany</i></h3>
+    <p>
+      Table 5-2 lists other text-related (X)HTML attributes that you might find
+      in HTML files.
+    </p>
+    <div class="table">
+      <table style="width: 100%;">
+        <caption><b>
+          <div class="table_caption" style="clear:both">
+            <h4 style="float: left;"><i>Table 5-2</i></h4>
+            <h4 style="float: center;">Additional (X)HTML Text Attributes</h4>
+          </div>
+        </b></caption>
+        <tr>
+          <th><i>Name</i></th>
+          <th><i>Function / Value Equals</i></th>
+          <th><i>Value Type(s)</i></th>
+          <th><i>Related Element(s)</i></th>
+        </tr>
+        <tr>
+          <td><code>cite</code></td>
+          <td>Specifies location of source materials</td>
+          <td>URL</td>
+          <td><code>&lt;blockquote&gt;<br />
+          &lt;q&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>cite</code></td>
+          <td>Explains reason for adds, deletes</td>
+          <td>Text</td>
+          <td><code>&lt;del&gt;&lt;ins&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>datetime</code></td>
+          <td>Time stamps document content</td>
+          <td>ISO date</td>
+          <td><code>&lt;del&gt;&lt;ins&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>dir</code></td>
+          <td>Specifies text direction for content</td>
+          <td><code>{ltr|rtl}</code></td>
+          <td>All elements except <code>&lt;base&gt;&lt;br /&gt;<br />
+          &lt;frame /&gt;&lt;frameset&gt;&lt;iframe&gt;<br />
+          &lt;param /&gt;&lt;script&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>id</code></td>
+          <td>Supplies unique identifier for markup instances</td>
+          <td>ID</td>
+          <td>All elements except <code>&lt;base /&gt;&lt;head&gt;<br />
+          &lt;html&gt;&lt;meta /&gt;&lt;param /&gt;<br />
+          &lt;script&gt;&lt;style&gt;&lt;title&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>lang</code></td>
+          <td>Names content language used</td>
+          <td>Language code</td>
+          <td>All elements except <code>&lt;base /&gt;&lt;br /&gt;<br />
+          &lt;frame /&gt;&lt;frameset&gt;&lt;iframe&gt;<br />
+          &lt;param /&gt;&lt;script&gt;</code></td>
+        </tr>
+        <tr>
+          <td><code>title</code></td>
+          <td>Associates advisory info to content</td>
+          <td>Text</td>
+          <td>All elements except <code>&lt;base /&gt;&lt;head&gt;<br />
+          &lt;html&gt;&lt;meta /&gt;&lt;param /&gt;<br />
+          &lt;script&gt;&lt;style&gt;&lt;title&gt;</code></td>
+        </tr>
+      </table>
+    </div>
 
   </body>
 </html>
