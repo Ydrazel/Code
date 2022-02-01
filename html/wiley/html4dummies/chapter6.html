@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <link rel="stylesheet" href="4dummies.css" type="text/css" />
+    <title>Chapter 6</title>
+  </head>
+
+  <body>
+    <div class="chapter_header">
+      <h2 class="chapter_h2">Chapter 6</h2>
+      <hr width="160" size="2px" />
+      <h1 class="chapter_h1">Linking to Outline Resources</h1>
+    </div>
+
+    <div class="chapter_summary">
+      <hr class="summary_border" />
+      <p><b><i>In This Chapter</i></b></p>
+      <ul>
+        <li>Creating simle links</li>
+        <li>Opening linked pages in new windows</li>
+        <li>Setting up links to locations within a Web page</li>
+        <li>Creating links to things other than Web pages</li>
+      </ul>
+      <hr class="summary_border" />
+    </div>
+    <p class="indented">
+      <i>Hyperlinks,</i> or simply <i>links,</i> connect (X)HTML pages and other
+      resources on the Web. When you include a link on your page, you allow 
+      visitors to travel from your page to another Web site, another page on your
+      site, or even another location on the same page. Without external links, 
+      a page stands alone, disconnected from the rest of the Web. With external
+      links, that page becomes part of an almost boundless collection of information.
+    </p>
+
+    <h3><i>Basic Links</i></h3>
+    <div>
+      <p>
+        To create a link, you need
+        <ul>
+          <li><b>The Web address</b> (called a Uniform Resource Locator, or URL)
+          of the Web site or file you want to link. This usually starts with <code>
+          http://</code>.</li>
+          <li><b>Some text</b> in your Web page to label or describe the link.<br />
+          Try to ensure that the text you use says something useful about the 
+          resource being linked.</li>
+          <li><b>An anchor element (<code>&lt;a&gt;</code>) with the <code>
+          href</code> attribute</b> to bring it all together.<br />
+          The element to create links is called an <i>anchor element</i> because
+          you use it to anchor a URL to some text on your page. When users view
+          your page in a browser, they can click the text to activate the link 
+          and visit the page whose URL you specified in the link. You insert the
+          full URL in the <code>href</code> attribute. This tells the link where
+          it needs to go.</li>
+        </ul>
+      </p>
+    </div>
+    <div>
+      <p>
+        You can think of the structure of a basic link as a cheeseburger (or your
+        preferred vegan substitute). The URL is the cheese, the patty is the link
+        text, and the anchor tags are the buns. Tasty, yes?
+      </p>
+      <p>
+        For example, if you have a Web page that describes HTML standards, you
+        may want to refer Web surfers to the World Wide Web Consortium (W3C) --
+        the organization that governs all things related to (X)HTML standards.
+        A basic link to the W3C's Web site, <code>www.w3.org</code>, looks like
+        this:
+        <div class="code_example">
+          <pre><code>
+            &lt;p&gt;The &lt;a href="http://www.w3.org/"&gt;World Wide Web 
+            Consortium&lt;/a&gt; is the standards body that oversees the ongoing
+            development of the XHTML specification.&lt;/p&gt;
+          </code></pre>
+        </div>
+      </p>
+      <p>
+        You specify the link URL (<code>http://www.w3.org</code>) in the anchor
+        element's <code>href</code> attribute. The text (<code>World Wide Web 
+        Consortium</code>) between the anchor element's open and close tags
+        (<code>&lt;a&gt;</code> and <code>&lt;/a&gt;</code>) labels or describes
+        the link.
+      </p>
+      <p>Figure 6-1 shows how a browser displays this bit of markup.</p>
+      <div class="browser">
+        <b>Figure 6-1</b><br />
+        <hr />
+        <p>
+          The <a href="http://www.w3.org">World Wide Web Consortium</a> is the
+          standards body that oversees the ongoing development of the XHTML 
+          specification.
+        </p>
+      </div>
+    </div>
+
+    <div class="column_2">
+      <h4>Anchor elements aren't block elements</h4>
+        Anchor elements are <i>inline elements</i> -- they apply to a few words
+        or characters within a block of text (the text that you want to use as a
+        link) instead of defining formatting for blocks of text. The anchor 
+        element sits inside a paragraph (<code>&lt;p&gt;</code>) element. When
+        you create a link, you should always create it within a block element,
+        such as a paragraph, list item, heading, or even a table cell. Turn to
+        Chapter 5 for more information on block elements.
+      <p>
+        Although many Web browsers can display your anchors just fine (even if 
+        you don't nest them in block elements), some browsers don't handle this
+        breach of (X)HTML syntax very well, such as
+        <ul>
+          <li>Text-only browsers for Palm devices and mobile phones</li>
+          <li>Text-to-speech readers for the visually impaired</li>
+        </ul>
+      </p>
+      <p>
+        Text-based browsers rely on block elements to properly divide the 
+        setions of your page. Without a block element, these browsers might
+        display your links in the wrong places.
+      </p>
+    </div>
+
+    
+
+
+  </body>
+
+</html>

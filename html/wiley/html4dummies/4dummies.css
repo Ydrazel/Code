@@ -1,6 +1,36 @@
 body {
   background-color: #fafcf9;
 }
+
+.chapter_h1 {
+  text-align: center;
+}
+.chapter_h2 {
+  text-align: center;
+  color: grey;
+}
+
+.summary_border {
+  border: 3px dotted grey;
+}
+
+.indented {
+  text-indent: 2em;
+}
+
+.column_2 {
+  margin: auto;
+  background-color: rgb(226, 238, 223);
+  border: 1px solid black;
+  column-count: 2;
+  column-fill: balance;
+  padding: 8px;
+}
+.column_2 h4 {
+  column-span: all;
+  text-align: center;
+}
+
 .code_example {
   background-color: #f2f2f2;
   margin: auto;
