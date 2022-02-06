@@ -23,7 +23,7 @@ body {
   background-color: rgb(226, 238, 223);
   border: 1px solid black;
   column-count: 2;
-  column-fill: balance;
+  column-fill: auto;
   padding: 8px;
 }
 .column_2 h4 {

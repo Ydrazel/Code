@@ -194,6 +194,175 @@
         <li>Domain names</li>
       </ul>
     </p>
+    <p>
+      <b><i><u>Simple links</u></i></b><br />
+      You can take advantage of relative URLs when you create a link between 
+      pages on the same Web site. If you want to make a link from <code>http://
+      www.mysite.com/home.html</code> to <code>http://www.mysite.com/about.html
+      </code>, you can use this simplified, relative URL in an anchor element on
+      <code>home.html</code>:
+      <div class="code_example">
+        <pre><code>
+          &lt;Learn more &lt;a href="about.html"&gt;about&lt;/a&gt; our company.&lt;/p&gt;
+        </code></pre>
+      </div>
+      When a browser sees a link without a domain name, the browser assumes the
+      link is <i>relative</i> and uses the domain and path of the linking page 
+      to find the linked page.
+    </p>
+    <p>
+      <b><i><u>Site links</u></i></b><br />
+      As your site grows more complex and you organize your files into a variety
+      of folders, you can still use relative links. But you must provide additional
+      information in the URL to help the browser find files that don't reside in
+      the same directory as the file from which you're linking.
+    </p>
+    <p>
+      Use ../ (two periods and a slash) before the filename to indicate that the
+      browser should move up one level in the directory structure.
+    </p>
+    <p>
+      The markup for this process looks like this:
+      <div class="code_example">
+        <pre><code>
+          &lt;a href="../docs/home.html"&gt;Documentation home&lt;/a&gt;
+        </code></pre>
+      </div>
+    </p>
+    <p>
+      The notation in this anchor element instructs the browser to:
+      <ol><b>
+        <li>Move up one folder from the folder the linking document is stored in.</li>
+        <li>Find a folder called <code>docs</code>.</li>
+        <li>Find a file called <code>home.html</code>.</li>
+      </b></ol>
+    </p>
+    <p>
+      When you create a relative link, the location of the file <i>to</i> which
+      you link is always relative to the file from which you link. As you create
+      your relative URL, trace the path a browser must take if it starts on the 
+      page you're linking from before it can get to the page to which you're
+      linking. That path defines the URL for your relative link.
+    </p>
+
+    <h4><i>Common Mistakes</i></h4>
+    <p>
+      Every Web resource, such as sites, pages, and images, has a unique URL.
+      Even one incorrect letter in your URL can lead to a <i>broken link.</i>
+      Broken links lead to an error page (often the HTTP error <code>404 File
+      or directory not found</code>).
+    </p>
+    <p>
+      URLs are so finicky that a simple typo breaks a link.
+    </p>
+    <p>
+      If a URL doesn't work, try these tactics:
+      <li>
+        <b>Check the capitalization.</b> Some Web servers (Linux and Unix most
+        notably) are <i>case sensitive</i> (meaning they distinguish between 
+        capital and lowercase letters). These servers treat the filenames <code>
+        Bios.html</code> and <code>bios.html</code> as different files on the
+        Web server. That also means that browsers must use uppercase and lowercase
+        letters when necessary. Be sure the capitalization in the link matches
+        the capitalization of the URL.<br />
+        To avoid problems with files on your Web site, follow a standard naming
+        convention. Often, using only lowercase letters can simplify your life.
+      </li>
+      <li>
+        <b>Check the extension.</b> <code>Bios.htm</code> and <code>Bios.html
+        </code> are two different files. If your link's URL uses one extension
+        but the actual filename uses another, your link won't work.<br />
+        To avoid problems with extensions on your Web site, pick either <code>
+        .html</code> or <code>.htm</code> and stick to that extension.
+      </li>
+      <li>
+        <b>Check filename.</b> <code>bio.html</code> and <code>bios.html</code>
+        are two different files.
+      </li>
+      <li>
+        <b>Cut and paste.</b> Avoid retyping a URL if you can copy it. The best
+        and most foolproof way to create a URL that works is
+        <ol><b>
+          <li>Load a page in your browser.</li>
+          <li>Copy the URL from the browser's address or link text box</li>
+          <li>Paste the URL into your (X)HTML markup.</li>
+        </b></ol>
+      </li>
+    </p>
+
+    <div class="column_2">
+      <h4>The importance of http:// in (X)HTML links</h4>
+      Browsers make surfing the Web as easy as possible. If you type <b>www.sun
+      .com, sun.com</b>, or often even just <b>sun</b>, in your browser's address
+      window, the browser obligingly brings up <code>http://www.sun.com</code>.
+      Although this technique works when you type URLs into your browser window,
+      it won't work when you're writing markup.
+      <p>
+        The URLs that you use in your HTML markup must be fully formed. Browsers
+        won't interpret URLs that don't include the page protocol. If you forget
+        the <code>http://</code>, your link won't work.
+      </p>
+    </div>
+
+    <h3><i>Customizing Links</i></h3>
+    <div>
+      You can customize links to
+      <ul>
+        <li>Open linked documents in new windows</li>
+        <li>Link to specific locations <i>within</i> a Web page</li>
+        <li>Link to items other than (X)HTML pages, such as
+          <ul>
+            <li>Portable Document Format (PDF) files</li>
+            <li>Compressed files</li>
+            <li>Word-processing documents</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>New windows</h4>
+      The Web works because you can link pages on your Web site to pages on 
+      other people's Web sites by using a simple anchor element. But when you
+      link to someone else's site, you send users away from your own site.
+      <p>
+        To keep users on your site, HTML can open the linked page in a new window.
+        The simple addition of the <code>target</code> attribute to an anchor
+        element opens that link in a new browser window instead of opening it in
+        the current window:
+      </p>
+      <div class="code_example">
+        <pre><code>
+          &lt;p&gt;The &lt;a href="http://www.w3.org" target="_blank"&gt;World 
+          Wide Web consortium&lt;/a&gt; is the standards body that oversees the
+          ongoing development of the XHTML specification.&lt;/p&gt;
+        </code></pre>
+      </div>
+      <p>
+        When you give a <code>target</code> attribute a <code>_blank</code> value,
+        this tells the browser to
+        <ol><b>
+          <li>Keep the linking page open in the current window.</li>
+          <li>Open the linked page in a new window.</li>
+        </b></ol>
+      </p>
+      <p>
+        The result of the <code>target="_blank"</code> attribute is shown in 
+        Figure 6-2.
+      </p>
+      <p>Pop-up windows irritate some users.</p>
+      <p>
+        You can use JavaScript to control the size and appearance of pop-up
+        windows, as well as put buttons on them to help users close them quickly.
+        Chapter 12 covers pop-up windows in more detail.
+      </p>
+      <div class="browser">
+        <b>Figure 6-2</b><br />
+        <hr />
+        <p>The <a href="http://www.w3.org" target="_blank">World Wide Web
+        Consortium</a> is the standards body that oversees the ongoing development
+        of the XHTML specification.</p>
+      </div>
+    </div>
 
 
   </body>
