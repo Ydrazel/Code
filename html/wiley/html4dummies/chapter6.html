@@ -364,6 +364,367 @@
       </div>
     </div>
 
+    <div>
+      <h4><i>Locations in Web pages</i></h4>
+      <p>
+        Locations within Web pages can be marked for direct access by links on
+        <ul>
+          <li>The same page</li>
+          <li>The same Web site</li>
+          <li>Other Web sites</li>
+        </ul>
+      </p>
+      <p>
+        Keep these considerations in mind when adding links to Web pages:
+        <ul>
+          <li>
+            <p>
+              Several short pages may present information more conveniently for
+              readers than a long page with internal links.
+            </p>
+            <p>
+              Links within large pages work nicely for quick access to directories,
+              tables of contents, and glossaries.
+            </p>
+          </li>
+          <li>
+            <p>
+              <i>Intradocument</i> linking works best on your own Web site, where
+              you can create and control the markup.
+            </p>
+            <p>
+              When you link to spots on someone else's Web site, you're at that
+              person's mercy. That person controls the linkable spots. Your links
+              will break if the site designer removes or renames any spot where
+              you link.
+            </p>
+          </li>
+        </ul>
+      </p>
+    </div>
+
+    <div>
+      <b><i>Naming link locations</i></b><br />
+      To identify and create a location within a page for direct access from 
+      other links, use an empty anchor element with the <code>name</code>
+      attribute, like this:
+      <div class="code_example">
+        <pre><code>
+          &lt;a name="top"&gt;&lt;/a&gt;
+        </code></pre>
+      </div>
+      <p>
+        The anchor element that marks the spot doesn't affect the appearance of
+        the first-level heading. You can mark spots wherever you need them 
+        without worrying about how your pages look (or change) as a result.
+      </p>
+    </div>
+    <div>
+      <b><i>Linking to named locations</i></b><br />
+      <p>
+        As we mention earlier, you can mark locations for direct access by links
+        <ul>
+          <li>Within the same page</li>
+          <li>Within the same Web site</li>
+          <li>On other Web sites</li>
+        </ul>
+      </p>
+      <p>
+        <b><i><u>Within the same page</u></i></b><br />
+        Links can help users navigate a single Web page. Intradocument hyperlinks
+        are such familiar features as
+        <ul>
+          <li>Back to Top links</li>
+          <li>Tables of contents</li>
+        </ul>
+      </p>
+      <p>
+        An intradocument hyperlinks uses a URL like this:
+        <div class="code_example">
+        <pre><code>
+          &lt;a href="#top"&gt;Back to top&lt;/a&gt;
+        </code></pre>
+        </div>
+        The pound sign (#) indicates that you're pointing to a spot on the same
+        page, not on another page.
+      </p>
+      <p>
+        Listing 6-1 shows how two anchor elements work together to link to a 
+        spot on the same page. (Documents that use intradocument links are usually
+        much longer. This document is shorter so you can easily see how to use the
+        <code>top</code> anchor element.)
+      </p>
+    </div>
+
+    <div>
+      <b><i>Listing 6-1: Intradocument Hyperlinks</i></b><br />
+      <hr />
+      <div class="code_example">
+        <pre><code>
+          &lt;html&gt;
+            &lt;head&gt;
+              &lt;title&gt;Intradocument hyperlinks at work&lt;/title&gt;
+            &lt;/head&gt;
+
+            &lt;body&gt;
+              &lt;h1&gt;&lt;a name="top"&gt;&lt;/a&gt;Web-Based Training&lt;/h1&gt;
+
+              &lt;p&gt;Given the importance of the Web to businesses and
+                other organizations, individuals who seek to improve job skills,
+                or fulfill essential job functions, are turning to HTML and XML
+                for participation in an active and lucrative adult and continuing
+                education market.&lt;/p&gt;
+
+              &lt;p&gt;&lt;a href="#top"&gt;Back to top&lt;/a&gt;&lt;/p&gt;
+
+            &lt;/body&gt;
+          &lt;/html&gt;
+        </code></pre>
+      </div>
+      <p>
+        Figure 6-3 shows how this HTML markup appears in a Web browser. If the
+        user clicks the Back to Top link, the browser jumps back to the <code>
+        top</code> spot -- marked by <code>&lt;a name="top"&gt;&lt;/a&gt;</code>.
+      </p>
+      <div class="browser">
+        <b><i>Figure 6-3</i></b><br />
+        <hr />
+        <h1><a name="top"></a>Web-Based Training</h1>
+
+        <p>
+          Given the importance of the Web to businesses and other organizations,
+          individuals who seek to improve job skills, or fulfill essential job
+          functions, are turning to HTML and XML for participation in an active
+          lucrative adult and continuing education market.
+        </p>
+
+        <p><a href="#top">Back to top</a></p>
+      </div>
+      <p>
+        <b><i><u>Within the same Web site</u></i></b><br />
+        You can combine intradocument and interdocument links to send visitors
+        to a spot on a different Web page within your site. For example, if you
+        want to point to a spot named <code>descriptions</code> on a page named
+        <code>home.html</code> on your site, the link looks like this:
+      </p>
+      <div class="code_example">
+        <pre><code>
+          &lt;p&gt;Review the &lt;a href="home.html#descriptions"&gt;document
+          descriptions&lt;/a&gt; to find the documentation for your particular
+          product.&lt;/p&gt;
+        </code></pre>
+      </div>
+      <p>
+        <b><i><u>On other Web sites</u></i></b><br />
+        If you know that a page on another site has spots marked, you can use an
+        absolute URL to point to spots on that page, like this:
+      </p>
+      <div class="code_example">
+        <pre><code>
+          &lt;p&gt;Find out how to &lt;a href="http://www.yourcompany.com/training/
+          online.html#register"&gt;register&lt;/a&gt; for upcoming training courses
+          led by our instructors.&lt;/p&gt;
+        </code></pre>
+      </div>
+      <p>
+        Be sure to check all links regularly to catch and fix the broken ones.
+      </p>
+      <p>
+        The Open Directory Project provides a laundry list of free and commercial
+        tools to make finding and fixing broken links easier:
+        <div class="code_example">
+          <pre><code>
+            http://dmoz.org/Computers/Software/Internet/Site_Management/Link_Management/
+          </code></pre>
+        </div>
+      </p>
+    </div>
+
+    <div>
+      <h4><i>Non-HTML resources</i></h4>
+      <p>
+        Links can connect to virtually any kind of files, such as
+        <ul>
+          <li>Word-processing documents</li>
+          <li>Spreadsheets</li>
+          <li>PDFs</li>
+          <li>Compressed files</li>
+          <li>Multimedia<br />
+          Anchor elements usually aren't good links for multimedia files.</li>
+        </ul>
+        A great use for non-HTML links is on software and PDF download pages.
+      </p>
+      <p>
+        <b><i>File downloads</i></b><br />
+        Non-Web files have unique URLs just like HTML pages. Any file on a Web
+        server (regardless of its type) can be linked with its URL.
+      </p>
+      <p>
+        For instance, if users need to download a PDF file named <code>doc.pdf
+        </code> and a <code>.zip</code> archive called <code>software.zip</code>
+        from a Web page, you use this HTML:
+        <div class="code_example">
+          <pre><code>
+          &lt;h1&gt;Download the new version of our software&lt;/h1&gt;
+          &lt;p&gt;&lt;a href="software.zip"&gt;Software&lt;/a&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;a href="doc.pdf"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+          </code></pre>
+        </div>
+      </p>
+      <p>
+        You can't know how any user's browser responds with a click on a link
+        to a non-Web file. The browser may
+        <ul>
+          <li>Prompt the user to save the file</li>
+          <li>Display the file without downloading (this is common for PDFs)</li>
+          <li>Display and error message (if the browser can't handle the file)</li>
+        </ul>
+      </p>
+      <p>
+        To help users download files successfully, you should provide them with
+        <ul>
+          <li>As much information as possible about the file formats.</li>
+          <li>Any special tools they need to work with the files.
+            <ul>
+              <li>To work with the contents of a Zip file, the users need a 
+                compression utility, such as WinZip or ZipIt, if their operating
+                system do not natively support Zip files.
+              </li>
+              <li>To view a PDF file, users need the Adobe Acrobat Reader.</li>
+            </ul>
+          </li>
+        </ul>
+      </p>
+      <p>
+        You can make download markup more user-friendly by adding supporting
+        text and links, like this:
+        <div class="code_example">
+          <pre><code>
+            &lt;h1&gt;Download the new version of our software&lt;/h1&gt;
+            &lt;p&gt; &lt;a href="software.zip"&gt;Software&lt;/a&gt; &lt;br /&gt;
+                &lt;b&gt;Note:&lt;/b&gt;
+                You need a zip utility such as
+                &lt;a href="http://www.winzip.com"&gt;WinZip&lt;/a&gt; or
+                &lt;a href="http://www.maczipit.com"&gt;ZipIt&lt;/a&gt;
+                to open this file.&lt;/p&gt;
+          </code></pre>
+        </div>
+      </p>
+      <p>
+        Figure 6-4 shows how a browser renders this HTML and the dialog box it 
+        displays when you click the software link.
+      </p>
+      <div class="browser">
+        <b><i>Figure 6-4:</i></b><br />
+        <hr />
+        <h1>Download the new version of our software</h1>
+        <p>
+          <a href="software.zip">Software</a><br />
+          <b>Note:</b>You need a zip utility such as
+          <a href="http://www.winzip.com">WinZip</a> or 
+          <a href="http://www.maczipit.com">ZipIt</a>
+          to open this file.
+        </p>
+      </div>
+      <p>
+        <b><i>E-mail addresses</i></b><br />
+        A link to an e-mail address can automatically open a new e-mail addressed
+        to exactly the right person.
+      </p>
+      <p>
+        This is a great way to help users send you e-mail with comments and 
+        requests.
+      </p>
+      <p>
+        An e-mail link uses the standard anchor element and <code>href</code>
+        attribute. The value of the <code>href</code> attribute is the receiving
+        e-mail address prefaced with <code>mailto:</code>
+        <div class="code_example">
+          <pre><code>
+            &lt;p&gt;Send us your
+              &lt;a href="mailto:comments@mysite.com"&gt;comments&lt;/a&gt;.&lt;/p&gt;
+          </code></pre>
+        </div>
+      </p>
+      <p>
+        The user's browser configuration controls how the browser handles an 
+        e-mail link. Most browsers automatically
+        <ol>
+          <li>Open a new message window in the default e-mail program.</li>
+          <li>Insert the address from the <code>href</code> attribute in the To
+          field of the message.</li>
+        </ol>
+      </p>
+      <p>
+        Unfortunately, Web page <code>mailto:</code> links are a prime source
+        of e-mail addresses for spammers. Creating a form to receive feedback
+        is often a better idea.
+      </p>
+    </div>
+    
+    <h3><i>Marvelous Miscellany</i></h3>
+    <p>
+      Table 6-1 lists other link-related (X)HTML attributes that you might 
+      find in HTML files (and their characteristics).
+    </p>
+    <div class="table">
+      <table style="width:100%;">
+        <caption>
+          <div class="table_caption" style="clear: both;">
+            <h4 style="float: left;"><i>Table 6-1</i></h4>
+            <h4 style="float: center;">Additional (X)HTML Link Attributes</h4>
+          </div>
+        </caption>
+        <tr>
+          <th>Name</th>
+          <th>Function / Value Equals</th>
+          <th>Value Type(s)</th>
+          <th>Related Element(s)</th>
+        </tr>
+        <tr>
+          <td><code>accesskey</code></td>
+          <td>Shortcut key to follow link</td>
+          <td>Text</td>
+          <td><code>
+            &lt;a&gt;<br />
+            &lt;area /&gt;<br />
+            &lt;button&gt;<br />
+            &lt;input /&gt;<br />
+            &lt;label&gt;<br />
+            &lt;legend&gt;<br />
+            &lt;textarea&gt;
+          </code></td>
+        </tr>
+        <tr>
+          <td><code>charset</code></td>
+          <td>Character set for linked items</td>
+          <td>Text</td>
+          <td><code>
+            &lt;a&gt;<br />
+            &lt;link /&gt;<br />
+            &lt;script&gt;
+          </code></td>
+        </tr>
+        <tr>
+          <td><code>hreflang</code></td>
+          <td>Language for linked items</td>
+          <td>Language code</td>
+          <td><code>
+            &lt;a&gt;<br />
+            &lt;link /&gt;
+          </code></td>
+        </tr>
+        <tr>
+          <td><code>type</code></td>
+          <td>Advisory info for link content</td>
+          <td>Text</td>
+          <td><code>
+            &lt;a&gt;<br />
+            &lt;link /&gt;
+          </code></td>
+        </tr>
+      </table>
+    </div>
 
   </body>
 
