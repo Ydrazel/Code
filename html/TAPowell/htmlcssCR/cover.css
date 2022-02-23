@@ -1,0 +1,104 @@
+body {
+  margin: 0px;
+  font-size: calc(0.75em + 1vmin);
+}
+
+.pholder1 {
+  height: 64px;
+}
+.pholder2 {
+  height: 104px;
+}
+.white_head {
+  background-color: white;
+  float: left;
+  width: 75%;
+  height: 360px;
+  margin: 0%;
+  text-align: center;
+}
+.white_head h1 {
+  color: black;
+  vertical-align: text-bottom;
+  text-indent: -24px;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.39);
+  font-size: 96pt;
+  margin-block-start: 0%;
+  margin-block-end: -48px;
+}
+.white_head h2 {
+  color: black;
+  text-indent: -256px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.37);
+  font-size: 48pt;
+  margin-block-start: 0%;
+  margin-block-end: -48px;
+}
+
+.yellow_head {
+  background-color: rgb(247, 214, 109);
+  float: right;
+  width: 25%;
+  height: 360px;
+  margin: 0%;
+}
+.yellow_head h2 {
+  color: black;
+  font-size: 44pt;
+  text-align: center;
+  margin-block-start: 0%;
+  margin-block-end: -3%;
+}
+
+.mid_band {
+  background-color: rgb(17, 15, 2);
+  clear: both;
+  height: 488px;
+}
+.mid_band h1 {
+  color: rgb(228, 106, 68);
+  font-size: 158pt;
+  text-indent: 76px;
+  margin-block-start: 0%;
+  margin-block-end: -48px;
+}
+.mid_band h2 {
+  color: white;
+  font-size: 44pt;
+  text-align: right;
+  margin-block-start: 16px;
+  margin-right: 48px;
+  margin-block-end: -16px;
+}
+
+.grey_bot {
+  background-color: grey;
+  clear: both;
+  float: left;
+  margin: 0px;
+  height: 360px;
+  width: 70.2%;
+  padding-top: 48px;
+  padding-left: 48px;
+}
+
+ul {
+  margin: 0%;
+  line-height: 64px;
+  font-size: 28pt;
+  width: fit-content;
+}
+
+.yellow_bot {
+  float: right;
+  margin: 0%;
+  height: 200px;
+  width: 25%;
+  background-color: rgb(247, 214, 109);
+}
+
+.white_bot {
+  clear: both;
+  float: right;
+  margin: 0%;
+}
