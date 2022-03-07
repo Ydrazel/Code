@@ -1,0 +1,133 @@
+body {
+  margin: 0%;
+}
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 5.3fr 7.5fr 3.4fr 2.9fr;
+}
+
+.white_header {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-items: center;
+  align-items: center;
+}
+.white_header h1 {
+  font-size: 96pt;
+  margin-block-start: -32%;
+  margin-block-end: -20%;
+  line-height: 80%;
+}
+.white_header h2 {
+  font-size: 40pt;
+  margin-block-start: 0%;
+  margin-block-end: -6%;
+  line-height: 80%;
+  text-indent: -140%;
+}
+
+.yellow_header {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-color: yellow;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50%;
+  padding-bottom: 50%;
+}
+.yellow_header h2 {
+  font-size: 42pt;
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+  line-height: 85%;
+}
+
+.mid_band {
+  clear: both;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: black;
+  padding-top: 52px;
+  padding-left: 64px;
+}
+.mid_band h1 {
+  color: brown;
+  font-size: 168pt;
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+  line-height: 85%;
+}
+.mid_band h2 {
+  color: white;
+  font-size: 42pt;
+  line-height: 85%;
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+  text-align: right;
+  margin-right: 64px;
+}
+
+.grey_bot {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  background-color: grey;
+  padding-top: 42px;
+  padding-left: 64px;
+}
+.grey_bot ul {
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+  font-size: 42pt;
+}
+.grey_bot li {
+  margin-block-start: 0%;
+  margin-block-end: 32px;
+  font-size: 26pt;
+}
+
+.yellow_bot {
+  display: grid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  background-color: yellow;
+}
+
+.white_footer {
+  padding-top: 16px;
+}
+.white_footer h2{
+  font-size: 32pt;
+  position: relative;
+  margin-left: 16px;
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+  line-height: 80%;
+}
+
+.black_footer {
+  background-color: black;
+  color: white;
+  width: fit-content;
+  position: relative;
+  margin: 12px 32px 32px auto;
+}
+.black_footer h3 {
+  font-size: 24px;
+  line-height: 80%;
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+}
