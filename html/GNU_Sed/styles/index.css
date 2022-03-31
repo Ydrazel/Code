@@ -1,0 +1,22 @@
+body {
+  display: grid;
+  grid-template-rows: 0.5fr 9fr 0.5fr;
+}
+
+.header-div {
+  grid-row:1 2;
+}
+
+#main-content {
+  grid-row:2 3;
+  height: 100%;
+  width: 100%;
+}
+#main-content object {
+  height: 100%;
+  width: 100%;
+}
+
+.footer-div {
+  grid-row:3 4;
+}

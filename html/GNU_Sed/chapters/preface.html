@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="chapter_h">Preface</h1>
+    </header>
+    <main id="main">
+      <section id="foreword">
+        <p>
+          You are likely to be familiar with the "Find and Replace" dialog box 
+          from a text editor, word processor, IDE, etc to search for something 
+          and replace it with something else. <code>sed</code> is a command 
+          line tool that is similar, but much more versatile and feature-rich.
+          Some of the GUI applications may also support <b>regular expressions
+          </b>, a feature which helps to precisely define a matching criteria.
+          You could consider regular expressions as a mini-programming language
+          in itself, designed to solve various text processing needs.
+        </p>
+        <p>
+          The book heavily leans on examples to present options and features of
+          <code>sed</code> one by one. Regular expressions will also be 
+          discussed in detail. However, commands to manipulate data buffers and
+          multiline techniques will be discussed only briefly and some commands
+          are skipped entirely.
+        </p>
+        <p>
+          It is recommended that you manually type each example and experiment
+          with them. Understanding both the nature of sample input string and 
+          the output produced is essedtial. As an analogy, consider learning to
+          drive a bike or a car -- no matter how much you read about them or 
+          listen to explanations, you need to practice a lot and infer your own
+          conclusions. Should you feel that copy-paste is ideal for you, 
+          <a href="https://github.com/">code snippets are available chapter
+          wise on GitHub</a>.
+        </p>
+      </section>
+      <section id="prerequisites">
+        <h2 class="section_h">Prerequisites</h2>
+        <p>
+          Prior experience working with command line and <code>bash</code> shell
+          , should know concepts like file redirection, command pipeline and so 
+          on. Knowing basics of <code>grep</code> will also help in 
+          understanding filtering features of <code>sed</code>.
+        </p>
+        <p>
+          If you are new to the world of command line, check out 
+          <a href="https://ryanstutorials.net/" target="_blank">ryanstutorials
+          </a> or my GitHub repository on Linux Command Line before starting
+          this book.
+        </p>
+        <p>
+          My Command line text processing repository includes a chapter on 
+          <code>GNU sed</code> which has been edited and expanded to create
+          this book.
+        </p>
+      </section>
+      <section id="conventions">
+        <h2 class="section_h">Conventions</h2>
+        <ul>
+          <li>
+            The examples presented here have been tested on <code>GNU bash
+            </code> shell with <b>GNU sed 4.8</b> and may include features not
+            available in earlier versions.
+          </li>
+          <li>
+            Code snippets shown are copy pasted from <code>bash</code> shell and
+            modified for presentation purposes. Some commands are preceded by 
+            comments to provide context and explanations. Blank lines to improve
+            readability, only <code>real</code> time shown for speed comparisons
+            , output skipped for commands like <code>wget</code> and so on.
+          </li>
+          <li>
+            Unless otherwise noted, all examples and explanations are meant for
+            <i>ASCII</i> characters only.
+          </li>
+          <li>
+            <code>sed</code> would mean <code>GNU Sed</code>, <code>grep</code>
+            would mean <code>GNU grep</code> and so on unless otherwise 
+            specified.
+          </li>
+          <li>
+            External links are provided for further reading throughout the book.
+            Not necessary to immediately visit them. They have been chosen with
+            care and would help, especially during rereads.
+          </li>
+          <li>
+            The <code>learn_gnused repo</code> has all the files used in
+            examples and exercises and other details related to the book. Click
+            the <b>Clone or download</b> button to get the files.
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+:root {
+  --CbackGround: #232C2C;
+  --Ctext: #D4E2CF;
+  --CchapterHeader: #A3CEB6;
+  --CsectionHeader: #91AD88;
+  --Clink: #E4C871;
+  --CcodeBackground: #363C3C;
+  --CcodeText: #22AF22;
+}
+
+
+body {
+  background-color: var(--CbackGround);
+  height: 98vh;
+}
+
+p {
+  color: var(--Ctext);
+  
+}
+
+.chapter_h {
+  color: var(--CchapterHeader);
+}
+
+.section_h {
+  color: var(--CsectionHeader);
+}
+
+li {
+  color: var(--Ctext);
+}
+
+a {
+  text-decoration: none;
+  color: var(--Clink);
+}
+
+code {
+  background-color: var(--CcodeBackground);
+  color: var(--CcodeText);
+  font-family: IBM Plex Mono;
+}
+.code {
+  background-color: var(--CcodeBackground);
+  color: var(--CcodeText);
+  padding: 4px;
+}
+
+table {
+  background-color: var(--CcodeBackground);
+  color: var(--Ctext);
+/*  border-collapse: collapse; */
+}
+tr:nth-child(even) {
+  background-color: var(--CsectionHeader);
+}

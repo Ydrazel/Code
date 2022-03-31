@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta type="text/html" charset="utf-8" />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="chapter_h">Introduction</h1>
+    </header>
+    <main id="main">
+      <section class="introduction">
+        <p>
+          The command name <code>sed</code> is derived from <b>s</b>tream <b>ed
+          </b>itor. Here, stream refers to data being passed via shell pipes.
+          Thus, the command's primary functionality is to act as a text editor
+          for <b>stdin</b> data with <b>stdout</b> as output target. Over the 
+          years, functionality was added to edit file input and save the changes
+          back to the same file.
+        </p>
+        <p>
+          This chapter will cover how to install/upgrade <code>sed</code>
+          followed by details related to documentation. Then, you'll get an
+          introduction to <b>substitute</b> command, which is the most commonly
+          used <code>sed</code> feature. The chapters to follow will add more
+          details to the substitute command, discuss other commands and command
+          line options. Cheatsheet, summary and exercises are also included at
+          the end of these chapters.
+        </p>
+      </section>
+      <section id="installation">
+        <h2 class="section_h">Installation</h2>
+        <p>
+          If you are on a Unix like system, you are most likely to already have
+          some version of <code>sed</code> installed. This book primarily for 
+          <code>GNU sed</code>. As there are syntax and feature differences
+          between various implementations, please make sure to follow along with
+          what is presented here. <code>GNU sed</code> is part of text creation
+          and manipulation commands provided by <code>GNU</code> and comes by
+          default on GNU/Linux. To install newer or particular version, visit
+          gnu: <a href="https://www.gnu.org/software/">software</a>. Check
+          release notes for an overview of changes between versions. See also
+          bug list.
+        </p>
+        <div class="code">
+          <code>
+            $ # use a dir, say ~/Downloads/sed_install before following the
+            steps below<br />
+            $ wget https://ftp.gnu.org/gnu/sed/sed-4.8.tar.xz<br />
+            $ tar -Jxf sed-4.8.tar.xz<br />
+            $ cd sed-4.8/<br />
+            $ ./configure<br />
+            $ make<br />
+            $ sudo make install<br /><br />
+            $ type - sed<br />
+            sed is /usr/local/bin/sed<br />
+            sed is /bin/sed<br />
+            $ sed --version | head -n1<br />
+            sed (GNU sed) 4.8
+          </code>
+        </div>
+        <p>
+          If you are not using a Linux distribution, you may be able to access
+          <code>GNU sed</code> using below options:
+          <ul>
+            <li><a href="https://gitforwindows.org/" target="_blank">Git Bash</a></li>
+            <li><a href="https://docs.microsoft.com/en-us/windows/wsl/install" target="_blank">
+              WSL</a></li>
+            <li><a href="https://brew.sh/" target="_blank">Brew</a></li>
+          </ul>
+        </p>
+      </section>
+      <section id="documentation">
+        <h2 class="section_h">Documentation and Options Overview</h2>
+        <p>
+          It is always a good idea to know where to find the documentation. From
+          command line, you can use <code>man sed</code> for a short manual and
+          <code>info sed</code> for full documentation. For a better interface,
+          visit <a href="https://www.gnu.org/software/sed/manual/sed.html" target="_blank">
+          online gnu sed manual</a>.
+        </p>
+        <p>
+        For a quick overview of all the available options, use <code>sed --help
+        </code> from the command line. Most of them will be explained in the 
+        coming chapters.
+        </p>
+        <div class="code">
+          <code>
+            $ # only partial output shown here<br />
+            $ sed --help<br />
+
+            -n, --quiet, --silent<br />
+            >> suppress automatic printing of pattern space<br />
+            --debug<br />
+            >> annotate program execution
+          </code>
+        </div>
+      </section>
+      <section id="editing">
+        <h2 class="section_h">Editing Standart Input</h2>
+        <p>
+          <code>sed</code> has various commands to manipulate text input.<b>
+          substitute</b> command is most commonly used, which will be briefly
+        discussed in this chapter. It is used to replace matching text with
+        something else. The syntax is <code>s/REGEXP/REPLACEMENT/FLAGS</code>
+        where:
+          <ul>
+            <li><code>s</code> stands for <b>substitute</b> command</li>
+            <li><code>/</code> is an idiomatic delimiter character to seperate
+            various portions of the command</li>
+            <li><code>REGEXP</code> stands for <b>regular expression</b></li>
+            <li><code>REPLACEMENT</code> specifies the replacement string</li>
+            <li><code>FLAGS</code> are options to change default behavior of the
+            command</li>
+          </ul>
+        </p>
+        <p>
+          For now, it is enough to know that <code>s</code> command is used for
+          search and replace operation.
+        </p>
+        <div class="code">
+          <code>
+            $ # sample command output for stream editing<br />
+            $ printf '1,2,3,4\na,b,c,d\n'<br />
+            1,2,3,4<br />
+            a,b,c,d<br /><br />
+            $ # for each input line, change only first ',' to '-'<br />
+            $ printf '1,2,3,4\na,b,c,d\n' | sed 's/,/-/'<br />
+            1-2,3,4<br />
+            a-b,c,d<br /><br />
+            $ # change all matches by adding 'g' flag<br />
+            $ printf '1,2,3,4\na,b,c,d\n' | sed 's/,/-/g'<br />
+            1-2-3-4<br />
+            a-b-c-d<br />
+          </code>
+        </div>
+        <p>
+        Here sample inputs is created using <code>printf</code> command to
+        showcase stream editing. By default, <code>sed</code> processes input 
+        line by line. To determine a line, <code>sed</code> uses the <code>\n
+        </code> newline character. The first <code>sed</code> command replaces
+        only the first occurence of <code>,</code> with <code>-</code>. The
+        second command replaces all occurrences as <code>g</code> flag is also
+        used ( <code>g</code> stands for <code>global</code> ).
+        </p>
+      </section>
+      <section id="editingFileInput">
+        <h2 class="section_h">Editing File Input</h2>
+        <p>
+          Although <code>sed</code> derives its name from <i>stream editing</i>,
+          it is common to use <code>sed</code> for file editing. To do so,
+          append one or more input filenames to the command. You can also 
+          specify <code>stdin</code> as a source by using <code> - </code> as
+          filename. By default, output will go to <code>stdout</code> and the
+          input files will not be modified. In-place file editing chapter will
+          discuss how to apply the changes to source file.
+        </p>
+        <div class="code">
+          <code>
+            $ cat greeting.txt<br />
+            Hi there<br />
+            Have a nice day<br /><br />
+            $ # for each line, change first occurence of 'day' with 'weekend'<br />
+            $ sed 's/day/weekend/' greeting.txt<br />
+            Hi there<br />
+            Have a nice weekend<br /><br />
+            $ # change all 'e' to 'E' and save changed text to another file<br />
+            $ sed 's/e/E/g' greeting.txt > out.txt<br />
+            $ cat out.txt<br />
+            Hi thErE<br />
+            HavE a nicE day
+          </code>
+        </div>
+        <p>
+          In the previous section examples, all input lines had matched the search
+          expression. The first <code>sed</code> command here searched for <code>
+          day</code>, which did not match the first line of <code>greeting.txt
+          </code> file input. By default, even if a line didn't satisfy the search
+          expression, it will be part of the output. You'll see how to get only
+          the modified lines in Print command section.
+        </p>
+      </section>
+      <section id="cheatsheet">
+        <table>
+          <tr>
+            <th>Note</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><code>man sed</code></td>
+            <td>brief manual</td>
+          </tr>
+          <tr>
+            <td><code>sed --help</code></td>
+            <td>brief description of all the command line options</td>
+          </tr>
+          <tr>
+            <td><code>info sed</code></td>
+            <td>comprehensive manual</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.gnu.org/software/sed/manual/sed.html" target="_blank">
+            online gnu sed manual</a></td>
+            <td>well formatted, easier to read and navigate</td>
+          </tr>
+          <tr>
+            <td><code>s/REGEXP/REPLACEMENT/FLAGS</code></td>
+            <td>syntax for substitute command</td>
+          </tr>
+          <tr>
+            <td><code>sed 's/,/-/'</code></td>
+            <td>replace first <code>,</code> with <code>-</code></td>
+          </tr>
+          <tr>
+            <td><code>sed 's/,/-/g'</code></td>
+            <td>replace all <code>,</code> with <code>-</code></td>
+          </tr>
+        </table>
+        <p>
+          This introductory chapter covered installation process, documentation
+          and how to search and replace basic text using <code>sed</code> from
+          the command line. In coming chapters, you'll learn many more commands
+          and features that make <code>sed</code> an important tool when it
+          comes to command line text processing. One such feature is editing
+          files in-place, which will be discussed in the next chapter.
+        </p>
+      </section>
+      <section id="exercises">
+        <h2 class="section_h">Exercises</h2>
+        <p>
+          <b>a)</b> Replace <code>5</code> with <code>five</code> for the given
+          stdin source.
+          <div class="code">
+            <code>
+              $ echo 'They ate 5 apples' | sed ##### add your solution here<br />
+              They ate five apples<br />
+            </code>
+          </div>
+        </p>
+        <p>
+          <b>b)</b> Replace all occurrences of <code>0xA0</code> with <code>
+            0x50</code> and <code>0x7F</code> for the given input file.
+          <div class="code">
+            <code>
+              $ cat hex.txt<br />
+              start address: 0xA0, func1 address: 0xA0<br />
+              end address: 0xFF, func2 address: 0xB0<br /><br />
+              $ sed ##### add your solution here<br />
+              start address: 0x50, func1 address: 0x50<br />
+              end address: 0x7F, func2 address: 0xB0
+            </code>
+          </div>
+        </p>
+        <p>
+          <b>c)</b> The substitute command searches and replaces sequences of
+          characters. When you need to map one or more characters with another
+          set of corresponding characters, you can use the <code>y</code> command.
+        </p>
+        <p>
+        Use the <code>y</code> command to transform the given input string to
+        get the output string as shown below.
+        <div class="code">
+          <code>
+            $ echo 'goal new user sit eat dinner' | sed ##### add your solution
+            here<br />
+            gOAl nEw UsEr sIt EAt dInnEr
+          </code>
+        </div>
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
