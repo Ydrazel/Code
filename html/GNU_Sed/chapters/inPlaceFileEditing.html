@@ -23,6 +23,257 @@
       </section>
       <section id="wbackup">
         <h2 class="section_h">With Backup</h2>
+        <p>
+          When an extension is provided as an argument to <code>-i</code> option
+          , the original contents of the input file gets preserved as per the 
+          extension given. For example, if the input file is <code>ip.txt</code>
+          and <code>-i.orig</code> is used, the backup file will be named as
+          <code>ip.txt.orig</code>
+        </p>
+        <div class="code">
+          <code>
+            $ cat colors.txt<br />
+            deep blue<br />
+            light orange<br />
+            blue delight<br /><br />
+            $ # no output on terminal as -i option is used<br />
+            $ # space is NOT allowed between -i and extension<br />
+            $ sed -i.bkp 's/blue/green/' colors.txt<br />
+            $ # output from sed is written back to 'colors.txt'<br />
+            $ cat colors.txt<br />
+            deep green<br />
+            light orange<br />
+            green delight<br /><br />
+            $ # original file is preserved in 'colors.txt.bkp'<br />
+            $ cat colors.txt.bkp<br />
+            deep blue<br />
+            light orange<br />
+            blue delight<br />
+          </code>
+        </div>
+      </section>
+      <section id="wo_backup">
+        <h2 class="section_h">Whithout Backup</h2>
+        <p>
+          Sometimes backups are not desirable. Using <code>-i</code> option
+          on its own will prevent creating backups. Be careful though, as 
+          changes made cannot be undone. In such cases, test the command with
+          sample input before using <code>-i</code> option on actual file. You
+          could also use the option with backup, compare the differences with a
+          <code>diff</code> program and then delete the backup.
+        </p>
+        <div class="code">
+          <code>
+            $ cat fruits.txt<br />
+            banana<br />
+            papaya<br />
+            mango<br /><br />
+            $ sed -i 's/an/AN/g' fruits.txt<br />
+            $ cat fruits.txt<br />
+            bANANa<br />
+            papaya<br />
+            mANgo<br />
+          </code>
+        </div>
+      </section>
+      <section id="multiple_files">
+        <h2 class="section_h">Multiple Files</h2>
+        <p>
+          Multiple input files are treated individually and the changes are
+          written back to respective files.
+        </p>
+        <div class="code">
+          <code>
+            $ cat f1.txt<br />
+            have a nice day<br />
+            bad morning<br />
+            what a pleasant evening<br />
+            $ cat f2.txt<br />
+            worse than ever<br />
+            too bad<br /><br />
+            $ sed -i.bkp 's/bad/good' f1.txt f2.txt<br />
+            $ ls f?.*<br />
+            f1.txt f1.txt.bkp f2.txt f2.txt.bkp<br /><br />
+            $ cat f1.txt<br />
+            have a nice day<br />
+            good morning<br />
+            what a pleasant evening<br />
+            $ cat f2.txt<br />
+            worse than ever<br />
+            too good<br />
+          </code>
+        </div>
+      </section>
+      <section id="prefix_backup_name">
+        <h2 class="section_h">Prefix Backup Name</h2>
+        <p>
+        A <code>*</code> character in the argument to <code>-i</code> option is
+        special. It will get  replaced with input filename. This is helpful if
+        you need to use a prefix instead of suffix for the backup filename. Or
+        any other combination that may be needed.
+        </p>
+        <div class="code">
+          <code>
+            $ ls *colors*<br />
+            colors.txt colors.txt.bkp<br /><br />
+            $ # single quotes is used here as * is a special shell character<br>
+            $ sed -i'bkp.*' 's/green/yellow/' colors.txt<br />
+            $ ls *colors*<br />
+            bkp.colors.txt colors.txt colors.txt.bkp<br />
+          </code>
+        </div>
+      </section>
+      <section id="bkp_directory">
+        <h2 class="section_h">Place Backups in Different Directory</h2>
+        <p>
+        The <code>*</code> trick can also be used to place the backups in
+        another directory instead of the parent directory of input files. The
+        backup directory should already exist for this to work.
+        </p>
+        <div class="code">
+          <code>
+            $ mkdir backups<br />
+            $ sed -i'backups/*' 's/good/nice/' f1.txt f2.txt<br />
+            $ ls backups/<br />
+            f1.txt f2.txt<br />
+          </code>
+        </div>
+      </section>
+      <section id="cheatsheet_summary">
+        <h2 class="section_h">Cheatsheet and Summary</h2>
+        <table id="summary">
+          <thead>
+              <th>Note</th>
+              <th>Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>-i</code></td>
+              <td>after processing,write back changes to input file itself
+              changes made cannot be undone, so use this option with caution
+              </td>
+            </tr>
+            <tr>
+              <td><code>-i.bkp</code></td>
+              <td>
+                in addition to in-place editing, preserve original contents to
+                a file whose name is derived from input filename and <code>
+                .bkp</code> as a suffix
+              </td>
+            </tr>
+            <tr>
+              <td><code>-i'bkp.*'</code></td>
+              <td>
+                <code>*</code> here gets replaced with input filename thus
+                poviding a way to add a prefix instead of a suffix
+              </td>
+            </tr>
+            <tr>
+              <td><code>-i'backups/*'</code></td>
+              <td>
+                this will place the backup copy in a different existing
+                directory instead of source directory
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          This chapter discussed about the <code>-i</code> option which is
+          useful when you need to edit a file inplace. This is particularly
+          useful in automation scripts. But, do ensure that you have tested
+          the <code>sed</code> command before applying to actual files if you
+          need to use this option without creating backups. In the next chapter,
+          you'll learn filtering features of <code>sed</code> and how that helps
+          to apply commands to only certain input lines instead of all the
+          lines.
+        </p>
+      </section>
+      <section id="exercises">
+        <h2 class="section_h">Exercises</h2>
+        <p>
+          <b>a)</b> For the input file <code>text.txt</code>, replace all
+          occurrences of <code>in</code> with <code>an</code> and write back
+          the changes to <code>text.txt</code> itself. The original contents
+          should get saved to <code>text.txt.orig</code>
+        </p>
+        <div class="code">
+          <code>
+            $ cat text.txt<br />
+            can ran want plant<br />
+            tin fin fit mine line<br />
+            $ sed ##### add your solution here<br /><br />
+            $ cat text.txt<br />
+            can ran want plant<br />
+            tan fan fit mane lane<br />
+            $ cat text.txt.orig<br />
+            can ran want plant<br />
+            tin fin fit mine line<br />
+          </code>
+        </div>
+        <p>
+          <b>b)</b> For the input file <code>text.txt</code>, replace all
+          occurrences of <code>an</code> with <code>in</code> and write back
+          the changes to <code>text.txt</code> itself. Do not create backups for
+          this exercise. Note that you should have solved the previous exercise
+          before starting this one.
+        </p>
+        <div class="code">
+          <code>
+            $ cat text.txt<br />
+            can ran want plant<br />
+            tan fan fit mane lane<br />
+            $ sed ##### add your solution here<br /><br />
+            $ cat text.txt<br />
+            cin rin wint plint<br />
+            tin fin fit mine line<br />
+            $ diff text.txt text.txt.orig<br />
+            1c1<br />
+            &lt; cin rin wint plint<br />
+            ---<br />
+            &gt; can ran want plant<br />
+          </code>
+        </div>
+        <p>
+          <b>c)</b> For the input file <code>copyright.txt</code>, replace
+          <code>copyright: 2018</code> with <code>copyright: 2019</code> and
+          write back the changes to <code>copyright.txt</code> itself. The
+          original contents should always get saved to <code>2018_copyright.txt
+          .bkp</code>
+        </p>
+        <div class="code">
+          <code>
+            $ cat copyright.txt<br />
+            bla bla 2015 bla<br />
+            blah 2018 blah<br />
+            bla bla bla<br />
+            copyright: 2018<br />
+            $ sed ##### add your solution here<br /><br />
+            $ cat copyright.txt<br />
+            bla bla 2015 bla<br />
+            blah 2018 blah<br />
+            bla bla bla<br />
+            copyright: 2019<br />
+            $ cat 2018_copyright.txt.bkp<br />
+            bla bla 2015 bla<br />
+            blah 2018 blah<br />
+            bla bla bla<br />
+            copyright: 2018
+          </code>
+        </div>
+        <p>
+          <b>d)</b> In the code sample shown below, two files are created by
+          redirecting output of <code>echo</code> command. Then a <code>sed
+          </code> command is used to edit <code>b1.txt</code> in-place as well
+          as create a backup named <code>bkp.b1.txt</code>. Will the <code>sed
+          </code> command work as expected? If not, why?
+        </p>
+        <div class="code">
+          <code>
+            $ echo '2 apples' &gt; b1.txt<br />
+            $ echo '5 bananas' &gt; -ibkp.txt<br />
+            $ sed -ibkp.* 's/2/two/' b1.txt<br />
+          </code>
+        </div>
       </section>
     </main>
   </body>

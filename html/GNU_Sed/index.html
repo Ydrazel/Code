@@ -5,13 +5,18 @@
     <script type="text/javascript" src="scripts/loadContent.js"></script>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/index.css" />
+    <title>GNU Sed Tutorial</title>
   </head>
   <body>
     <header class="header-div">
       <navbar id="main-nav">
-        <a href="#" onclick="loadin('chapters/preface.html');">Preface</a>
-        <a href="#" onclick="loadin('chapters/introduction.html');">Introduction</a>
-        <a href="#" onclick="loadin('chapters/inPlaceFileEditing.html');">In-Place File Editing</a>
+      <ul id="navitems">
+        <li><a href="index.html"><img id="logo" src="images/gnu-logo.svg" /></a></li>
+        <li><a href="#" onclick="loadin('chapters/preface.html');">Preface</a></li>
+        <li><a href="#" onclick="loadin('chapters/introduction.html');">Introduction</a></li>
+        <li><a href="#" onclick="loadin('chapters/inPlaceFileEditing.html');">In-Place File Editing</a></li>
+        <li><a href="#" onclick="loadin('chapters/selectiveEditing.html');">Selective Editing</a></li>
+      <ul>
       </navbar>
     </header>
     <main id="main-content">
@@ -21,3 +26,4 @@
     </footer>
   </body>
 </html>
+

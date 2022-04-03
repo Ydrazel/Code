@@ -1,11 +1,13 @@
 :root {
-  --CbackGround: #232C2C;
-  --Ctext: #D4E2CF;
-  --CchapterHeader: #A3CEB6;
-  --CsectionHeader: #91AD88;
-  --Clink: #E4C871;
-  --CcodeBackground: #363C3C;
-  --CcodeText: #22AF22;
+  --CbackGround: #FFFFFF;
+  --Ctext: #0F0F0F;
+  --CchapterHeader: #574F7D;
+  --CsectionHeader: #574F7D;
+  --Clink: #503A65;
+  --CcodeBackground: #E0F0EA;
+  --CcodeText: #95ADBE;
+  --CtableBackground: #95ADBE;
+  --CtableText: #E0F0EA;
 }
 
 
@@ -37,7 +39,7 @@ a {
 }
 
 code {
-  background-color: var(--CcodeBackground);
+  /*background-color: var(--CcodeBackground);*/
   color: var(--CcodeText);
   font-family: IBM Plex Mono;
 }
@@ -45,12 +47,17 @@ code {
   background-color: var(--CcodeBackground);
   color: var(--CcodeText);
   padding: 4px;
+  border-radius: 5px;
 }
 
 table {
-  background-color: var(--CcodeBackground);
-  color: var(--Ctext);
+  background-color: var(--CtableBackground);
+  color: var(--CtableText);
 /*  border-collapse: collapse; */
+  border-radius: 5px;
+}
+table code {
+  color: var(--CtableText);
 }
 tr:nth-child(even) {
   background-color: var(--CsectionHeader);

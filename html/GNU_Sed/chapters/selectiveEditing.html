@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta type="text/html" charset="utf-8" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <title>Select Editing</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="chapter_h">Selective Editing</h1>
+    </header>
+    <main id="main-content">
+      <section id="introduction">
+        <p>
+          By default, <code>sed</code> acts on entire file. Many a times, you
+          only want to act upon specific poritons of file. To that end, <code>
+          sed</code> has features to filter lines, similar to tools like <code>
+          grep</code>, <code>head</code> and <code>tail</code>. <code>sed</code>
+          can replicate most of <code>grep</code>'s filtering features without
+          too much fuss. And has features like line number based filtering,
+          selecting lines between two patterns, relative addressing, etc which
+          isn't possible with <code>grep</code>. If you are familiar with 
+          functional programming, you would have come across <b>map, filter,
+          reduce</b> paradigm. A typical task with <code>sed</code> involves
+          filtering subset of input and then modifying (mapping) them. Sometimes,
+          the subset is entire input file, as seen in the examples of previous
+          chapters.
+        </p>
+        <p>
+          For some of the examplesi equivalent commands will be shown as comments
+          for learning purposes.
+        </p>
+      </section>
+      <section id="conditional_execution">
+        <h2 class="section_h">Conditional Execution</h2>
+        <p>
+          As seen earlier, the syntax for substitute command is <code>
+          s/REGEXP/REPLACEMENT/FLAGS</code>. The <code>/REGEXP/FLAGS</code>
+          portion can be used as a conditional expression to allow commands to
+          execute only for the lines matching the pattern.
+        </p>
+      </section>
+      <div class="code">
+        <code>
+          $ # change commas to hypens only if the input line contains '2'<br />
+          $ # space between the filter and command is optional<br />
+          $ printf '1,2,3,4\na,b,c,d\n' | sed '/2/ s/,/-/g'<br />
+          1-2-3-4<br />
+          a,b,c,d
+        </code>
+      </div>
+      <p>
+        Use <code>/REGEXP/FLAGS!</code> to act upon lines other than the
+        matching ones.
+      </p>
+      <div class="code">
+        <code>
+          $ # change commas to hypens if the input line does NOT contain '2'<br />
+          $ # space around ! is optional<br />
+          $ printf '1,2,3,4\na,b,c,d\n' | sed '/2/! s/,/-/g'<br />
+          1,2,3,4<br />
+          a-b-c-d
+        </code>
+      </div>
+      <p>
+        <code>/REGEXP/</code> is one of the ways to define a filter in <code>sed
+        </code>, termed as <b>address</b> in the manual. Others will be covered
+        in sections to come in this chapter.
+      </p>
+      <section id="delete_command">
+        <h2 class="section_h">Delete Command</h2>
+        <p>
+        To <b>d</b>elete the filtered lines, use the <code>d</code> command.
+        Recall that all input lines are printed by default.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: grep -v 'at'<br />
+            $ printf 'sea\neat\ndrop\n' | sed '/at/d'<br />
+            sea<br />
+            drop
+          </code>
+        </div>
+        <p>
+          To get the default <code>grep</code> filtering, use <code>!d</code>
+          combination. Sometimes, negative logic can get confusing to use. It
+          boils down to presonal preference, similar to choosing between <code>
+          if</code> and <code>unless</code> conditionals in programming
+          languages.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: grep 'at'<br />
+            $ printf 'sea\neat\ndrop\n' | sed '/at/!d'<br />
+            eat<br />
+          </code>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

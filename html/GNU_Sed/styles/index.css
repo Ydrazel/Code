@@ -6,6 +6,19 @@ body {
 .header-div {
   grid-row:1 2;
 }
+#logo {
+  height: 64px;
+/*  filter: invert(76%) sepia(57%) saturate(324%) hue-rotate(4deg) brightness(96%) contrast(91%); */
+}
+#navitems {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
 #main-content {
   grid-row:2 3;
