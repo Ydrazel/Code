@@ -1,0 +1,10 @@
+s/--h1/<h1 class="header">/;
+s/h1--/<\/h1>/;
+s/--p/<p>/g;
+s/p--/<\/p>/g;
+s/--code/<div class="code">\n  <code>/g;
+s/code--/   <\/code>\n<\/div>/g;
+s/--ul/<ul>/g;
+s/ul--/<\/ul>/g;
+s/--li/  <li>/g;
+s/li--/<\/li>/g;

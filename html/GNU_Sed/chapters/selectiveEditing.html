@@ -19,7 +19,7 @@
           can replicate most of <code>grep</code>'s filtering features without
           too much fuss. And has features like line number based filtering,
           selecting lines between two patterns, relative addressing, etc which
-          isn't possible with <code>grep</code>. If you are familiar with 
+          isn't possible with <code>grep</code>. If you are familiar with
           functional programming, you would have come across <b>map, filter,
           reduce</b> paradigm. A typical task with <code>sed</code> involves
           filtering subset of input and then modifying (mapping) them. Sometimes,
@@ -93,6 +93,876 @@
             $ # same as: grep 'at'<br />
             $ printf 'sea\neat\ndrop\n' | sed '/at/!d'<br />
             eat<br />
+          </code>
+        </div>
+      </section>
+      <section id="print_command">
+        <h2 class="section_h">Print Command</h2>
+        <p>
+          To <b>p</b>rint the filtered linesi use the <code>p</code> command.
+          But, recall that all input lines are printed by default. So, this
+          command is typically used in combination with <code>-n</code> command
+          line option, which would turn off the default printing.
+        </p>
+        <div class="code">
+          <code>
+            $ cat programming_quotes.txt<br />
+            Debugging is twice as hard as writing<br />
+            Therefore, if you write the code as cleverly as possible, you are,<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan<br /><br />
+            Some people, when confronted with a problem, think - I know, I will<br />
+            use regular expressions. Now they have two problems by Jaime Zawinski<br /><br />
+            A language that does not affect the way you think about programming,<br />
+            is not worth knowing by Alan Perlis<br /><br />
+            There are 2 hard problems in computer science: cache invalidation,<br />
+            naming things, and off-by-1 errors by Leon Bambrick<br /><br />
+            $ # same as: grep 'twice' programming_quotes.txt<br />
+            $ sed -n '/twice/p' programming_quotes.txt<br />
+            Debugging is twice as hard as writing the code in the first place.<br />
+            $ # same as: grep 'e th' programming_quotes.txt<br />
+            $ sed -n '/e th/p' programming_quotes.txt<br />
+            Therefore, if you write the code as cleverly as possible, you are,<br />
+            A language that does not affect the way you think about programming,
+          </code>
+        </div>
+        <p>
+          The substitute command provides <code>p</code> as a flag. In such a
+          case, the modified line would be printed only if the substitution
+          succeeded.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as:grep '1' programming_quotes.txt | sed 's/1/one/g'<br />
+            $ sed -n 's/1/one/gp' programming_quotes.txt<br />
+            naming things, and off-by-one errors by Leon Bambrick<br />
+            $ # filter + substitution + p combination<br />
+            $ # same as: grep 'not programming_quotes.txt' | sed 's/in/**/g'<br />
+            $ sed -n '/not/ s/in/**/gp' programming_quotes.txt<br />
+            by def**ition, not smart enough to debug it by Brian W. Kernighan<br />
+            A language that does not affect the way you th**k about programm**g,<br />
+            is not worth know** by Alan Perlis
+          </code>
+        </div>
+        <p>
+          Using <code>!p</code> with <code>-n</code> option will be equivalent
+          to using <code>d</code> command.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: sed '/at/d'<br />
+            $ printf 'sea\neat\ndrop\n' | sed -n '/at/!p'<br />
+            sea<br />
+            drop
+          </code>
+        </div>
+        <p>
+          Here's an example of using <code>p</code> command without the <code>-n
+          </code> option.
+        </p>
+        <div class="code">
+          <code>
+            $ # duplicate every line<br />
+            $ seq 2 | sed 'p'<br />
+            1<br />
+            1<br />
+            2<br />
+            2
+          </code>
+        </div>
+      </section>
+      <section id="quit_commands">
+        <h2 class="section_h">Quit Commands</h2>
+        <p>
+          Using <code>q</code> command will exit <code>sed</code> immediately,
+          without any further processing.
+        </p>
+        <div class="code">
+          <code>
+            $ # quits after an input line containing 'if' is found<br />
+            $ sed '/if/q' programming_quotes.txt<br />
+            Debugging is twice as hard as writing the code in the first place.<br />
+            Therefore, if you write the code as cleverly as possible, you are,
+          </code>
+        </div>
+        <p>
+          <code>Q</code> command is similar to <code>q</code> but won't print
+          the matching line.
+        </p>
+        <div class="code">
+          <code>
+            $ # matching line won't be printed<br />
+            $ sed '/if/Q' programming_quotes.txt<br />
+            Debugging is twice as hard as writing the code in the first place.
+          </code>
+        </div>
+        <p>
+          Use <code>tac</code> to get all lines starting from last occurrence of
+          the search string with respect to entire file content.
+        </p>
+        <div class="code">
+          <code>
+            $ tac programming_quotes.txt | sed '/not/q' | tac<br />
+            is not worth knowing by Alan Perlis<br />
+            <br />
+            There are 2 hard problems in computer science: cache invalidation,<br />
+            naming things, ad off-by-1 errors by Leon Bambrick
+          </code>
+        </div>
+        <p>
+          You can optionally provide an exit status (from <code>0</code> to
+          <code>255</code>) along with the quit commands.
+        </p>
+        <div class="code">
+          <code>
+            $ printf 'sea\neat\ndrop\n' | sed '/at/q2'<br />
+            sea<br />
+            eat<br />
+            $ echo $?<br />
+            2<br />
+            <br />
+            $ printf 'sea\neat\ndrop\n' | sed '/at/Q3'<br />
+            sea<br />
+            $ echo $?<br />
+            3
+          </code>
+        </div>
+      </section>
+      <section id="multiple_commands">
+        <h2 class="section_h">Multiple Commands</h2>
+        <p>
+          Commands seen so far can be specified more than once by seperating
+          them using <code>;</code> or using the <code>-e</code> command line
+          option. See <a href="https://www.gnu.org/software/sed/manual/sed.html#Multiple-commands-syntax" target="_blank">
+          sed manual: Multiple commands syntax</a> for more details.
+        </p>
+        <div class="code">
+          <code>
+            $ # print all input lines as well as modified lines<br />
+            $ printf 'sea\neat\ndrop\n' | sed -n -e 'p' -e 's/at/AT/p'<br />
+            sea<br />
+            eat<br />
+            eAT<br />
+            drop<br />
+<br />
+            $ # equivalent command to above example using ; instead of -e<br />
+            $ # space around ; is optional<br />
+            $ printf 'sea\neat\ndrop\n' | sed -n 'p; s/at/AT/p'<br />
+            sea<br />
+            eat<br />
+            eAT<br />
+            drop
+          </code>
+        </div>
+        <p>
+          Another way is to seperate the commands using a literal newline
+          character. If more than 2-3 lines are needed, it is better to use a 
+          <b>sed script</b> instead.
+        </p>
+        <div class="code">
+          <code>
+            $ # here, each command is seperated by literal newline character<br />
+            $ # &gt; at start of line indicates continuation of multiline shell command<br />
+            $ sed -n '<br />
+            &gt; /not/ s/in/**/gp<br />
+            &gt; s/1/one/gp<br />
+            &gt; s/2/two/gp<br />
+            &gt; ' programming_quotes.txt<br />
+            by def**ition, not smart enough to debug it by Brian W. Kernighan<br />
+            A language that does not affect the way you th**k about programm**g,<br />
+            is not worth know**g by Alan Perlis<br />
+            There are two hard problems in computer science: cache invalidation,<br />
+            naming things, and off-by-one errors by Leon Bambrick
+          </code>
+        </div>
+        <p>
+          To execute multiple commands for a common filter, use <code>{}</code> to
+          group the commands. You can also nest them if needed.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: sed -n 'p; s/at/AT/p'<br />
+            $ printf 'sea\neat\ndrop\n' | sed '/at/{p; s/at/AT/}'<br />
+            sea<br />
+            eat<br />
+            eAT<br />
+            drop<br />
+            <br />
+            $ # spaces around {} is optional<br />
+            $ printf 'gates\nnot\nused\n' | sed '/e/{s/s/*/g; s/t/*/g}'<br />
+            ga*e*<br />
+            not<br />
+            u*ed
+          </code>
+        </div>
+        <p>
+          Command grouping is an easy way to construct conditional AND of
+          multiple search strings.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: grep 'in' programming_quotes.txt | grep 'not'<br />
+            $ sed -n '/in/{/not/p}' programming_quotes.txt<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan<br />
+            A language that does not affect the way you think about programming,<br />
+            is not worth knowing by Alan Perlis<br />
+            <br />
+            $ # same as: grep 'in' prgramming_quotes.txt | grep 'not' | grep 'you'<br />
+            $ sed -n '/in/{/not/{/you/p}}' programming_quotes.txt<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan<br />
+            is not worth knowing by Alan Perlis
+          </code>
+        </div>
+        <p>
+          Other solutions using alternation feature of regular expressions and
+          <code>sed</code>'s <b>control structures</b> will be discussed later.
+        </p>
+      </section>
+      <section id="line_adressing">
+        <h2 class="section_h">Line Addressing</h2>
+        <p>
+          Line numbers can also be used as filtering criteria.
+        </p>
+        <div class="code">
+          <code>
+            $ # here, 3 represents the address for print command<br />
+            $ # same as: head -n3 programming_quotes.txt | tail -n1 and sed '3!d'<br />
+            $ sed -n '3p' programming_quotes.txt<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan<br />
+            $ # print 2nd and 5th line<br />
+            $ sed -n '2p; 5p' programming_quotes.txt<br />
+            Therefore, if you write the code as cleverly as possible, you are,<br />
+            Some people, when confronted with a problem, think - I know, I will<br />
+            <br />
+            $ # substitution only on 2nd line<br />
+            $ printf 'gates\nnot\nused\n' | sed '2 s/t/*/g'<br />
+            gates<br />
+            no*<br />
+            used
+          </code>
+        </div>
+        <p>
+          As a special case, <code>$</code> indicates the last line of the input.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: tail -n1 programming_quotes.txt<br />
+            $ sed -n '$p' programming_quotes.txt<br />
+            naming things, and off-by-1 errors by Leon Bambrick
+          </code>
+        </div>
+        <p>
+          For large input files, use <code>q</code> command to avoid processing
+          unnecessary input lines.
+        </p>
+        <div class="code">
+          <code>
+            $ seq 3542 4623452 | sed -n '2452{p; q}'<br />
+            5993<br />
+            $ seq 3542 4623452 | sed -n '250p; 2452{p; q}'<br />
+            3791<br />
+            5993<br />
+            <br />
+            $ # here is a sample time comparison<br />
+            $ time seq 3542 4623452 | sed -n '2452{p; q}' &gt; f1<br />
+            real    0m0.003s<br />
+            $ time seq 3542 4623452 | sed -n '2452p' &gt; f2<br />
+            real    0m0.256s
+          </code>
+        </div>
+        <p>
+          Mimicking <code>head</code> command using line addressing and <code>q
+          </code> command.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: seq 23 45 | head -n5<br />
+            $ seq 23 45 | sed '5q'<br />
+            23<br />
+            24<br />
+            25<br />
+            26<br />
+            27
+          </code>
+        </div>
+      </section>
+      <section id="printOnlyLineNumber">
+        <h2 class="section_h">Print Only Line Number</h2>
+        <p>
+          The <code>=</code> command will displat the line numbers of matching
+          lines.
+        </p>
+        <div class="code">
+          <code>
+            $ # gives both line number and matching line<br />
+            $ grep -n 'not' programming_quotes.txt<br />
+            3:by definition, not smart enough to debug it by Brian W. Kernighan<br />
+            8:A language that does not affect the way you think about programming,<br />
+            9:is not worth knowing by Alan Perlis<br />
+            <br />
+            $ # gives only line number of matching line<br />
+            $ # note the use of -n option to avoid default printing<br />
+            $ sed -n '/not/=' programming_quotes.txt<br />
+            3<br />
+            8<br />
+            9
+          </code>
+        </div>
+        <p>
+          If needed, matching line can also be printed. But there will be a
+          newline character between the matching line and line number.
+        </p>
+        <div class="code">
+          <code>
+            $ sed -n '/off/{=; p}' prgramming_quotes.txt<br />
+            12<br />
+            naming things, and off-by-1 errors by Leon Bambrick<br />
+            <br />
+            $ sed -n '/off/{p; =}' programming_quotes.txt<br />
+            naming things, and off-by-1 errors by Leon Bambrick<br />
+            12
+          </code>
+        </div>
+      </section>
+      <section id="addressRange">
+        <h2 class="section_h">Address Range</h2>
+        <p>
+          So far, filtering has been based on specific line number or lines
+          matching the given <code>/REGEXP/FLAGS</code> pattern. Address range
+          gives the ability to define a starting address and an ending address,
+          seperated by a comma.
+        </p>
+        <div class="code">
+          <code>
+            $ # note that all the matching ranges are printed<br />
+            $ sed -n '/are/,/by/p' programming_quotes.txt<br />
+            Therefore, if you write the code cleverly as possible, you are,<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan<br />
+            There are 2 hard problems in computer science: cache invalidation,<br />
+            naming things, and off-by-1 errors by Leon Bambrick<br />
+            <br />
+            $ # same as: sed -n '3,8!p'<br />
+            $ seq 15 24 | sed '3,8d'<br />
+            15<br />
+            16<br />
+            23<br />
+            24
+          </code>
+        </div>
+        <p>
+          Line numbers and string matching can be mixed.
+        </p>
+        <div class="code">
+          <code>
+            $ sed -n '5,/use/p' programming_quotes.txt<br />
+            Some people, when confronted with a problem, think - I know, I will<br />
+            use regular expressions. Now they have two problems by Jaime Zawinski<br />
+            <br />
+            $ # same as: sed '/smart/Q'<br />
+            $ # inefficient, but this will work for multiple file inputs<br />
+            $ sed '/smart/,$d' programming_quotes.txt<br />
+            Debugging is twice as hard as writing the code in the first place.<br />
+            Therefore, if you write the code as cleverly as possible, you are,
+          </code>
+        </div>
+        <p>
+          If the second filter condition doesn't match, lines starting from first
+          condition to last line of the input will be matched.
+        </p>
+        <div class="code">
+          <code>
+            $ # there's a line containing 'affect' but doesn't have matching pair<br />
+            $ sed -n '/affect/,/XYZ/p' programming_quotes.txt<br />
+            A language that does not effect the way you think about programming,<br />
+            is not worth knowing by Alan Perlis<br />
+            <br />
+            There are 2 hard problems in computer science: cache invalidation,<br />
+            naming things, and off-by-1 errors by Leon Bambrick
+          </code>
+        </div>
+        <p>
+          The second address will always be usedd as a filtering condition only
+          from the line that comes after the line that satisfied the first
+          address. For example, if the same search pattern is used for both the
+          addresses, there'll be at least two lines in output (provided there
+          are lines in the input after the first matching line).
+        </p>
+        <div class="code">
+          <code>
+            $ # there's no line containing 'worth' after the 9th line<br />
+            $ # so, rest of the file gets matched<br />
+            $ sed -n '9,/worth/p' programming_quotes.txt<br />
+            is not worth knowing by Alan Perlis<br />
+            <br />
+            There are 2 hard problems in computer science: cache invalidation,<br />
+            naming things, and off-by-1 errors by Leon Bambrick
+          </code>
+        </div>
+        <p>
+          As a special case, the first address can be <code>0</code> if the second
+          one is a search pattern. This allows the search pattern to be matched
+          against first line of the file.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: sed '/in/q'<br />
+            $ # inefficient, but this will work for multiple file inputs<br />
+            $ sed -n '0,/in/p' programming_quotes.txt<br />
+            Debugging is twice as hard as writing the code in the first place.<br />
+            <br />
+            $ # same as: sed '/not/q'<br />
+            $ sed -n '0,/not/p' programming_quotes.txt<br />
+            Debugging is twice as hard as writing the code in the first place.<br />
+            Therefore, if you write the code as cleverly as possible, you are,<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan
+          </code>
+        </div>
+      </section>
+      <section id="relative_addressing">
+        <h2 class="section_h">Relative Addressing</h2>
+        <p>
+          Prefixing <code>+</code> to line number as the second address gives
+          relative filtering. This is similar to using <code>grep -A&lt;num&gt;
+          --no-group-seperator</code> but <code>grep</code> will start a new
+          group if a line matches within context lines.
+        </p>
+        <div class="code">
+          <code>
+            $ # line matching 'not' and 2 lines after<br />
+            $ # won't be same as: grep -A2 --no-group-seperator 'not'<br />
+            $ sed -n '/not/,+2p' programming_quotes.txt<br />
+            by definition, not smart enough to debug it by Brian W. Kernighan<br />
+            <br />
+            Some people, when confronted with a problem, think - I know, I will<br />
+            A language that does not affect the way you think about programming,<br />
+            is not worth knowing by Alan Perlis<br />
+            <br />
+            $ # the first address can be a line number too<br />
+            $ # helpful when it is programmatically constructed in a script<br />
+            $ sed -n '5,+1p' programming_quotes.txt<br />
+            Some people, when confronted with a problem, think - I know, I will<br />
+            use regular expressions. Now they have two problems by Jamie Zawinski
+          </code>
+        </div>
+        <p>
+          You can construct an arithmetic progression with start and step values
+          seperated by the <code>~</code> symbol. <code>i~j</code> will filter
+          lines numbered <code>i+0j</code>, <code>i+1j</code>, <code>i+2j</code>,
+          <code>i+3j</code>, etc. So, <code>1~2</code> means all odd numbered
+          lines and <code>5~3</code> means 5th, 8th, 11th, etc.
+        </p>
+        <div class="code">
+          <code>
+            $ # print even numbered lines<br />
+            $ seq 10 | sed -n '2~2p'<br />
+            2<br />
+            4<br />
+            6<br />
+            8<br />
+            10<br />
+            <br />
+            $ # delete lines numbered 2+0*4, 2+1*4, 2+2*4, etc<br />
+            $ seq 7 | sed '2~4d'<br />
+            1<br />
+            3<br />
+            4<br />
+            5<br />
+            7
+          </code>
+        </div>
+        <p>
+          If <code>i,~j</code> is used (note the <code>,</code>) then the meaning
+          changes completely. After the start address, the closest line number
+          which is a multiple of <code>j</code> will mark the end address. The
+          start address can be specified using search pattern as well.
+        </p>
+        <div class="code">
+          <code>
+            $ # here, closest multiple of 4 is 4th line<br />
+            $ seq 10 | sed -n '2,~4p'<br />
+            2<br />
+            3<br />
+            4<br />
+            $ # here, closest multiple of 4 is 8th line<br />
+            $ seq 10 | sed -n '5,~4p'<br />
+            5<br />
+            6<br />
+            7<br />
+            8<br />
+            <br />
+            $ # line matching on 'regular' is 6th line, so ending is 9th line<br />
+            $ sed -n '/regular/,~3p' programming_quotes.txt<br />
+            use regular expressions. Now they have two problems by Jamie Zawinski<br />
+            <br />
+            A language that does not affect the way you think about programming,<br />
+            is not worth knowing by Alan Perlis
+          </code>
+        </div>
+      </section>
+      <section id="n_N">
+        <h2 class="section_h">n and N Commands</h2>
+        <p>
+          So far, the commands used have all been processing only one line at a
+          time. The address range option provides the ability to act upon a
+          group of lines, but the commands still operate one line at a time for
+          that group. There are cases when you want a command to handle a string
+          that contains multiple lines. As mentioned in the preface, this book
+          will now cover advanced commands related to multiline processing and
+          I highly recommend using <code>awk</code> or <code>perl</code> for
+          such scenarios. However, this section will introduce two commands
+          <code>n</code> and <code>N</code> which are relatively easier to use
+          and will be seen in coming chapters as well.
+        </p>
+        <p>
+          The <b>pattern space</b> buffer has only contained single line of
+          input in all the examples seen so far. By using <code>n</code> and
+          <code>N</code> commands, you can change the contents of pattern space
+          and use commands to act upon entire contents of this data buffer. For
+          example, you can perform substitution on two or more lines at once.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: sed -n '2~2p'<br />
+            $ # n will replace pattern space with next line of input<br />
+            $ # as -n option is used, the replaced line won't be printed<br />
+            $ # then the new line is printed as p command is used<br />
+            $ seq 10 | sed -n 'n; p'<br />
+            2<br />
+            4<br />
+            6<br />
+            8<br />
+            10<br />
+            <br />
+            $ # if line contains 't', replace pattern space with next line<br />
+            $ # substitute all 't' with 'TTT' for the new line thus fetched<br />
+            $ # note that 't' wasn't substituted in the line that got replaced<br />
+            $ # replaced pattern space gets printed as -n option is NOT used here<br />
+            $ printf 'gates\nnot\nused\n' | sed '/t/{n; s/t/TTT/g}'<br />
+            gates<br />
+            noTTT<br />
+            used
+          </code>
+        </div>
+        <p>
+          Next, the <code>N</code> command. Quoting from <a href="https://www.gnu.org/software/sed/manual/sed.html#Other-Commands" target="_blank">sed manual: Less Frequently-Used Commands:</a>
+        </p>
+        <div class="code">
+          <code>
+            $ # append next line to pattern space<br />
+            $ # and then replace newline character with colon character<br />
+            $ seq 7 | sed 'N; s/\n/:/'<br />
+            1:2<br />
+            2:3<br />
+            5:6<br />
+            7<br />
+            <br />
+            $ # if line contains 'at', the next line gets appended to pattern space<br />
+            $ # then the substitution is performed on the two lines in the buffer<br />
+            $ printf 'gates\nnot\nused\n' | sed '/at/{N; s/s\nnot/d/}'<br />
+            gated<br />
+            used
+          </code>
+        </div>
+      </section>
+      <section id="summary">
+        <h2 class="section_h">Cheatsheet and Summary</h2>
+        <table>
+          <theader>
+            <th>Note</th>
+            <th>Description</th>
+          </theader>
+          <tbody>
+            <tr>
+              <td><code>ADDR cmd</code></td>
+              <td>Execute cmd only if input line satisfies the ADDR condition
+              <code>ADDR</code> can be REGEXP or line number or a combination
+              of them</td>
+            </tr>
+            <tr>
+              <td><code>/at/d</code></td>
+              <td>delete all lines based on the given REGEXP</td>
+            </tr>
+            <tr>
+              <td><code>/at/d/!d</code></td>
+              <td>don't delete lines matching the given REGEXP</td>
+            </tr>
+            <tr>
+              <td><code>/twice/p</code></td>
+              <td>print all lines based on the given REGEXP as print is default
+              action, usually <code>p</code> is paired with <code>-n</code>
+              option</td>
+            </tr>
+            <tr>
+              <td><code>/not/ s/in/**/gp</code></td>
+              <td>substitute only if line matches given REGEXP and print only if
+              substitution succeeds</td>
+            </tr>
+            <tr>
+              <td><code>/if/q</code></td>
+              <td>quit immediately after printing current pattern space further
+              input files, if any, won't be processed</td>
+            </tr>
+            <tr>
+              <td><code>/if/Q</code></td>
+              <td>quit immediately without printing current pattern space</td>
+            </tr>
+            <tr>
+              <td><code>/at/q2</code></td>
+              <td>both <code>q</code> and <code>Q</code> can additionally use
+              <code>0-255</code> as exit code</td>
+            </tr>
+            <tr>
+              <td><code>-e 'cmd1' -e 'cmd2'</code></td>
+              <td>execute multiple commands one after the other</td>
+            </tr>
+            <tr>
+              <td><code>cmd1; cmd2</code></td>
+              <td>execute multiple commands one after the other note that not all
+              commands can be constructed this way commands can also be seperated
+              by literal newline character</td>
+            </tr>
+            <tr>
+              <td><code>ADDR {cmds}</code></td>
+              <td>group one or more commands to be executed for given ADDR groups
+                can be nested as well ex: <code>/in/{/not/{/you/p}}</code>
+                conditional AND of 3 REGEXPs</td>
+            </tr>
+            <tr>
+              <td><code>2p</code></td>
+              <td>line addressing, print only 2nd line</td>
+            </tr>
+            <tr>
+              <td><code>$</code></td>
+              <td>special address to indicate last line of input</td>
+            </tr>
+            <tr>
+              <td><code>2452{p; q}</code></td>
+              <td>quit early to avoid processing unnecessary lines</td>
+            </tr>
+            <tr>
+              <td><code>/not/=</code></td>
+              <td>print line number instead of matching line</td>
+            </tr>
+            <tr>
+              <td><code>ADDR1,ADDR2</code></td>
+              <td>start and end addresses to operate upon if ADDR2 doesn't match,
+              lines till end of file gets processed</td>
+            </tr>
+            <tr>
+              <td><code>/are/,/by/p</code></td>
+              <td>print all groups of line matching the REGEXPs</td>
+            </tr>
+            <tr>
+              <td><code>3,8d</code></td>
+              <td>delete lines numbered 3 to 8</td>
+            </tr>
+            <tr>
+              <td><code>5,/use/p</code></td>
+              <td>line number and REGEXP can be mixed</td>
+            </tr>
+            <tr>
+              <td><code></code>0,/not/p</td>
+              <td>inefficient equivalent of <code>/not/q</code> but works for
+              multiple files</td>
+            </tr>
+            <tr>
+              <td><code>ADDR,+N</code></td>
+              <td>all lines matching the ADDR and <code>N</code> lines after</td>
+            </tr>
+            <tr>
+              <td><code>i~j</code></td>
+              <td>arithmetic progression with <code>i</code> as start and <code>
+              j</code> as step</td>
+            </tr>
+            <tr>
+              <td><code></code>ADDR,~j</td>
+              <td>closest multiple of <code>j</code> wrt line matching the ADDR</td>
+            </tr>
+            <tr>
+              <td>pattern space</td>
+              <td>active data buffer, commands work on this content</td>
+            </tr>
+            <tr>
+              <td><code>n</code></td>
+              <td>if <code>-n</code> option isn't used, pattern space gets printed
+              and then pattern space is replaced with the next line of input exit
+              without executing other commands if there's no more input</td>
+            </tr>
+            <tr>
+              <td><code>N</code></td>
+              <td>add newline (or NUL for <code>-z</code>) to the pattern space
+              and then append next line of input exit without executing other
+              commands if there's no more input</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          This chapter introduced the filtering capabilities of <code>sed</code>
+          and how it can be combined with <code>sed</code> commands to process
+          only lines of interest instead of entire input file. Filtering can be
+          specified using a REGEXP, line number or a combination of them. You
+          also learnt various ways to compose multiple <code>sed</code> commands.
+          In the next chapter, you will learn syntax and features of regular
+          expressions as implemented in <code>sed</code> command.
+        </p>
+      </section>
+      <section id="exercises">
+        <h2 class="section_h">Exercises</h2>
+        <p>
+          <b>a)</b> Remove only the third line of given input.
+        </p>
+        <div class="code">
+          <code>
+            $ seq 34 37 | sed ##### add your solution here<br />
+            34<br />
+            35<br />
+            37
+          </code>
+        </div>
+        <p>
+          <b>b)</b> Display only fourth, fifthi sixth and seventh lines for the
+          given input.
+        </p>
+        <div class="code">
+          <code>
+            $ seq 65 78 | sed ##### add your solution here<br />
+            68<br />
+            69<br />
+            70<br />
+            71
+          </code>
+        </div>
+        <p>
+          <b>c)</b> For the input file <code>addr.txt</code>, replace all occurences
+          of <code>are</code> with <code>are not</code> and <code>is</code> with
+          <code>is not</code> only from line <b>4</b> till end of file. Also,
+          only the lines that were changed should be displayed in the output.
+        </p>
+        <div class="code">
+          <code>
+            $ cat addr.txt<br />
+            Hello World<br />
+            How are you<br />
+            This game is good<br />
+            Today is sunny<br />
+            12345<br />
+            You are funny<br />
+            <br />
+            $ sed ##### add your solution here<br />
+            Today is not sunny<br />
+            You are not funny
+          </code>
+        </div>
+        <p>
+          <b>d)</b> Use <code>sed</code> to get the output shown below for the
+          given input. You'll have to first understand the logic behind input to
+          output transformation and then use commands introduced in this chapter
+          construct a solution.
+        </p>
+        <div class="code">
+          <code>
+            $ seq 15 | sed ##### add your solution here<br />
+            2<br />
+            4<br />
+            7<br />
+            9<br />
+            12<br />
+            14
+          </code>
+        </div>
+        <p>
+          <b>e)</b> For the input file <code>addr.txt</code>, display all lines
+          from start of the file till the first occurence of <code>game</code>.
+        </p>
+        <div class="code">
+          <code>
+            $ sed ##### add your solution here<br />
+            Hello World<br />
+            How are you<br />
+            This game is good
+          </code>
+        </div>
+        <p>
+          <b>f)</b> For the input file <code>addr.txt</code>, display all the
+          lines that contain <code>is</code> but not <code>good</code>.
+        </p>
+        <div class="code">
+          <code>
+            $ sed ##### add your solution here
+            Today is sunny
+          </code>
+        </div>
+        <p>
+          <b>g)</b> See <b>Gotchas and Tricks</b> chapter and correct the command
+          to get the output as shown below.
+        </p>
+        <div class="code">
+          <code>
+            $ # wrong output<br />
+            $ seq 11 | sed 'N; N; s/\n/-/g'<br />
+            1-2-3<br />
+            4-5-6<br />
+            7-8-9<br />
+            10<br />
+            11<br />
+            <br />
+            $ # expected output<br />
+            $ seq 11 | sed ##### add your solution here<br />
+            1-2-3<br />
+            4-5-6<br />
+            7-8-9<br />
+            10-11
+          </code>
+        </div>
+        <p>
+          <b>h)</b> For the input file <code>addr.txt</code>, add line numbers
+          in the format as shown below.
+        </p>
+        <div class="code">
+          <code>
+            $ sed ##### add your solution here<br />
+            1<br />
+            Hello World<br />
+            2<br />
+            How are you<br />
+            3<br />
+            This game is good<br />
+            4<br />
+            Today is sunny<br />
+            5<br />
+            12345<br />
+            6<br />
+            You are funny
+          </code>
+        </div>
+        <p>
+          <b>i)</b> For the input file <code>addr.txt</code>, print all lines
+          that contain <code>are</code> and the line that comes after such a
+          line, if any.
+        </p>
+        <div class="code">
+          <code>
+            $ sed ##### add your solution here<br />
+            How are you<br />
+            This game is good<br />
+            You are funny
+          </code>
+        </div>
+        <p>
+          <b>Bonus:</b> For the above input file, will <code>sed -n '/is/,+1 p'
+            addr.txt</code> produce identical results as <code>grep -A1 'is'
+            addr.txt</code> ? If not, why?
+        </p>
+        <p>
+          <b>j)</b> Print all lines if their line numbers follow the sequence
+          <code>1, 15, 29, 43, etc</code> but not if the line contains <code>4</code>
+          in it.
+        </p>
+        <div class="code">
+          <code>
+            $ seq 32 100 | sed ##### add your solution here<br />
+            32<br />
+            60<br />
+            88
           </code>
         </div>
       </section>

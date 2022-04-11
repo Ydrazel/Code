@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/1999/xhtml">
+<html lang="en">
+  <head>
+    <meta type="text/html" charset="utf-8" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <title>Regular Expressions</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="chapter_h">BRE/ERE REgular Expressions</h1>
+    </header>
+    <main id="main_content">
+      <section id="introduction">
+        <p>
+          This chapter will cover Basic and Extended Regular Expressions as
+          implemented in <code>GNU Sed</code>. Though not strictly conforming to
+          <b>POSIX specifications</b>, most of it is applicable to other <code>
+          sed</code> implementations as well. Unless otherwise indicated,
+          examples and descriptions will assume ASCII input.
+        </p>
+        <p>
+          By default, <code>sed</code> treats the search pattern as Basic Regular
+          Expression (BRE). Using <code>-E</code> option will enable Extended
+          Regular Expression (ERE). Older versions used <code>-r</code> for ERE,
+          which can still be used, but <code>-E</code> is more portable. In <code>
+          GNU sed</code>, BRE and ERE only differ in how metacharacters are applied,
+          there's no difference in features.
+        </p>
+      </section>
+      <section id="line_anchors">
+        <h2 class="section_h">Line Anchors</h2>
+        <p>
+          Instead of matching anywhere in the line, restrictions can be specified.
+          These restrictions are made possible by assigning special meaning to
+          certain characters and escape sequences. The caharacters with special
+          meaning are know as <b>metacharacters</b> in regular expressions parlance.
+          In case you need to match those characters literally, you need to escape
+          them with a <code>\</code> (discussed in <b>Matching the metacharacters</b>
+          section).
+        </p>
+        <p>
+          There are two line anchors:
+        </p>
+        <ul>
+          <li><code>^</code> metacharacters restricts the matching to start of line</li>
+          <li><code>$</code> metacharacters restricts the matching to end of line</li>
+        </ul>
+        <div class="code">
+          <code>
+            $ # lines starting with 'sp'<br />
+            $ printf 'spared no one\npar\nspar\n' | sed -n '/^sp/p'<br />
+            spared no one<br />
+            spar<br />
+            <br />
+            $ # lines ending with 'ar'<br />
+            $ printf 'spared no one\npar\nspar\n' | sed -n '/ar$/p'<br />
+            par<br />
+            spar<br />
+            <br />
+            $ # change only whole line 'par'<br />
+            $ printf 'spared no one\npar\nspar\n' | sed 's/^par$/PAR/'<br />
+            spared no one<br />
+            PAR<br />
+            spar
+          </code>
+        </div>
+        <p>
+          The anchors can be used by themselves as a pattern. Helps to insert
+          text at start or end of line, emulating string concatenation operations.
+          These might not feel like useful capability, but combined with other
+          features they become quite a handy tool.
+        </p>
+        <div class="code">
+          <code>
+            $ printf 'spared no one\npar\nspar\n' | sed 's/^* /'<br />
+            * spared no one<br />
+            * par<br />
+            * spar<br />
+            <br />
+            $ # append only if line doesn't contain space characters<br />
+            $ printf ' spared no one\npar\nspar\n' | sed '/ /! s/$/./'<br />
+            spared no one<br />
+            par.<br />
+            spar.
+          </code>
+        </div>
+      </section>
+      <section id="word_anchors">
+        <h2 class="section_h">Word Anchors</h2>
+        <p>
+          The second type of restriction is word anchors. A word character is
+          any alphabet (irrespective of case), digit and the underscore scharacter.
+          You might wonder why there are digits and underscores as well, why not
+          only alphabets? This comes from variable and function naming conventions
+          -- typically alphabets, digits and underscore are allowed. So, the
+          definition is more programming oriented than natural language.
+        </p>
+        <p>
+          The sequence <code>\b</code> denotes a word boundary. This works for
+          both start of word and end of word anchoring. Start of word means
+          either the character prior to the word is a non-word character or
+          there is no character (start of line). Similarly, end of word means
+          the character after the word is a non-word character or no character
+          (end of line). This implies that you cannot have boundary without a
+          word character.
+        </p>
+        <div class="code">
+          <code>
+            $ cat word_anchors.txt<br />
+            sub par<br />
+            spar<br />
+            apparent effort<br />
+            two spare computers<br />
+            cart part tart mart<br />
+            <br />
+            $ # words starting with 'par'<br />
+            $ sed -n '/\bpar/p' word_anchors.txt<br />
+            sub par<br />
+            cart part tart mart<br />
+            <br />
+            $ # words ending with 'par'<br />
+            $ sed -n '/par\b/p' wprd_anchors.txt<br />
+            sub par<br />
+            spar<br />
+            <br />
+            $ # only whole word 'par'<br />
+            $ sed -n 's/\bpar\b/***/p' word_anchors.txt<br />
+            sub ***
+          </code>
+        </div>
+        <p>
+          The word boundary has an opposite anchor too. <code>\B</code> matches
+          wherever <code>\b</code> doesn't match. This duality will be seen with
+          some other escape sequences too.
+        </p>
+        <div class="code">
+          <code>
+            $ # match 'par' if it is surrounded by word characters<br />
+            $ sed -n '/\Bpar\B/p' word_anchors.txt<br />
+            apparent effort<br />
+            two spare computers<br />
+            <br />
+            $ # match 'par' but not as start of word<br />
+            $ sed -n '/\Bpar/p' word_anchors.txt<br />
+            spar<br />
+            apparent effort<br />
+            two spare computers<br />
+            <br />
+            $ # match 'par' but not as end of word<br />
+            $ sed -n '/par\B/p' word_anchors.txt<br />
+            apparent effort<br />
+            two spare computers<br />
+            cart part tart mart<br />
+            <br />
+            $ echo 'copper' | sed 's/\b/:/g'<br />
+            :copper:<br />
+            $ echo 'copper' | sed 's/\B/:/g'<br />
+            c:o:p:p:e:r
+          </code>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
