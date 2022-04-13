@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <h1 class="chapter_h">BRE/ERE REgular Expressions</h1>
+      <h1 class="chapter_h">BRE/ERE Regular Expressions</h1>
     </header>
     <main id="main_content">
       <section id="introduction">
@@ -156,6 +156,221 @@
             :copper:<br />
             $ echo 'copper' | sed 's/\B/:/g'<br />
             c:o:p:p:e:r
+          </code>
+        </div>
+      </section>
+      <section id="alternation">
+        <h2 class="section_h">Alternation</h2>
+        <p>
+          Many a times, you'd want to search for multiple terms. In a conditional
+          expression, you can use the logical operators to combine multiple
+          conditions. With regular expressions, the <code>|</code> metacharacter
+          is similar to logical OR. The regular expression will match if any of
+          the expression seperated by <code>|</code> is satisfied. These can have
+          their own independent anchors as well.
+        </p>
+        <p>
+          Alternation is similar to using multiple <code>-e</code> option, but
+          provides more flexibility with regular expression features. The <code>
+          |</code> metacharacter syntax varies between BRE and ERE. Quoting from
+          the manual:
+        </p>
+        <div class="code">
+          <code>
+            $ # BRE vs ERE<br />
+            $ sed -n '/two\|sub/p' word_anchors.txt<br />
+            sub par<br />
+            two spare computers<br />
+            $ sed -nE '/two|sub/p' word_anchors.txt<br />
+            sub par<br />
+            two spare computers<br />
+            <br />
+            $ # either 'cat' or 'dog' or 'fox<br />
+            $ # note the use of 'g' flag for multiple replacements<br />
+            $ echo 'cats dog bee parrot foxed' | sed -E 's/cat|dog|fox/--/g'<br />
+            --s -- be parrot --ed<br />
+            <br />
+            $ # lines with whole word 'par' or lines ending with 's'<br />
+            $ sed -nE '/\bpar\b|s$/p' word_anchors.txt<br />
+            sub par<br />
+            two spare computers
+          </code>
+        </div>
+        <p>
+          There's some tricky situations when using alternation. If it is used
+          for filtering a line, there is no ambiguity. However, for use cases
+          like substitution, it depends on a few factors. Say, you want to
+          replace <code>are</code> or <code>spared</code> -- which one should
+          get precedence? The bigger word <code>spared</code> or the substring
+          <code>are</code> inside it or based on something else?
+        </p>
+        <p>
+          The alternative which matches earliest in the input gets precedence.
+        </p>
+        <div class="code">
+          <code>
+            $ # here, the output will be same irrespective of alternation order<br />
+            $ # not that 'g' flag isn't used here, so only first match gets replaced<br />
+            $ echo 'cats dog bee parrot foxed' | sed -E 's/bee|parrot|at/--/'<br />
+            c--s dog bee parrot foxed<br />
+            $ echo 'cats dog bee parrot foxed' | sed -E 's/parrot|at|bee/--/'<br />
+            c--s dog bee parrot foxed
+          </code>
+        </div>
+        <p>
+          In case of matches starting from same location, for example <code>spar
+          </code> and <code>spared</code>, the longest matching portion gets
+          precedence. Unlike other regular expression implementations, left-to-right
+          priority for alternation comes into play only if length of the matches
+          are the same. See <b>Longest match wins</b> and <b>Backreferences</b>
+          sections for more examples. See <b>regular-expressions: alternation</b>
+          for more information on this topic.
+        </p>
+        <div class="code">
+          <code>
+            $ echo 'spared party parent' | sed -E 's/spa|spared/**/g'<br />
+            ** party parent<br />
+            $ echo 'spared party parent' | sed -E 's/spared|spa/**/g'<br />
+            ** party parent<br />
+            <br />
+            $ # other implementations like 'perl' have left-to-right priority<br />
+            $ echo 'spared party parent' | perl -pe 's/spa|spared/**/'<br />
+            **red party parent
+          </code>
+        </div>
+      </section>
+      <section id="grouping">
+        <h2 class="section_h">Grouping</h2>
+        <p>
+          Often, there are some common things among the regular expression
+          alternatives. It could be common characters or qualifiers like the
+          anchors. In such cases, you can group them using a pair of
+          parantheses metacharacters. Similar to <code>a(b+c)d = abd+acd</code>
+          in maths, you get <code>a(b|c)d = abd|acd</code> in regular expressions.
+        </p>
+        <div class="code">
+          <code>
+            $ # without grouping<br />
+            $ printf 'red\nreform\nread\narrest\n' | sed -nE '/reform|rest/p'<br />
+            reform<br />
+            arrest<br />
+            $ # with grouping<br />
+            $ printf 'red\nreform\nread\narrest\n' | sed -nE '/re(form|st)/p'<br />
+            reform<br />
+            arrest<br />
+            <br />
+            $ # without grouping<br />
+            $ printf 'sub par\nsapre\npart time\n' | sed -nE '/\bpar\b|\bpart\b/p'<br />
+            sub par<br />
+            part time<br />
+            $ # taking out common anchors<br />
+            $ printf 'sub par\nspare\npart time\n' | sed -nE '/\b(par|part)\b/p'<br />
+            sub par<br />
+            part time<br />
+            $ # taking out common characters as well<br />
+            $ # you'll later learn a better technique instead of using empty alternative<br />
+            $ printf 'sub par\nspare\npart time\n' | sed -nE '/\bpart(|t)\b/p'<br />
+            sub par<br />
+            part time
+          </code>
+        </div>
+      </section>
+      <section id="metacharacters">
+        <h2 class="section_h">Matching the Metacharacters</h2>
+        <p>
+          You have seen a few metacharacters and escape sequences that help to
+          compose a regular expression. To match the metacharacters literally,
+          i.e. to remove their special meaning, prefix those characters with a
+          <code>\</code> character. To indicate a literal <code>\</code> character,
+          use <code>\\</code>. Some of the metacharacters, like the line anchors,
+          lose their special meaning when not used in their customary positions.
+          If there are many metacharacters to be escaped, try to work out if the
+          command can be simplified by switching between ERE and BRE.
+        </p>
+        <div class="code">
+          <code>
+            $ # line anchors aren't special away from customary positions<br />
+            $ echo 'a^2 + b^2 - C*3' | sed -n '/b^2/p'<br />
+            a^2 + b^2 - C*3<br />
+            $ echo '$a = $b + $c' | sed -n '/$b/p'<br />
+            $a = $b + $c<br />
+            $ # escape line anchors to match them literally at customary positions<br />
+            $ echo '$a = $b + $c' | sed 's/\$//g'<br />
+            a = b + c<br />
+            <br />
+            $ # BRE vs ERE<br />
+            $ printf '(a/b) + c\n3 + (a/b) - c\n' | sed -n '/^(a\/b)/p'<br />
+            (a/b) + c<br />
+            $ printf '(a/b) + c\n3 + (a/b) - c\n' | sed -nE '/^\(a\/b\)/p'<br />
+            (a/b) + c
+          </code>
+        </div>
+        <p>
+          Handling the metacharacters in replacement section will be discussed in
+          <b>Backreferences</b> section.
+        </p>
+      </section>
+      <section id="deliimiters">
+        <p>
+          The <code>/</code> character is idiomatically used as the delimiter
+          for REGEXP. But any character other than <code>\</code> and the newline
+          character can be used instead. This helps to avoid or reduce the need
+          for escaping delimiter characters. The syntax is simple for substitution
+          and transliteration commands, just use a different character instead of
+          <code>/</code>.
+        </p>
+        <div class="code">
+          <code>
+            $ # instead of this<br />
+            $ echo '/home/learnbyexample/report<br />s' | sed 's/\/home\/learnbyexample\//~\//'
+            ~/reports<br />
+            $ # use a different delimiter<br />
+            $ echo '/home/learnbyexample/report<br />s' | sed 's#/home/learnbyexample/#~/#'
+            ~/reports<br />
+            <br />
+            $ echo 'a/b/c/d' | sed 'y/a\/d/1-4/'<br />
+            1-b-c-4<br />
+            $ echo 'a/b/c/d' | sed 'y,a/d,1-4,'<br />
+            1-b-c-4
+          </code>
+        </div>
+        <p>
+          For address matching, syntax is a bit different, the first delimiter
+          has to be escaped. For address rangers, start and end REGEXP can have
+          different delimiters, as they are independent.
+        </p>
+        <div class="code">
+          <code>
+            $ printf '/foo/bar/1\n/foo/baz/1\n'<br />
+            /foo/bar/1<br />
+            /foo/baz/1<br />
+            <br />
+            $ # here ; is used as the delimiter<br />
+            $ printf '/foo/bar/1\n/foo/baz/1\n' | sed -n '\;/foo/bar/;p'<br />
+            /foo/bar/1
+          </code>
+        </div>
+      </section>
+      <section id="the_dot">
+        <h2 class="section_h">The Dot Meta Character</h2>
+        <p>
+          The dot metacharacter serves as a placeholder to match any character
+          (including newline character). Later you'll learn how to define your
+          own custom placeholder for limited set of characters.
+        </p>
+        <div class="code">
+          <code>
+            $ # 3 character sequence starting with 'c' and ending with 't'<br />
+            $ echo 'tac tin cot abc:tyz excited' | sed 's/c.t/-/g'<br />
+            ta-in - ab-yz ex-ed<br />
+            <br />
+            $ # any character followed by 3 and again any character<br />
+            $ printf '42\t35\n' | sed 's/.3.//'<br />
+            42<br />
+            <br />
+            $ # N command is handy here to show that . matches \n as well<br />
+            $ printf 'abc\nxyz\n' | sed 'N; s/c.x/ /'<br />
+            ab yz
           </code>
         </div>
       </section>
