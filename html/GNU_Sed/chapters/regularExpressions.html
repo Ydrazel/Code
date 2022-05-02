@@ -374,6 +374,149 @@
           </code>
         </div>
       </section>
+      <section id="quantifiers">
+        <h2 class="section_h">Quantifiers</h2>
+        <p>
+          As na anology, alternation provides logical OR. Combining the dot
+          metacharacter <code>.</code> and quantifiers (and alternation if needed)
+          paves a way to perform logical AND. For example, to chaeck if a string
+          matches tow patterns with any number of characters in between.
+          Quantifiers can be applied to both characters and groupings. Apart from
+          ability to specify exact quantity and bounded range, these can also
+          match unbounded varying quantities.
+        </p>
+        <p>
+          First up, the <code>?</code> metacharacter which quantifies a character
+          or group to match <code>0</code> or <code>1</code> times. This helps to
+          define optional patterns and build terser patterns compared to groupings
+          for some cases.
+        </p>
+        <div class="code">
+          <code>
+            $ # same as: sed -E 's/\b(fe.d|fed)\b/X/g'<br />
+            $ # BRE version: sed 's/fe.\?d\b/X/g'<br />
+            $ echo 'fed fold fe:d feeder' | sed -E 's/\bfe.?d\b/X/g'<br />
+            X fold X feeder<br />
+            <br />
+            $ # same as: sed -nE '/\bpar(|t)\b/p'<br />
+            $ printf 'sub par\nspare\npart time\n' | sed -nE '/\bpart?\b/p'<br />
+            sub par<br />
+            part time<br />
+            <br />
+            $ # same as: sed -E 's/part|parrot/X/g'<br />
+            $ echo 'par part parrot parent' | sed -E 's/par(ro)?t/X/g'<br />
+            par X X parent<br />
+            $ # same as: sed -E 's/part|parrot|parent/X/g'<br />
+            $ echo 'par part parrot parent' | sed -E 's/par(en|ro)?t/X/g'<br />
+            par X X X<br />
+            <br />
+            $ # both '&lt;' and '\&lt;' are replaced with '\&lt;'<br />
+            $ echo 'blah \&lt; foo bar \&lt; blah baz \&lt;
+          </code>
+        </div>
+        <p>
+          The <code>*</code> metacharacter quantifies a character or group to
+          match <code>0</code> or more times. There is no upper bound, more
+          details will be discussed in the next section.
+        </p>
+        <div class="code">
+          <code>
+            $ # 'f' followed by zero or more of 'e' followed by 'd'<br />
+            $ echo 'fd fed fod fe:d feeeeder' | 's/fe*d/X/g'<br />
+            X X fod fe:d Xer<br />
+            <br />
+            $ # zero or more of '1' followed by '2'<br />
+            $ echo '3111111111111125111142' | sed 's/1*2/-/g'<br />
+            3-511114-
+          </code>
+        </div>
+        <p>
+          The <code>+</code> metacharacter quantifies a character or group to 
+          match <code>1</code> or more times. Similar to <code>*</code> quantifier,
+          there is no upper bound.
+        </p>
+        <div class="code">
+          <code>
+            $ # 'f' followed by one or more of 'e' followed by 'd'<br />
+            $ # BRE version: sed 's/fe\+d/X/g'<br />
+            $ echo 'fd fed fod fe:d feeeeder' | sed -E 's/fe+d/X/g'<br />
+            fd X fod fe:d Xer<br />
+<br />
+            $ # 'f' followed by at least one of 'e' or 'o' or ':' followed by 'd'<br />
+            $ echo 'fd fed fod fe:d feeeeder' | sed -E 's/f(e|o|:)+d/X/g'<br />
+            fd X X X Xer<br />
+<br />
+            $ # one or more of '1' followed by optional '4' and then '2'<br />
+            $ echo '3111111111111125111142' | sed -E 's/1+4?2/-/g'<br />
+            3-5-
+          </code>
+        </div>
+        <p>
+          You can specify a range of integer numbers, both bounded and unbounded,
+          using <code>{}</code> metacharacters. There are four ways to use this 
+          quantifier as listed below:
+        </p>
+        <table>
+          <thead>
+            <th>Pattern</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>{m,n}</code></td>
+              <td>match <code>m</code> to <code>t</code> times</td>
+            </tr>
+            <tr>
+              <td><code>{m,}</code></td>
+              <td>match at least <code>m</code> times</td>
+            </tr>
+            <tr>
+              <td><code>{,n}</code></td>
+              <td>match up to <code>n</code> times (including <code>0</code> times)</td>
+            </tr>
+            <tr>
+              <td><code>{n}</code></td>
+              <td>match exactly <code>n</code> times</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="code">
+          <code>
+            $ # note that inside {} space is not allowed around ,<br />
+            $ # BRE  version: sed 's/ab\{1,4\}c/X/g'<br />
+            $ echo 'ac abc abbc abbbc abbbbbbbbc' | sed -E 's/ab{1,4}c/X/g'<br />
+            ac X X X abbbbbbbbc<br />
+<br />
+            $ echo 'ac abc abbc abbbc abbbbbbbbc' | sed -E 's/ab{3,}c/X/g'<br />
+            ac abc abbc X X<br />
+<br />
+            $ echo 'ac abc abbc abbbc abbbbbbbbc' | sed -E 's/ab{,2}c/X/g'<br />
+            X X X abbbc abbbbbbbbc<br />
+<br />
+            $ echo 'ac abc abbc abbbc abbbbbbbbc' | sed -E 's/ab/{3}c/X/g'<br />
+            ac abc abbc X abbbbbbbbc
+          </code>
+        </div>
+        <p>
+          Next up, how to construct conditional AND using dot metacharacter and
+          quantifiers. To allow matching in any order, you'll have to bring in
+          alternation as well. But, for more than 3 patterns, the combinations
+          become too many to write and maintain.
+        </p>
+        <div class="code">
+          <code>
+            $ # match 'Error' followed by zero or more caharacters followed by 'valid'<br />
+            $ echo 'Error: not a valid input' | sed -n '/Error.*valid/p'<br />
+            Error: not a valid input<br />
+<br />
+            $ # 'cat' followed by 'dog' or 'dog' followed by 'cat'<br />
+            $ echo 'two cats and a dog' | sed -E 's/cat.*dog|dog.*cat/pets/'<br />
+            two pets<br />
+            $ echo 'two dogs and a cat' | sed -E 's/cat.*dog|dog.*cat/pets/'<br />
+            two pets
+          </code>
+        </div>
+      </section>
     </main>
   </body>
 </html>

@@ -1,0 +1,9 @@
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+nvme0n1     259:0    0 476.9G  0 disk 
+├─nvme0n1p1 259:1    0   100M  0 part 
+├─nvme0n1p2 259:2    0    16M  0 part 
+├─nvme0n1p3 259:3    0   488M  0 part 
+├─nvme0n1p4 259:4    0 401.2G  0 part 
+├─nvme0n1p5 259:5    0   605M  0 part 
+├─nvme0n1p6 259:6    0   256M  0 part /boot
+└─nvme0n1p7 259:7    0  74.3G  0 part /
