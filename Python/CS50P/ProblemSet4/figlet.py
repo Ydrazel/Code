@@ -12,14 +12,16 @@ def main():
 def set_font(figlet):
     font_list = figlet.getFonts()
 
-    while len(sys.argv) == 3:
-        if (sys.argv[1] in ("-f", "--font")) and (sys.argv[2] in font_list):
-            figlet.setFont(font=sys.argv[2])
-            break
-        else:
-            sys.exit("needs -f and font name as argumnets")
-    else:
-        figlet.setFont(font=choice(font_list))
+    match len(sys.argv):
+        case 3:
+            if (sys.argv[1] == "-f") and (sys.argv[2] in font_list):
+                figlet.setFont(font=sys.argv[2])
+            else:
+                sys.exit("Needs '-f' and a valid Font Name as arguments.")
+        case 1:
+            figlet.setFont(font=choice(font_list))
+        case _:
+            sys.exit("Needs '-f' and a valid Font Name as arguments.")
 
 if __name__ == "__main__":
     main()
