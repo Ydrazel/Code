@@ -1,0 +1,12 @@
+#-*- code: utf-8 -*-
+import validators
+import sys
+
+def main():
+    print(validate(input("What's your email address?\n >>> ")))
+    
+def validate(s):
+    validators.email(s)
+    
+if __name__ == "__main__":
+    main()
