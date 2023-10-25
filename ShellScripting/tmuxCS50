@@ -1,0 +1,16 @@
+#!/bin/sh
+
+SESSIONNAME="CS50"
+cd ~/Kod/Code/Python/CS50P/ProblemSet8/
+tmux has-session -t $SESSIONNAME
+
+if [ $? != 0 ]
+  then
+    tmux new-session -s $SESSIONNAME -d
+    tmux split-window -t $SESSIONNAME -v -p 5
+    tmux select-pane -t 1
+    tmux send "envy" ENTER
+    tmux send "clear" ENTER
+fi
+
+tmux attach -t $SESSIONNAME
