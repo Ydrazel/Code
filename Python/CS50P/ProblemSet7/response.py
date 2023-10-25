@@ -9,11 +9,11 @@ def validate(s):
     while True:
         try:
             if validators.email(s):
-                return "Valid"
+                return f'\033[92m"Valid"\033[0m'
         except errors.EmptyValueError:
             sys.exit("No mail address given for validation!")
         except (ValueError, errors.InvalidEmailError):
-            sys.exit("Invalid Email Address")
+            sys.exit("\033[93mInvalid Email Address\033[0m")
     
 if __name__ == "__main__":
     main()
